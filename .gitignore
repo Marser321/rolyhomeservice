@@ -1,0 +1,24 @@
+# ─── Deploy repo: site files only ───────────────────────────────────────────
+# Internal client/strategy/research docs — NOT for the public repo
+*.pdf
+*.txt
+*.md
+!README.md
+
+# Reference material (not part of the deployed site)
+Referencias/
+image_73930D78BA88C5.jpg
+image_E4F7E4C3EDC049.jpg
+
+# Source PNGs — the site ships the optimized .webp versions instead
+*.png
+
+# Tooling / local
+.agents/
+skills-lock.json
+skills.lock.json
+.claude/
+__pycache__/
+*.zip
+Thumbs.db
+desktop.ini

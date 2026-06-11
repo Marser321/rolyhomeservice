@@ -1,0 +1,492 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smart Renovations & Home Repairs | Roly Home Services Tucker Atlanta</title>
+    <meta name="description" content="High-impact kitchen and bathroom updates, drywall repairs, deck staining, and general home improvements in Tucker & Atlanta. Quality craftsmanship without the stress.">
+    <link rel="canonical" href="https://rolyhomeservices.com/renovations.html">
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="Roly Home Services">
+    <meta property="og:locale" content="en_US">
+    <meta property="og:url" content="https://rolyhomeservices.com/renovations.html">
+    <meta property="og:title" content="Smart Renovations &amp; Home Repairs | Roly Home Services Tucker Atlanta">
+    <meta property="og:description" content="High-impact kitchen and bathroom updates, drywall repairs, deck staining, and general home improvements in Tucker &amp; Atlanta. Quality craftsmanship without the stress.">
+    <meta property="og:image" content="https://rolyhomeservices.com/og_cover.jpg">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Smart Renovations &amp; Home Repairs | Roly Home Services Tucker Atlanta">
+    <meta name="twitter:description" content="High-impact kitchen and bathroom updates, drywall repairs, deck staining, and general home improvements in Tucker &amp; Atlanta. Quality craftsmanship without the stress.">
+    <meta name="twitter:image" content="https://rolyhomeservices.com/og_cover.jpg">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <link rel="preload" as="image" href="drywall_repair.webp" fetchpriority="high">
+    <script defer src="https://cdn.jsdelivr.net/npm/gsap@3.15.0/dist/gsap.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/gsap@3.15.0/dist/ScrollTrigger.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/gsap@3.15.0/dist/SplitText.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/lenis@1.3.23/dist/lenis.min.js"></script>
+    <script defer src="app.js"></script>
+    <script defer src="motion.js"></script>
+</head>
+<body>
+    <a class="skip-link" href="#main-content">Skip to main content</a>
+
+    <!-- ==========================================================================
+       SITE HEADER (STICKY)
+       ========================================================================== -->
+    <header class="site-header">
+        <div class="container header-container">
+            <a href="index.html" class="logo-wrapper">
+                <div class="logo-icon-box" style="color: var(--color-orange);">
+                    <svg style="width: 32px; height: 32px;" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M19 2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h4l3 3 3-3h4c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm-2 10h-4v4h-2v-4H7v-2h4V6h2v4h4v2z"/>
+                    </svg>
+                </div>
+                <div>
+                    <h1 class="logo-text">Roly<span> Home Services</span></h1>
+                    <p class="logo-slogan">Your Property Best Friend</p>
+                </div>
+            </a>
+
+            <button class="hamburger" id="hamburgerMenu" aria-label="Toggle navigation">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="index.html" class="nav-link">Home</a></li>
+                <li><a href="services.html" class="nav-link">Services</a></li>
+                <li><a href="painting.html" class="nav-link">Painting</a></li>
+                <li><a href="presale.html" class="nav-link">Pre-Sale Prep</a></li>
+                <li><a href="renovations.html" class="nav-link active">Renovations</a></li>
+                <li><a href="partners.html" class="nav-link">Partners</a></li>
+                <li><a href="gallery.html" class="nav-link">Gallery</a></li>
+                <li><a href="reviews.html" class="nav-link">Reviews</a></li>
+                <li><a href="about.html" class="nav-link">About</a></li>
+                <li><a href="contact.html" class="nav-link">Contact</a></li>
+                <li><a href="#get-started" class="btn btn-primary btn-sm">Get Free Estimate</a></li>
+            </ul>
+
+            <div class="header-actions">
+                <a href="tel:7707690008" class="phone-link">
+                    <svg style="width: 18px; height:18px;" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.94.725l.548 2.2a1 1 0 01-.321.988l-1.305.98a10.582 10.582 0 004.872 4.872l.98-1.305a1 1 0 01.988-.321l2.2.548a1 1 0 01.725.94V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path>
+                    </svg>
+                    <span>770-769-0008</span>
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- ==========================================================================
+       HERO SECTION
+       ========================================================================== -->
+    <section id="main-content" class="hero">
+        <div class="container grid-2">
+            <div class="hero-content">
+                <div class="hero-tagline animate-fade-in-up">
+                    <svg style="width: 16px; height:16px;" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"></path>
+                    </svg>
+                    <span>Expert Home Improvements</span>
+                </div>
+                <h2 class="hero-title animate-fade-in-up animate-delay-1">Smart Renovations & Home Repairs</h2>
+                <p class="hero-subtitle animate-fade-in-up animate-delay-2">From high-impact updates in kitchens and bathrooms to detailed drywall patching and wood staining. Quality craftsmanship that protects and elevates your property.</p>
+                <div class="hero-btns animate-fade-in-up animate-delay-3">
+                    <a href="#get-started" class="btn btn-primary btn-lg">Talk to Us About Your Project</a>
+                    <a href="tel:7707690008" class="btn btn-outline" style="border-color: rgba(255,255,255,0.3); color: #FFFFFF;">Call or Text Us</a>
+                </div>
+            </div>
+            
+            <div class="hero-image-pane animate-scale-up animate-delay-2">
+                <div>
+                    <img src="drywall_repair.webp" alt="Home renovations and drywall repair work in progress" fetchpriority="high" decoding="async" width="1024" height="1024">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==========================================================================
+       TRUST & AUTHORITY BAR
+       ========================================================================== -->
+    <section class="trust-bar">
+        <div class="container trust-bar-container">
+            <div class="trust-bar-item">
+                <div class="trust-bar-icon-box"><svg style="width:24px; height:24px;" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path></svg></div>
+                <div class="trust-bar-text">
+                    <h4>Fully Insured</h4>
+                    <p>$2M Liability Protection</p>
+                </div>
+            </div>
+            <div class="trust-bar-item">
+                <div class="trust-bar-icon-box"><svg style="width:24px; height:24px;" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg></div>
+                <div class="trust-bar-text">
+                    <h4>No Structural Demolition</h4>
+                    <p>Clean High-Impact Updates</p>
+                </div>
+            </div>
+            <div class="trust-bar-item">
+                <div class="trust-bar-icon-box"><svg style="width:24px; height:24px;" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"></path></svg></div>
+                <div class="trust-bar-text">
+                    <h4>Honest Advice</h4>
+                    <p>Suggested With Integrity</p>
+                </div>
+            </div>
+            <div class="trust-bar-item">
+                <div class="trust-bar-icon-box"><svg style="width:24px; height:24px;" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg></div>
+                <div class="trust-bar-text">
+                    <h4>Workmanship Guarantee</h4>
+                    <p>2-Year Service Warranty</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==========================================================================
+       DETAILED REPAIR & RENOVATION CARDS
+       ========================================================================== -->
+    <section class="section reveal-on-scroll">
+        <div class="container">
+            <div class="section-title-wrapper">
+                <span class="section-label">Property Improvement</span>
+                <h2 class="section-title">High-Impact Refreshes & Repairs</h2>
+                <p class="section-desc">We specialize in updates that modernize properties and resolve repair lists without the expense and delay of heavy renovations.</p>
+            </div>
+
+            <div class="grid-4 mb-4">
+                <div class="service-card-secondary">
+                    <div class="service-card-icon-box">
+                        <svg style="width: 28px; height: 28px;" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M4 5a1 1 0 011-1h14a1 1 0 011 1v2a1 1 0 01-1 1H5a1 1 0 01-1-1V5zM4 13a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H5a1 1 0 01-1-1v-6zM16 13a1 1 0 011-1h2a1 1 0 011 1v6a1 1 0 01-1 1h-2a1 1 0 01-1-1v-6z"></path>
+                        </svg>
+                    </div>
+                    <h3>Kitchen updates</h3>
+                    <p>We spray cabinets, install premium knobs/pulls, adjust fixtures, change lighting, and coordinate tiles to modernize your kitchen look.</p>
+                </div>
+                <div class="service-card-secondary">
+                    <div class="service-card-icon-box">
+                        <svg style="width: 28px; height: 28px;" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z"></path>
+                        </svg>
+                    </div>
+                    <h3>Bathroom updates</h3>
+                    <p>Paint refreshes, vanity updates, fixture replacement, hardware upgrades, and grout sealing that make bathrooms feel pristine and clean.</p>
+                </div>
+                <div class="service-card-secondary">
+                    <div class="service-card-icon-box">
+                        <svg style="width: 28px; height: 28px;" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path>
+                        </svg>
+                    </div>
+                    <h3>Drywall Repair</h3>
+                    <p>Seamless drywall patching, repair of water damage, and precise texture matching so your walls look flawless before new paint is applied.</p>
+                </div>
+                <div class="service-card-secondary">
+                    <div class="service-card-icon-box">
+                        <svg style="width: 28px; height: 28px;" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"></path>
+                        </svg>
+                    </div>
+                    <h3>Decks & Fences</h3>
+                    <p>Minor board replacement, pressure cleaning, and premium staining/painting to shield outdoor wood structures from weather decay.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==========================================================================
+       PROGRESSIVE 4-STEP CRM QUALIFICATION FORM
+       ========================================================================== -->
+    <section class="section-alt reveal-on-scroll" id="get-started">
+        <div class="container">
+            <div class="section-title-wrapper" style="margin-bottom: 36px;">
+                <span class="section-label">Friction-Free Qualification</span>
+                <h2 class="section-title">Schedule Your Property Assessment</h2>
+                <p class="section-desc">Complete our 4-step assessment tool. This informs our project manager about your goals to build a precise estimate.</p>
+            </div>
+
+            <div class="form-outer-wrapper" id="ghlProgressiveForm">
+                <div class="form-header-banner">
+                    <h3>Free Property Assessment</h3>
+                    <p>Qualify your project details in 60 seconds.</p>
+                </div>
+
+                <!-- Steps Progress Tracker bar -->
+                <div class="steps-tracker" id="formStepsTracker">
+                    <div class="step-node active">
+                        <div class="step-circle">1</div>
+                        <span>Category</span>
+                    </div>
+                    <div class="step-node">
+                        <div class="step-circle">2</div>
+                        <span>Goals</span>
+                    </div>
+                    <div class="step-node">
+                        <div class="step-circle">3</div>
+                        <span>Location</span>
+                    </div>
+                    <div class="step-node">
+                        <div class="step-circle">4</div>
+                        <span>Contact</span>
+                    </div>
+                </div>
+
+                <!-- Slides Wrapper -->
+                <div id="formSlidesWrapper" class="form-slides-container">
+                    
+                    <!-- STEP 1: CATEGORY SELECTION -->
+                    <div class="form-slide active" data-step="1">
+                        <h4 class="form-slide-title">What type of transformation are you looking for?</h4>
+                        <div class="options-grid">
+                            <div class="option-box" tabindex="0" data-category="project-type" data-value="interior">
+                                <div class="option-icon">
+                                    <svg style="width:28px; height:28px;" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"></path></svg>
+                                </div>
+                                <h4>Interior Painting</h4>
+                                <p>Walls, ceilings, trims, baseboards</p>
+                            </div>
+                            <div class="option-box" tabindex="0" data-category="project-type" data-value="exterior">
+                                <div class="option-icon">
+                                    <svg style="width:28px; height:28px;" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"></path></svg>
+                                </div>
+                                <h4>Exterior Painting</h4>
+                                <p>Siding, trim, fascia, deck stain</p>
+                            </div>
+                            <div class="option-box" tabindex="0" data-category="project-type" data-value="cabinets">
+                                <div class="option-icon">
+                                    <svg style="width:28px; height:28px;" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z"></path></svg>
+                                </div>
+                                <h4>Cabinet Painting</h4>
+                                <p>Factory-grade spray refinishing</p>
+                            </div>
+                            <div class="option-box" tabindex="0" data-category="project-type" data-value="improvements">
+                                <div class="option-icon">
+                                    <svg style="width:28px; height:28px;" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"></path></svg>
+                                </div>
+                                <h4>Value Enhancements</h4>
+                                <p>Drywall repairs, trim & updates</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- STEP 2: AVATAR / GOALS -->
+                    <div class="form-slide" data-step="2">
+                        <h4 class="form-slide-title">What are the main goals for your property?</h4>
+                        <div class="options-grid">
+                            <div class="option-box" tabindex="0" data-category="avatar-context" data-value="sell">
+                                <div class="option-icon">
+                                    <svg style="width:28px; height:28px;" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                                </div>
+                                <h4>Preparing to List / Sell</h4>
+                                <p>Increase appraisal value & speed sale</p>
+                            </div>
+                            <div class="option-box" tabindex="0" data-category="avatar-context" data-value="buy">
+                                <div class="option-icon">
+                                    <svg style="width:28px; height:28px;" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>
+                                </div>
+                                <h4>Newly Purchased Home</h4>
+                                <p>Personalize before moving in</p>
+                            </div>
+                            <div class="option-box" tabindex="0" data-category="avatar-context" data-value="update">
+                                <div class="option-icon">
+                                    <svg style="width:28px; height:28px;" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path></svg>
+                                </div>
+                                <h4>Improve Current Home</h4>
+                                <p>Protect siding or update aesthetics</p>
+                            </div>
+                            <div class="option-box" tabindex="0" data-category="avatar-context" data-value="partner">
+                                <div class="option-icon">
+                                    <svg style="width:28px; height:28px;" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857C17.068 15.794 17 15.4 17 15V4a2 2 0 00-2-2H5a2 2 0 00-2 2v11c0 .4.068.794.18 1.143A3 3 0 003 18v2h5v-2a3 3 0 015.356-1.857C13.932 16.206 14 16.6 14 17v3h3z"></path></svg>
+                                </div>
+                                <h4>Realtor / Investor Partner</h4>
+                                <p>Repeated projects, fast turnaround</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- STEP 3: LOCATION & ZIP -->
+                    <div class="form-slide" data-step="3">
+                        <h4 class="form-slide-title">Where is the project located?</h4>
+                        <p class="mb-3" style="font-size: 0.85rem; color: var(--text-secondary);">You're halfway there — about 30 seconds left. We just need your location to check availability in the Tucker, Atlanta & surrounding service area.</p>
+                        
+                        <div class="form-group">
+                            <label class="form-label" for="projectZip">ZIP Code</label>
+                            <input class="form-control" type="text" id="projectZip" placeholder="e.g. 30084" maxlength="5">
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label" for="projectAddress">Street Address</label>
+                            <input class="form-control" type="text" id="projectAddress" placeholder="e.g. 123 Main Street">
+                        </div>
+                    </div>
+
+                    <!-- STEP 4: CONTACT & DETAILS -->
+                    <div class="form-slide" data-step="4">
+                        <h4 class="form-slide-title">Who should our project manager contact?</h4>
+                        
+                        <div class="grid-2">
+                            <div class="form-group">
+                                <label class="form-label" for="clientName">Full Name</label>
+                                <input class="form-control" type="text" id="clientName" placeholder="e.g. John Doe">
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label" for="clientPhone">Phone Number</label>
+                                <input class="form-control" type="tel" id="clientPhone" placeholder="e.g. 770-555-0199">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label" for="clientEmail">Email Address</label>
+                            <input class="form-control" type="email" id="clientEmail" placeholder="e.g. johndoe@gmail.com">
+                        </div>
+
+                        <div class="grid-2">
+                            <div class="form-group">
+                                <label class="form-label" for="preferredSchedule">Preferred Visit Window</label>
+                                <select class="form-control" id="preferredSchedule">
+                                    <option value="any">Any Day - Time Range Flexible</option>
+                                    <option value="weekday-morning">Weekdays - Morning (8am - 12pm)</option>
+                                    <option value="weekday-afternoon">Weekdays - Afternoon (12pm - 5pm)</option>
+                                    <option value="saturday">Saturdays - Morning</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">Upload Photos (Optional)</label>
+                                <div class="upload-btn-wrapper">
+                                    <label class="upload-file-label" for="projectPhotos">
+                                        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>
+                                        <span id="uploadFileText">Upload photos (max 5MB)</span>
+                                    </label>
+                                    <input type="file" id="projectPhotos" class="hidden-input" accept="image/*">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label" for="projectDesc">Project Description (Brief)</label>
+                            <textarea class="form-control" id="projectDesc" rows="2" placeholder="e.g. Wall painting in 2 bedrooms, minor drywall repairs."></textarea>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Form Action Buttons -->
+                <!-- TCPA / A2P 10DLC Consent -->
+                <div class="form-consent-notice" style="margin-top: 12px; padding: 10px 14px; background: rgba(15,30,54,0.04); border-radius: 8px; border: 1px solid rgba(15,30,54,0.08);">
+                    <p style="font-size: 0.72rem; color: var(--text-secondary); line-height: 1.55; margin: 0;">
+                        By submitting this form, you agree to receive SMS messages, phone calls, and emails from Roly Home Services at the number and email provided. Message &amp; data rates may apply. Reply <strong>STOP</strong> to opt out at any time. Reply <strong>HELP</strong> for assistance. Consent is not a condition of purchase. View our <a href="privacy.html" style="color: var(--color-orange); text-decoration: underline;">Privacy Policy</a> &amp; <a href="terms.html" style="color: var(--color-orange); text-decoration: underline;">Terms of Service</a>.
+                    </p>
+                </div>
+
+                <div id="formActionButtonsBar" class="form-actions">
+                    <button type="button" class="btn btn-outline btn-prev">
+                        <svg style="width:16px; height:16px;" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M15 19l-7-7 7-7"></path></svg>
+                        Back
+                    </button>
+                    <button type="button" class="btn btn-secondary btn-next">
+                        Next Step
+                        <svg style="width:16px; height:16px;" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 5l7 7-7 7"></path></svg>
+                    </button>
+                </div>
+
+                <!-- Success State Template -->
+                <div class="form-success-card" id="formSuccessCard" style="display: none;">
+                    <div class="success-icon-box">
+                        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path>
+                        </svg>
+                    </div>
+                    <h3>Assessment Received!</h3>
+                    <p>Thank you. Roly Home Services has captured your project parameters. Our pipeline coordinator has been notified.</p>
+                    <p style="font-size: 0.9rem; color: var(--color-orange); font-weight: 600;">Check your phone - a scheduling confirmation text has been dispatched.</p>
+                    <a href="tel:7707690008" class="btn btn-secondary btn-sm">Need Instant Help? Call Us Now</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==========================================================================
+       SITE FOOTER
+       ========================================================================== -->
+    <footer class="site-footer">
+        <div class="container">
+            <div class="footer-top">
+                <div class="footer-brand">
+                    <h3>Roly<span> Home Services</span></h3>
+                    <p>Professional painting, renovations, repairs, and property enhancements you can trust. Your Property Best Friend.</p>
+                    <div class="footer-social-links">
+                        <a href="#" class="social-icon-box" aria-label="Facebook">F</a>
+                        <a href="#" class="social-icon-box" aria-label="Instagram">I</a>
+                        <a href="https://youtube.com" target="_blank" class="social-icon-box" aria-label="YouTube">Y</a>
+                    </div>
+                </div>
+
+                <div class="footer-col">
+                    <h4>Our Services</h4>
+                    <ul class="footer-links">
+                        <li><a href="services.html">All Services</a></li>
+                        <li><a href="painting.html">Interior Painting</a></li>
+                        <li><a href="painting.html">Exterior Painting</a></li>
+                        <li><a href="presale.html">Pre-Sale Home Preparation</a></li>
+                        <li><a href="renovations.html">Renovations & Repairs</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-col">
+                    <h4>Resources</h4>
+                    <ul class="footer-links">
+                        <li><a href="index.html#portfolio">Before & After</a></li>
+                        <li><a href="index.html#reviews">Reviews & Proof</a></li>
+                        <li><a href="reviews.html">Reviews & Testimonials</a></li>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="contact.html">Contact Us</a></li>
+                        <li><a href="partners.html">Real Estate Partners</a></li>
+                        <li><a href="vsl.html">Watch VSL Video</a></li>
+                        <li><a href="community.html">Community Campaign</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-col">
+                    <h4>Get In Touch</h4>
+                    <div class="footer-contact-item">
+                        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.94.725l.548 2.2a1 1 0 01-.321.988l-1.305.98a10.582 10.582 0 004.872 4.872l.98-1.305a1 1 0 01.988-.321l2.2.548a1 1 0 01.725.94V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path></svg>
+                        <div>
+                            <p style="font-weight: 600; color: #FFFFFF;">770-769-0008</p>
+                            <p style="font-size: 0.75rem; color: rgba(255,255,255,0.5);">Call or Text Anytime</p>
+                        </div>
+                    </div>
+                    <div class="footer-contact-item">
+                        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
+                        <div>
+                            <p style="color: #FFFFFF;">rolyhomeservices@gmail.com</p>
+                        </div>
+                    </div>
+                    <div class="footer-contact-item">
+                        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
+                        <div>
+                            <p style="color: #FFFFFF;">Tucker, Atlanta & surrounding areas</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>&copy; 2026 Roly Home Services. All rights reserved. Your Property Best Friend.</p>
+                <div style="display: flex; gap: 16px; font-size: 0.8rem;">
+                    <a href="privacy.html">Privacy Policy</a>
+                    <a href="terms.html">Terms of Service</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+
+    <!-- Persistent mobile click-to-call (header phone link is hidden < 1024px) -->
+    <a href="tel:7707690008" class="mobile-call-pill" aria-label="Call or text Roly Home Services at 770-769-0008">
+        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.94.725l.548 2.2a1 1 0 01-.321.988l-1.305.98a10.582 10.582 0 004.872 4.872l.98-1.305a1 1 0 01.988-.321l2.2.548a1 1 0 01.725.94V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path></svg>
+        <span>Call or Text</span>
+    </a>
+
+</body>
+</html>
