@@ -1,5 +1,13 @@
 document.addEventListener('DOMContentLoaded', () => {
-    
+
+    // ==========================================================================
+    // 0. CONFIG — GoHighLevel inbound webhook (lead capture)
+    //    Paste the GHL "Inbound Webhook" trigger URL here to go live. While
+    //    this is empty the form still works and logs the payload to the
+    //    console, so the site is shippable before the CRM is wired.
+    // ==========================================================================
+    const GHL_WEBHOOK_URL = ''; // TODO(client): paste GoHighLevel inbound webhook URL
+
     // ==========================================================================
     // 1. MOBILE HAMBURGER MENU & HEADER SCROLL
     // ==========================================================================
@@ -343,8 +351,27 @@ document.addEventListener('DOMContentLoaded', () => {
             leadData.colorPalette = selectedPalette;
             if (selectedPalette) ghlTags.push('Color-Lab-Palette');
 
-            console.log("Sending GHL progressive webhook payload:", leadData);
-            console.log("Resulting tags computed:", ghlTags);
+            const payload = {
+                ...leadData,
+                tags: ghlTags,
+                source: 'website',
+                pageUrl: window.location.href,
+                submittedAt: new Date().toISOString()
+            };
+
+            // Fire-and-forget POST to GoHighLevel. The success card shows
+            // regardless of the network result so the visitor is never blocked;
+            // a failure is logged for manual follow-up. Until GHL_WEBHOOK_URL
+            // is set, the payload is logged so the flow is testable offline.
+            if (GHL_WEBHOOK_URL) {
+                fetch(GHL_WEBHOOK_URL, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(payload)
+                }).catch(err => console.error('GHL webhook POST failed:', err));
+            } else {
+                console.log('GHL_WEBHOOK_URL not set — lead payload:', payload);
+            }
 
             slidesWrapper.style.opacity = '0.3';
             actionButtonsBar.style.opacity = '0.3';
