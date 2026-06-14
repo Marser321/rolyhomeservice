@@ -60,58 +60,6 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // ==========================================================================
-    // 2. INTERACTIVE BEFORE & AFTER SLIDER
-    // ==========================================================================
-    const slider = document.getElementById('beforeAfterSlider');
-    const afterImage = document.querySelector('.ba-after');
-    const handle = document.querySelector('.ba-handle');
-
-    if (slider && afterImage && handle) {
-        let isDragging = false;
-
-        const setSliderPosition = (x) => {
-            const rect = slider.getBoundingClientRect();
-            let position = ((x - rect.left) / rect.width) * 100;
-            if (position < 0) position = 0;
-            if (position > 100) position = 100;
-
-            afterImage.style.width = `${position}%`;
-            handle.style.left = `${position}%`;
-        };
-
-        const onStart = (e) => {
-            isDragging = true;
-            e.preventDefault();
-        };
-
-        const onMove = (e) => {
-            if (!isDragging) return;
-            const x = e.type.includes('touch') ? e.touches[0].clientX : e.clientX;
-            setSliderPosition(x);
-        };
-
-        const onEnd = () => {
-            isDragging = false;
-        };
-
-        // Mouse Events
-        handle.addEventListener('mousedown', onStart);
-        window.addEventListener('mousemove', onMove);
-        window.addEventListener('mouseup', onEnd);
-
-        // Touch Events
-        handle.addEventListener('touchstart', onStart, { passive: true });
-        window.addEventListener('touchmove', onMove, { passive: true });
-        window.addEventListener('touchend', onEnd);
-
-        slider.addEventListener('click', (e) => {
-            if (e.target !== handle && !handle.contains(e.target)) {
-                setSliderPosition(e.clientX);
-            }
-        });
-    }
-
-    // ==========================================================================
     // 3. SCROLL REVEAL OBSERVER (a11y & motion compliant)
     // ==========================================================================
     const revealElements = document.querySelectorAll('.reveal-on-scroll');
@@ -134,6 +82,10 @@ document.addEventListener('DOMContentLoaded', () => {
         // Fallback for older browsers
         revealElements.forEach(el => el.classList.add('visible'));
     }
+
+    // Palette summary attached to the lead when the visitor uses the
+    // "Get an Estimate with This Palette" CTA (set in section 5.3).
+    let selectedPalette = '';
 
     // ==========================================================================
     // 4. PROGRESSIVE MULTI-STEP CRM FORM (with smooth slides & validation shake)
@@ -388,6 +340,9 @@ document.addEventListener('DOMContentLoaded', () => {
             if (leadData.avatarContext === 'update') ghlTags.push('Current-Home-Improvement');
             if (leadData.avatarContext === 'partner') ghlTags.push('Realtor-Investor-Partner');
 
+            leadData.colorPalette = selectedPalette;
+            if (selectedPalette) ghlTags.push('Color-Lab-Palette');
+
             console.log("Sending GHL progressive webhook payload:", leadData);
             console.log("Resulting tags computed:", ghlTags);
 
@@ -525,30 +480,604 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         });
 
-        // ==========================================================================
-        // 5.1. INTERACTIVE COLORIZER SWATCH SELECTORS
-        // ==========================================================================
-        const swatchBtns = document.querySelectorAll('.swatch-btn');
-        swatchBtns.forEach(btn => {
-            btn.addEventListener('click', () => {
-                const group = btn.parentElement;
-                const type = group.getAttribute('data-type');
-                const color = btn.getAttribute('data-color');
-                
-                // Update active state in UI
-                group.querySelectorAll('.swatch-btn').forEach(b => b.classList.remove('active'));
+    }
+
+    // ==========================================================================
+    // 5.1. INTERACTIVE HOUSE COLORIZER SWATCH SELECTORS
+    // (Standalone: powers the Color Lab customizer tab on the home page and the
+    // "Paint Your Own Home" section on the gallery page. The CSS custom
+    // properties are the single source of truth; the 2D SVG reacts to the vars
+    // and house-3d.js reacts to the 'roly:housecolor' event.)
+    // ==========================================================================
+    const HOUSE_ZONES = ['siding', 'trim', 'door', 'roof', 'shutters', 'garage'];
+
+    const applyHouseColor = (type, color) => {
+        if (!HOUSE_ZONES.includes(type) || !color) return;
+        document.documentElement.style.setProperty('--color-house-' + type, color);
+        document.dispatchEvent(new CustomEvent('roly:housecolor', { detail: { type, color } }));
+    };
+
+    const swatchBtns = document.querySelectorAll('.swatch-btn');
+    swatchBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+            const group = btn.parentElement;
+            const type = group.getAttribute('data-type');
+            const color = btn.getAttribute('data-color');
+
+            // Update active state in UI
+            group.querySelectorAll('.swatch-btn').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+
+            // A manual pick breaks the preset combination, so clear its highlight.
+            // (Preset clicks re-apply their own active state right after.)
+            const box = btn.closest('.interactive-control-box');
+            if (box) box.querySelectorAll('.preset-btn').forEach(b => b.classList.remove('active'));
+
+            applyHouseColor(type, color);
+        });
+    });
+
+    // ==========================================================================
+    // 5.2. DESIGNER PALETTE PRESETS (one click repaints every zone)
+    // Each preset carries a data-palette JSON of zone -> hex. We "click" the
+    // matching swatch in each group so active states, CSS vars, and the 3D
+    // model all update through the exact same path as a manual pick.
+    // ==========================================================================
+    const presetBtns = document.querySelectorAll('.preset-btn');
+    presetBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+            let palette;
+            try {
+                palette = JSON.parse(btn.getAttribute('data-palette'));
+            } catch (e) {
+                return;
+            }
+
+            // Scope to the customizer this preset row belongs to, so the home
+            // page and gallery instances stay independent in markup terms.
+            const scope = btn.closest('.interactive-control-box') || document;
+
+            Object.keys(palette).forEach(type => {
+                const group = scope.querySelector('.swatch-group[data-type="' + type + '"]');
+                if (!group) return;
+                const target = group.querySelector('.swatch-btn[data-color="' + palette[type] + '"]');
+                if (target && !target.classList.contains('active')) target.click();
+            });
+
+            const row = btn.closest('.palette-presets');
+            if (row) {
+                row.querySelectorAll('.preset-btn').forEach(b => b.classList.remove('active'));
                 btn.classList.add('active');
-                
-                // Apply custom properties to document root (so SVG colors update instantly)
-                if (type === 'siding') {
-                    document.documentElement.style.setProperty('--color-house-siding', color);
-                } else if (type === 'trim') {
-                    document.documentElement.style.setProperty('--color-house-trim', color);
-                } else if (type === 'door') {
-                    document.documentElement.style.setProperty('--color-house-door', color);
+            }
+        });
+    });
+
+    // ==========================================================================
+    // 5.3. COLOR PLAN PANEL, ESTIMATE CTA, SHARE LINK & PALETTE CARD DOWNLOAD
+    // The active swatch of each group is the single source for names/colors;
+    // this section only reads that state and turns it into conversions.
+    // ==========================================================================
+    const planPanel = document.querySelector('[data-color-plan]');
+
+    if (planPanel) {
+        const ZONE_LABELS = {
+            siding: 'Siding', trim: 'Trim', door: 'Front Door',
+            roof: 'Roof', shutters: 'Shutters', garage: 'Garage'
+        };
+
+        const activeSwatch = (type) =>
+            document.querySelector('.swatch-group[data-type="' + type + '"] .swatch-btn.active');
+
+        const currentSelections = () => HOUSE_ZONES.map(zone => {
+            const btn = activeSwatch(zone);
+            return {
+                zone,
+                label: ZONE_LABELS[zone],
+                color: btn ? btn.getAttribute('data-color') : '#888888',
+                name: btn ? btn.getAttribute('data-name') : 'Custom',
+                lrv: btn && btn.hasAttribute('data-lrv') ? parseInt(btn.getAttribute('data-lrv'), 10) : null
+            };
+        });
+
+        const paletteSummary = (selections) => (selections || currentSelections())
+            .map(s => s.label + ': ' + s.name)
+            .join(' · ');
+
+        // Section 5.4 (A/B comparator) plugs into the share / estimate /
+        // download flows through these hooks; they stay inert until it wires up.
+        let shareExtras = () => '';
+        let estimateExtras = () => '';
+        let composeCompareCard = null;
+
+        const renderColorPlan = () => {
+            const rows = planPanel.querySelector('[data-plan-rows]');
+            const verdict = planPanel.querySelector('[data-plan-verdict]');
+            const selections = currentSelections();
+
+            if (rows) {
+                rows.innerHTML = selections.map(s =>
+                    '<div class="color-plan-row">' +
+                        '<span class="plan-dot" style="background:' + s.color + ';"></span>' +
+                        '<span style="min-width:0;">' +
+                            '<span class="plan-zone">' + s.label + '</span>' +
+                            '<span class="plan-name">' + s.name + '</span>' +
+                        '</span>' +
+                    '</div>'
+                ).join('');
+            }
+
+            const siding = selections[0], trim = selections[1];
+            if (verdict && siding.lrv !== null && trim.lrv !== null) {
+                const diff = Math.abs(siding.lrv - trim.lrv);
+                let note;
+                if (diff >= 40) note = 'bold curb appeal';
+                else if (diff >= 20) note = 'balanced, classic look';
+                else note = 'soft look — consider a lighter trim';
+                verdict.innerHTML = 'Siding vs. trim LRV contrast: <strong>' + diff + ' points</strong> — ' + note;
+            }
+        };
+
+        renderColorPlan();
+        document.addEventListener('roly:housecolor', renderColorPlan);
+
+        // --- "Get an Estimate with This Palette": attach the palette to the
+        // lead, prefill the visible description, pre-select Exterior Painting.
+        // The #get-started anchor itself handles the smooth scroll (Lenis).
+        const estimateBtn = planPanel.querySelector('[data-palette-estimate]');
+        if (estimateBtn) {
+            estimateBtn.addEventListener('click', () => {
+                selectedPalette = paletteSummary() + estimateExtras();
+                const desc = document.getElementById('projectDesc');
+                if (desc) desc.value = 'My exterior palette — ' + selectedPalette;
+                if (formContainer) {
+                    const exteriorBox = formContainer.querySelector('.option-box[data-value="exterior"]');
+                    if (exteriorBox) exteriorBox.click();
                 }
             });
-        });
+        }
+
+        // --- Share link: the palette serialized into the page URL
+        const pageAnchor = document.getElementById('paint-your-home') ? '#paint-your-home' : '#color-science-lab';
+
+        const fallbackCopy = (text, done) => {
+            const input = document.createElement('input');
+            input.value = text;
+            input.setAttribute('readonly', '');
+            input.style.position = 'absolute';
+            input.style.left = '-9999px';
+            document.body.appendChild(input);
+            input.select();
+            try { document.execCommand('copy'); done(); } catch (e) { /* clipboard unavailable */ }
+            document.body.removeChild(input);
+        };
+
+        const shareBtn = planPanel.querySelector('[data-palette-share]');
+        if (shareBtn) {
+            const defaultLabel = shareBtn.textContent;
+            shareBtn.addEventListener('click', () => {
+                const tokens = currentSelections()
+                    .map(s => (s.color || '#888888').replace('#', ''))
+                    .join('-');
+                const url = location.origin + location.pathname + '?palette=' + tokens + shareExtras() + pageAnchor;
+                const done = () => {
+                    shareBtn.textContent = 'Link Copied!';
+                    setTimeout(() => { shareBtn.textContent = defaultLabel; }, 2000);
+                };
+                if (navigator.clipboard && navigator.clipboard.writeText) {
+                    navigator.clipboard.writeText(url).then(done).catch(() => fallbackCopy(url, done));
+                } else {
+                    fallbackCopy(url, done);
+                }
+            });
+        }
+
+        // --- Palette card download (button is revealed by house-3d.js once the
+        // 3D stage is live; composes a branded PNG with the snapshot + chips).
+        const wrapText = (ctx, text, x, y, maxWidth, lineHeight) => {
+            const words = text.split(' ');
+            let line = '';
+            words.forEach(word => {
+                const test = line ? line + ' ' + word : word;
+                if (ctx.measureText(test).width > maxWidth && line) {
+                    ctx.fillText(line, x, y);
+                    line = word;
+                    y += lineHeight;
+                } else {
+                    line = test;
+                }
+            });
+            if (line) ctx.fillText(line, x, y);
+        };
+
+        const downloadBtn = planPanel.querySelector('[data-palette-download]');
+        if (downloadBtn) {
+            downloadBtn.addEventListener('click', () => {
+                // Both slots saved with live snapshots -> branded comparison card
+                if (composeCompareCard && composeCompareCard()) return;
+                if (!window.RolyHouse3D || typeof window.RolyHouse3D.snapshot !== 'function') return;
+                const shot = window.RolyHouse3D.snapshot();
+                if (!shot) return;
+
+                const img = new Image();
+                img.onload = () => {
+                    const W = 1200, H = 980;
+                    const canvas = document.createElement('canvas');
+                    canvas.width = W;
+                    canvas.height = H;
+                    const ctx = canvas.getContext('2d');
+
+                    ctx.fillStyle = '#FFFFFF';
+                    ctx.fillRect(0, 0, W, H);
+
+                    ctx.fillStyle = '#0F1E36';
+                    ctx.fillRect(0, 0, W, 110);
+                    ctx.fillStyle = '#FFFFFF';
+                    ctx.font = '800 40px Outfit, Arial, sans-serif';
+                    ctx.fillText('My Roly Color Plan', 48, 70);
+                    ctx.fillStyle = '#FF6B35';
+                    ctx.font = '700 22px Inter, Arial, sans-serif';
+                    ctx.fillText('rolyhomeservices.com', W - 48 - ctx.measureText('rolyhomeservices.com').width, 66);
+
+                    const maxW = W - 96, maxH = 500;
+                    const scale = Math.min(maxW / img.width, maxH / img.height);
+                    const dw = img.width * scale, dh = img.height * scale;
+                    ctx.drawImage(img, (W - dw) / 2, 140, dw, dh);
+
+                    const selections = currentSelections();
+                    const gap = 16;
+                    const chipW = (W - 96 - 5 * gap) / 6;
+                    selections.forEach((s, i) => {
+                        const x = 48 + i * (chipW + gap);
+                        const y = 690;
+                        ctx.fillStyle = s.color;
+                        ctx.fillRect(x, y, chipW, 84);
+                        ctx.strokeStyle = 'rgba(0,0,0,0.12)';
+                        ctx.strokeRect(x, y, chipW, 84);
+                        ctx.fillStyle = '#5A6478';
+                        ctx.font = '700 15px Inter, Arial, sans-serif';
+                        ctx.fillText(s.label.toUpperCase(), x, y + 112);
+                        ctx.fillStyle = '#0F1E36';
+                        ctx.font = '700 17px Inter, Arial, sans-serif';
+                        wrapText(ctx, s.name, x, y + 140, chipW, 22);
+                    });
+
+                    ctx.fillStyle = '#5A6478';
+                    ctx.font = '600 20px Inter, Arial, sans-serif';
+                    ctx.fillText('Roly Home Services — Your Property Best Friend · 770-769-0008', 48, H - 42);
+
+                    const a = document.createElement('a');
+                    a.download = 'roly-color-plan.png';
+                    a.href = canvas.toDataURL('image/png');
+                    a.click();
+                };
+                img.src = shot;
+            });
+        }
+
+        // --- Apply a shared palette from the URL (?palette=hex-hex-hex-hex-hex-hex)
+        const paletteParam = new URLSearchParams(location.search).get('palette');
+        if (paletteParam) {
+            const tokens = paletteParam.split('-');
+            const valid = tokens.length === HOUSE_ZONES.length &&
+                tokens.every(t => /^[0-9a-fA-F]{6}$/.test(t));
+            if (valid) {
+                HOUSE_ZONES.forEach((zone, i) => {
+                    const hex = '#' + tokens[i].toUpperCase();
+                    const group = document.querySelector('.swatch-group[data-type="' + zone + '"]');
+                    const matched = group && Array.from(group.querySelectorAll('.swatch-btn')).find(b =>
+                        (b.getAttribute('data-color') || '').toUpperCase() === hex);
+                    if (matched) {
+                        if (!matched.classList.contains('active')) matched.click();
+                    } else {
+                        // Color outside the current catalog — apply it anyway.
+                        applyHouseColor(zone, hex);
+                    }
+                });
+
+                // Show the right view: the Interactive tab on the home page.
+                const interactiveChip = document.getElementById('chipInteractive');
+                if (interactiveChip) interactiveChip.click();
+
+                const target = document.querySelector(pageAnchor);
+                if (target) {
+                    setTimeout(() => target.scrollIntoView({ behavior: 'smooth', block: 'start' }), 450);
+                }
+                renderColorPlan();
+            }
+        }
+
+        // ======================================================================
+        // 5.4. A/B PALETTE COMPARATOR — save two favorites, morph between them
+        // The same house morphs between palettes (never a second WebGL scene);
+        // slots persist for the session and ride along on share links,
+        // estimates, and the downloadable card.
+        // ======================================================================
+        const compareBlock = planPanel.querySelector('[data-palette-compare]');
+        if (compareBlock) {
+            const STORAGE_KEY = 'roly-palette-compare-v1';
+            let savedPalettes = {};
+            try {
+                savedPalettes = JSON.parse(sessionStorage.getItem(STORAGE_KEY) || '{}') || {};
+            } catch (e) {
+                savedPalettes = {};
+            }
+            const paletteShots = {}; // slot -> snapshot dataURL, memory only
+            let compareOverlay = null;
+            let compareOpen = false;
+            let applyingSlot = false;
+
+            const saveBtns = {
+                a: compareBlock.querySelector('[data-save-slot="a"]'),
+                b: compareBlock.querySelector('[data-save-slot="b"]')
+            };
+            const compareToggle = compareBlock.querySelector('[data-compare-toggle]');
+
+            const persistSlots = () => {
+                try {
+                    sessionStorage.setItem(STORAGE_KEY, JSON.stringify(savedPalettes));
+                } catch (e) { /* storage unavailable — slots stay in memory */ }
+            };
+
+            const slotSelections = (slot) => {
+                const saved = savedPalettes[slot];
+                if (!saved) return null;
+                return HOUSE_ZONES.map(zone => ({
+                    zone,
+                    label: ZONE_LABELS[zone],
+                    color: saved.zones[zone] ? saved.zones[zone].hex : '#888888',
+                    name: saved.zones[zone] ? saved.zones[zone].name : 'Custom'
+                }));
+            };
+
+            const slotDots = (slot) => {
+                const selections = slotSelections(slot);
+                if (!selections) return '';
+                return '<span class="preset-dots">' + selections.map(s =>
+                    '<span style="background:' + s.color + ';"></span>').join('') + '</span>';
+            };
+
+            const segmentHTML = (slot) => {
+                const shot = paletteShots[slot];
+                return (shot
+                    ? '<img class="compare-thumb" alt="Option ' + slot.toUpperCase() + ' preview" src="' + shot + '">'
+                    : '') +
+                    '<span class="compare-seg-name">' + slot.toUpperCase() + '</span>' +
+                    slotDots(slot);
+            };
+
+            const setViewing = (slot) => {
+                if (!compareOverlay) return;
+                compareOverlay.querySelectorAll('[data-compare-view]').forEach(btn => {
+                    btn.classList.toggle('is-viewing', btn.getAttribute('data-compare-view') === slot);
+                });
+            };
+
+            const renderCompareUI = () => {
+                ['a', 'b'].forEach(slot => {
+                    const btn = saveBtns[slot];
+                    if (!btn || btn.classList.contains('is-flashing')) return;
+                    btn.innerHTML = slotDots(slot) + 'Save as ' + slot.toUpperCase();
+                });
+                const both = !!(savedPalettes.a && savedPalettes.b);
+                if (compareToggle) {
+                    compareToggle.disabled = !both;
+                    if (both) compareToggle.removeAttribute('title');
+                    else compareToggle.setAttribute('title', 'Save a second palette to compare');
+                }
+                if (compareOverlay) {
+                    compareOverlay.querySelectorAll('[data-compare-view]').forEach(btn => {
+                        btn.innerHTML = segmentHTML(btn.getAttribute('data-compare-view'));
+                    });
+                }
+            };
+
+            const saveSlot = (slot) => {
+                const zones = {};
+                currentSelections().forEach(s => { zones[s.zone] = { hex: s.color, name: s.name }; });
+                savedPalettes[slot] = { zones: zones, savedAt: new Date().toISOString() };
+                persistSlots();
+                if (window.RolyHouse3D && typeof window.RolyHouse3D.snapshot === 'function') {
+                    const shot = window.RolyHouse3D.snapshot();
+                    if (shot) paletteShots[slot] = shot;
+                }
+                const btn = saveBtns[slot];
+                if (btn) {
+                    btn.classList.add('is-flashing');
+                    btn.textContent = 'Saved ✓';
+                    setTimeout(() => {
+                        btn.classList.remove('is-flashing');
+                        renderCompareUI();
+                    }, 1500);
+                }
+                renderCompareUI();
+            };
+
+            // Apply a slot through the preset path (programmatic swatch clicks)
+            // so actives, CSS vars, the plan panel, and the 3D morph stay in
+            // sync; off-catalog colors fall back to applyHouseColor directly.
+            const applySlot = (slot) => {
+                const saved = savedPalettes[slot];
+                if (!saved) return;
+                applyingSlot = true;
+                HOUSE_ZONES.forEach(zone => {
+                    const entry = saved.zones[zone];
+                    if (!entry) return;
+                    const group = document.querySelector('.swatch-group[data-type="' + zone + '"]');
+                    const match = group && Array.from(group.querySelectorAll('.swatch-btn')).find(b =>
+                        (b.getAttribute('data-color') || '').toUpperCase() === entry.hex.toUpperCase());
+                    if (match) {
+                        if (!match.classList.contains('active')) match.click();
+                    } else {
+                        applyHouseColor(zone, entry.hex);
+                    }
+                });
+                applyingSlot = false;
+                setViewing(slot);
+            };
+
+            const closeCompare = () => {
+                compareOpen = false;
+                if (compareOverlay) compareOverlay.hidden = true;
+                if (compareToggle) compareToggle.setAttribute('aria-pressed', 'false');
+                setViewing(null);
+            };
+
+            const buildOverlay = () => {
+                const viewer = document.querySelector('[data-house-3d]');
+                if (!viewer) return null;
+                const el = document.createElement('div');
+                el.className = 'compare-overlay';
+                el.innerHTML =
+                    '<button type="button" class="compare-seg" data-compare-view="a"></button>' +
+                    '<button type="button" class="compare-seg" data-compare-view="b"></button>' +
+                    '<button type="button" class="compare-close" aria-label="Exit comparison">&#215;</button>';
+                el.querySelectorAll('[data-compare-view]').forEach(btn => {
+                    btn.addEventListener('click', () => applySlot(btn.getAttribute('data-compare-view')));
+                });
+                el.querySelector('.compare-close').addEventListener('click', closeCompare);
+                viewer.appendChild(el);
+                return el;
+            };
+
+            const openCompare = () => {
+                if (!(savedPalettes.a && savedPalettes.b)) return;
+                compareOverlay = compareOverlay || buildOverlay();
+                if (!compareOverlay) return;
+                compareOpen = true;
+                compareOverlay.hidden = false;
+                if (compareToggle) compareToggle.setAttribute('aria-pressed', 'true');
+                renderCompareUI();
+            };
+
+            ['a', 'b'].forEach(slot => {
+                if (saveBtns[slot]) saveBtns[slot].addEventListener('click', () => saveSlot(slot));
+            });
+            if (compareToggle) {
+                compareToggle.addEventListener('click', () => (compareOpen ? closeCompare() : openCompare()));
+            }
+
+            // A manual edit while comparing forks into a custom palette: keep
+            // the overlay open but drop the "currently viewing" highlight.
+            document.addEventListener('roly:housecolor', () => {
+                if (compareOpen && !applyingSlot) setViewing(null);
+            });
+
+            // --- Share link / estimate / download integration (hooks from 5.3)
+            const slotTokens = (slot) => HOUSE_ZONES.map(zone =>
+                (savedPalettes[slot].zones[zone] ? savedPalettes[slot].zones[zone].hex : '#888888')
+                    .replace('#', '')).join('-');
+
+            shareExtras = () => {
+                let extra = '';
+                if (savedPalettes.a) extra += '&a=' + slotTokens('a');
+                if (savedPalettes.b) extra += '&b=' + slotTokens('b');
+                return extra;
+            };
+
+            estimateExtras = () => {
+                if (!(savedPalettes.a && savedPalettes.b)) return '';
+                return ' | Also comparing — Option A: ' + paletteSummary(slotSelections('a')) +
+                    ' · Option B: ' + paletteSummary(slotSelections('b'));
+            };
+
+            composeCompareCard = () => {
+                if (!(paletteShots.a && paletteShots.b && savedPalettes.a && savedPalettes.b)) return false;
+                const imgA = new Image();
+                const imgB = new Image();
+                let loaded = 0;
+                const drawCard = () => {
+                    if (++loaded < 2) return;
+                    const W = 1200, H = 1100;
+                    const canvas = document.createElement('canvas');
+                    canvas.width = W;
+                    canvas.height = H;
+                    const ctx = canvas.getContext('2d');
+
+                    ctx.fillStyle = '#FFFFFF';
+                    ctx.fillRect(0, 0, W, H);
+                    ctx.fillStyle = '#0F1E36';
+                    ctx.fillRect(0, 0, W, 110);
+                    ctx.fillStyle = '#FFFFFF';
+                    ctx.font = '800 40px Outfit, Arial, sans-serif';
+                    ctx.fillText('My Roly Color Plan — A/B', 48, 70);
+                    ctx.fillStyle = '#FF6B35';
+                    ctx.font = '700 22px Inter, Arial, sans-serif';
+                    ctx.fillText('rolyhomeservices.com', W - 48 - ctx.measureText('rolyhomeservices.com').width, 66);
+
+                    const colW = (W - 96 - 48) / 2;
+                    [['a', imgA, 48], ['b', imgB, 48 + colW + 48]].forEach(opt => {
+                        const slot = opt[0], img = opt[1], x0 = opt[2];
+                        ctx.fillStyle = '#0F1E36';
+                        ctx.font = '800 28px Outfit, Arial, sans-serif';
+                        ctx.fillText('Option ' + slot.toUpperCase(), x0, 168);
+
+                        const maxH = 430;
+                        const scale = Math.min(colW / img.width, maxH / img.height);
+                        const dw = img.width * scale, dh = img.height * scale;
+                        ctx.drawImage(img, x0 + (colW - dw) / 2, 190, dw, dh);
+
+                        const selections = slotSelections(slot);
+                        const gap = 10;
+                        const chipW = (colW - 5 * gap) / 6;
+                        selections.forEach((s, i) => {
+                            const x = x0 + i * (chipW + gap);
+                            const y = 660;
+                            ctx.fillStyle = s.color;
+                            ctx.fillRect(x, y, chipW, 64);
+                            ctx.strokeStyle = 'rgba(0,0,0,0.12)';
+                            ctx.strokeRect(x, y, chipW, 64);
+                            ctx.fillStyle = '#5A6478';
+                            ctx.font = '700 12px Inter, Arial, sans-serif';
+                            ctx.fillText(s.label.toUpperCase(), x, y + 86);
+                            ctx.fillStyle = '#0F1E36';
+                            ctx.font = '700 13px Inter, Arial, sans-serif';
+                            wrapText(ctx, s.name, x, y + 106, chipW, 17);
+                        });
+                    });
+
+                    ctx.fillStyle = '#5A6478';
+                    ctx.font = '600 20px Inter, Arial, sans-serif';
+                    ctx.fillText('Roly Home Services — Your Property Best Friend · 770-769-0008', 48, H - 42);
+
+                    const a = document.createElement('a');
+                    a.download = 'roly-color-plan.png';
+                    a.href = canvas.toDataURL('image/png');
+                    a.click();
+                };
+                imgA.onload = drawCard;
+                imgB.onload = drawCard;
+                imgA.src = paletteShots.a;
+                imgB.src = paletteShots.b;
+                return true;
+            };
+
+            // --- Hydrate slots from a shared URL (?a=...&b=..., same 6-token
+            // serialization as ?palette=; malformed params are ignored).
+            const hydrateSlotParam = (slot, value) => {
+                if (!value) return false;
+                const tokens = value.split('-');
+                const valid = tokens.length === HOUSE_ZONES.length &&
+                    tokens.every(t => /^[0-9a-fA-F]{6}$/.test(t));
+                if (!valid) return false;
+                const zones = {};
+                HOUSE_ZONES.forEach((zone, i) => {
+                    const hex = '#' + tokens[i].toUpperCase();
+                    const group = document.querySelector('.swatch-group[data-type="' + zone + '"]');
+                    const match = group && Array.from(group.querySelectorAll('.swatch-btn')).find(b =>
+                        (b.getAttribute('data-color') || '').toUpperCase() === hex);
+                    zones[zone] = { hex: hex, name: match ? (match.getAttribute('data-name') || 'Custom') : 'Custom' };
+                });
+                savedPalettes[slot] = { zones: zones, savedAt: new Date().toISOString() };
+                return true;
+            };
+
+            const compareParams = new URLSearchParams(location.search);
+            const hydratedA = hydrateSlotParam('a', compareParams.get('a'));
+            const hydratedB = hydrateSlotParam('b', compareParams.get('b'));
+            if (hydratedA || hydratedB) persistSlots();
+
+            renderCompareUI();
+        }
     }
 
     // ==========================================================================

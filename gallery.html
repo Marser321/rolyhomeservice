@@ -28,7 +28,7 @@
     <script defer src="https://cdn.jsdelivr.net/npm/lenis@1.3.23/dist/lenis.min.js"></script>
     <script defer src="app.js"></script>
     <script defer src="motion.js"></script>
-    <script defer src="paint-reveal.js"></script>
+    <script defer src="house-3d.js"></script>
 </head>
 <body>
     <a class="skip-link" href="#main-content">Skip to main content</a>
@@ -97,54 +97,243 @@
         </div>
     </section>
 
-    <section class="section reveal-on-scroll">
+    <section class="section reveal-on-scroll" id="paint-your-home">
         <div class="container">
             <div class="section-title-wrapper">
                 <span class="section-label">Interactive Showcase</span>
-                <h2 class="section-title">Roll Back the Years</h2>
-                <p class="section-desc">Grab the roller and sweep across the photo to uncover the finished result on a real local project. Prefer to drag? The classic slider still works.</p>
+                <h2 class="section-title">Paint Your Own Home</h2>
+                <p class="section-desc">Try real Sherwin-Williams colors before you commit. Drag the 3D home to walk around it, start from a designer palette, or repaint the siding, trim, door, roof, shutters, and garage one swatch at a time.</p>
             </div>
 
-            <div class="before-after-wrapper paint-reveal" id="paintReveal" data-before="before_paint.webp" data-after="after_paint.webp">
-                <div class="ba-slider" id="beforeAfterSlider">
-                    <div class="ba-image ba-before" style="background-image: url('before_paint.webp');">
-                        <span class="ba-label before-label">Before Preparation</span>
+            <div class="house-customizer grid-2" style="gap: 40px; align-items: stretch;">
+                <!-- Left: Interactive SVG House -->
+                <div class="house-customizer-viewer" data-house-3d style="position: relative; border-radius: var(--radius-lg); overflow: hidden; box-shadow: var(--shadow-premium); border: 2px solid rgba(15,30,54,0.15); background-color: #f0f4f8; display: flex; align-items: center; justify-content: center; padding: 10px; min-height: 340px;">
+                    <svg id="interactiveHouseSvgGallery" viewBox="0 0 400 300" style="width: 100%; height: 100%; display: block;" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Illustration of a Craftsman home that repaints itself with the colors you select">
+                        <!-- Sky / Background -->
+                        <rect width="400" height="300" fill="#f0f4f8" rx="8" />
+                        <circle cx="340" cy="60" r="25" fill="#ffe066" opacity="0.8" />
+                        <!-- Ground / Lawn -->
+                        <rect y="220" width="400" height="80" fill="#a3b899" />
+                        <!-- Garage wing (sits behind the main body) -->
+                        <rect x="316" y="164" width="76" height="66" fill="var(--color-house-siding)" style="transition: fill 0.4s ease-in-out;" />
+                        <rect x="312" y="154" width="84" height="10" fill="var(--color-house-roof)" style="transition: fill 0.4s ease-in-out;" />
+                        <rect x="312" y="164" width="84" height="4" fill="var(--color-house-trim)" style="transition: fill 0.4s ease-in-out;" />
+                        <rect x="328" y="182" width="52" height="48" fill="var(--color-house-garage)" style="transition: fill 0.4s ease-in-out;" />
+                        <line x1="330" y1="194" x2="378" y2="194" stroke="rgba(0,0,0,0.15)" stroke-width="2" />
+                        <line x1="330" y1="206" x2="378" y2="206" stroke="rgba(0,0,0,0.15)" stroke-width="2" />
+                        <line x1="330" y1="218" x2="378" y2="218" stroke="rgba(0,0,0,0.15)" stroke-width="2" />
+                        <!-- Roof -->
+                        <polygon points="50,120 200,40 350,120" fill="#424242" />
+                        <polygon points="60,120 200,50 340,120" fill="var(--color-house-roof)" style="transition: fill 0.4s ease-in-out;" />
+                        <!-- Chimney -->
+                        <rect x="290" y="60" width="24" height="40" fill="#757575" />
+                        <rect x="286" y="56" width="32" height="6" fill="#424242" />
+                        <!-- Siding (Main Body) -->
+                        <rect x="80" y="120" width="240" height="110" fill="var(--color-house-siding)" style="transition: fill 0.4s ease-in-out;" />
+                        <!-- Gable triangle siding -->
+                        <polygon points="80,120 200,50 320,120" fill="var(--color-house-siding)" style="transition: fill 0.4s ease-in-out;" />
+                        <!-- Gable Vent (Trim) -->
+                        <circle cx="200" cy="90" r="12" fill="var(--color-house-trim)" style="transition: fill 0.4s ease-in-out;" />
+                        <line x1="200" y1="78" x2="200" y2="102" stroke="#424242" stroke-width="2" />
+                        <line x1="188" y1="90" x2="212" y2="90" stroke="#424242" stroke-width="2" />
+                        <!-- Fascia / Roof Trim -->
+                        <polygon points="50,120 65,120 200,52 335,120 350,120 200,40" fill="var(--color-house-trim)" style="transition: fill 0.4s ease-in-out;" />
+                        <!-- Porch Columns (Trim) -->
+                        <rect x="95" y="150" width="12" height="80" fill="var(--color-house-trim)" style="transition: fill 0.4s ease-in-out;" />
+                        <rect x="293" y="150" width="12" height="80" fill="var(--color-house-trim)" style="transition: fill 0.4s ease-in-out;" />
+                        <rect x="91" y="210" width="20" height="20" fill="#757575" />
+                        <rect x="289" y="210" width="20" height="20" fill="#757575" />
+                        <!-- Front Door (Accent) -->
+                        <rect x="130" y="160" width="36" height="70" fill="var(--color-house-door)" style="transition: fill 0.4s ease-in-out;" />
+                        <rect x="138" y="170" width="20" height="20" fill="#e0f7fa" stroke="var(--color-house-trim)" stroke-width="2" />
+                        <circle cx="160" cy="198" r="2.5" fill="#d4af37" />
+                        <!-- Window Shutters -->
+                        <rect x="211" y="145" width="8" height="50" rx="1" fill="var(--color-house-shutters)" style="transition: fill 0.4s ease-in-out;" />
+                        <rect x="276" y="145" width="8" height="50" rx="1" fill="var(--color-house-shutters)" style="transition: fill 0.4s ease-in-out;" />
+                        <!-- Large Windows (Trim & Glass) -->
+                        <rect x="220" y="145" width="55" height="50" rx="2" fill="var(--color-house-trim)" style="transition: fill 0.4s ease-in-out;" />
+                        <rect x="225" y="150" width="20" height="18" fill="#e0f7fa" />
+                        <rect x="250" y="150" width="20" height="18" fill="#e0f7fa" />
+                        <rect x="225" y="172" width="20" height="18" fill="#e0f7fa" />
+                        <rect x="250" y="172" width="20" height="18" fill="#e0f7fa" />
+                        <!-- Door Canopy -->
+                        <polygon points="120,160 148,145 176,160" fill="#424242" />
+                        <polygon points="122,160 148,148 174,160" fill="var(--color-house-trim)" style="transition: fill 0.4s ease-in-out;" />
+                        <!-- Steps -->
+                        <rect x="122" y="230" width="52" height="6" fill="#bdbdbd" />
+                        <rect x="118" y="236" width="60" height="6" fill="#9e9e9e" />
+                    </svg>
+                </div>
+
+                <!-- Right: Swatch Controls -->
+                <div class="interactive-control-box">
+                    <!-- Designer Palette Presets -->
+                    <div class="control-group-title">Designer Palettes (1-Click)</div>
+                    <div class="palette-presets">
+                        <button class="preset-btn active" data-palette='{"siding":"#1B355A","trim":"#FAF9F6","door":"#FF6B35","roof":"#3B3B3B","shutters":"#303030","garage":"#FAF9F6"}'>
+                            <span class="preset-dots"><span style="background:#1B355A;"></span><span style="background:#FAF9F6;"></span><span style="background:#FF6B35;"></span></span> Classic Navy
+                        </button>
+                        <button class="preset-btn" data-palette='{"siding":"#FAF9F6","trim":"#303030","door":"#1B355A","roof":"#3B3B3B","shutters":"#303030","garage":"#434341"}'>
+                            <span class="preset-dots"><span style="background:#FAF9F6;"></span><span style="background:#303030;"></span><span style="background:#1B355A;"></span></span> Modern Farmhouse
+                        </button>
+                        <button class="preset-btn" data-palette='{"siding":"#7B8C7A","trim":"#434341","door":"#2A2A2D","roof":"#6B6258","shutters":"#434341","garage":"#434341"}'>
+                            <span class="preset-dots"><span style="background:#7B8C7A;"></span><span style="background:#434341;"></span><span style="background:#2A2A2D;"></span></span> Organic Sage
+                        </button>
+                        <button class="preset-btn" data-palette='{"siding":"#4B4640","trim":"#FAF9F6","door":"#6B302E","roof":"#5E5347","shutters":"#303030","garage":"#7A5C43"}'>
+                            <span class="preset-dots"><span style="background:#4B4640;"></span><span style="background:#FAF9F6;"></span><span style="background:#6B302E;"></span></span> Warm Earth
+                        </button>
+                        <button class="preset-btn" data-palette='{"siding":"#A9BDBD","trim":"#EDECE6","door":"#FF6B35","roof":"#5C6670","shutters":"#1B355A","garage":"#FAF9F6"}'>
+                            <span class="preset-dots"><span style="background:#A9BDBD;"></span><span style="background:#EDECE6;"></span><span style="background:#FF6B35;"></span></span> Coastal Calm
+                        </button>
                     </div>
-                    <div class="ba-image ba-after" style="background-image: url('after_paint.webp');">
-                        <span class="ba-label after-label">After Roly Painting</span>
+
+                    <!-- Siding Swatches -->
+                    <div class="control-group-title">1. Siding Color</div>
+                    <div class="swatch-group" data-type="siding">
+                        <button class="swatch-btn active" data-color="#1B355A" data-name="Naval (SW 6244)" data-lrv="4">
+                            <span class="swatch-color-dot" style="background: #1B355A;"></span> Naval
+                        </button>
+                        <button class="swatch-btn" data-color="#7B8C7A" data-name="Clary Sage (SW 6178)" data-lrv="38">
+                            <span class="swatch-color-dot" style="background: #7B8C7A;"></span> Clary Sage
+                        </button>
+                        <button class="swatch-btn" data-color="#FAF9F6" data-name="Alabaster (SW 7008)" data-lrv="82">
+                            <span class="swatch-color-dot" style="background: #FAF9F6;"></span> Alabaster
+                        </button>
+                        <button class="swatch-btn" data-color="#4B4640" data-name="Urbane Bronze (SW 7048)" data-lrv="8">
+                            <span class="swatch-color-dot" style="background: #4B4640;"></span> Urbane Bronze
+                        </button>
+                        <button class="swatch-btn" data-color="#95978A" data-name="Evergreen Fog (SW 9130)" data-lrv="30">
+                            <span class="swatch-color-dot" style="background: #95978A;"></span> Evergreen Fog
+                        </button>
+                        <button class="swatch-btn" data-color="#54575A" data-name="Peppercorn (SW 7674)" data-lrv="10">
+                            <span class="swatch-color-dot" style="background: #54575A;"></span> Peppercorn
+                        </button>
+                        <button class="swatch-btn" data-color="#D1C7B8" data-name="Accessible Beige (SW 7036)" data-lrv="58">
+                            <span class="swatch-color-dot" style="background: #D1C7B8;"></span> Accessible Beige
+                        </button>
+                        <button class="swatch-btn" data-color="#A9BDBD" data-name="Krypton (SW 6247)" data-lrv="55">
+                            <span class="swatch-color-dot" style="background: #A9BDBD;"></span> Krypton
+                        </button>
                     </div>
-                    <div class="ba-handle">
-                        <div class="ba-handle-button">
-                            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M8 9l4-4 4 4m0 6l-4 4-4-4"></path>
-                            </svg>
+
+                    <!-- Trim Swatches -->
+                    <div class="control-group-title">2. Trim & Columns Color</div>
+                    <div class="swatch-group" data-type="trim">
+                        <button class="swatch-btn active" data-color="#FAF9F6" data-name="Alabaster (SW 7008)" data-lrv="82">
+                            <span class="swatch-color-dot" style="background: #FAF9F6;"></span> Alabaster
+                        </button>
+                        <button class="swatch-btn" data-color="#E6E6E6" data-name="Extra White (SW 7006)" data-lrv="86">
+                            <span class="swatch-color-dot" style="background: #E6E6E6;"></span> Extra White
+                        </button>
+                        <button class="swatch-btn" data-color="#EDECE6" data-name="Pure White (SW 7005)" data-lrv="84">
+                            <span class="swatch-color-dot" style="background: #EDECE6;"></span> Pure White
+                        </button>
+                        <button class="swatch-btn" data-color="#303030" data-name="Tricorn Black (SW 6258)" data-lrv="3">
+                            <span class="swatch-color-dot" style="background: #303030;"></span> Tricorn Black
+                        </button>
+                        <button class="swatch-btn" data-color="#434341" data-name="Iron Ore (SW 7069)" data-lrv="6">
+                            <span class="swatch-color-dot" style="background: #434341;"></span> Iron Ore
+                        </button>
+                        <button class="swatch-btn" data-color="#4B4640" data-name="Urbane Bronze (SW 7048)" data-lrv="8">
+                            <span class="swatch-color-dot" style="background: #4B4640;"></span> Bronze
+                        </button>
+                    </div>
+
+                    <!-- Door Swatches -->
+                    <div class="control-group-title">3. Front Door Accent</div>
+                    <div class="swatch-group" data-type="door">
+                        <button class="swatch-btn active" data-color="#FF6B35" data-name="Roly Orange (Custom)" data-lrv="35">
+                            <span class="swatch-color-dot" style="background: #FF6B35;"></span> Orange
+                        </button>
+                        <button class="swatch-btn" data-color="#0F4C81" data-name="Classic Blue (SW 6806)" data-lrv="8">
+                            <span class="swatch-color-dot" style="background: #0F4C81;"></span> Classic Blue
+                        </button>
+                        <button class="swatch-btn" data-color="#1B355A" data-name="Naval (SW 6244)" data-lrv="4">
+                            <span class="swatch-color-dot" style="background: #1B355A;"></span> Naval
+                        </button>
+                        <button class="swatch-btn" data-color="#2E7D32" data-name="Sherwin-Williams Green" data-lrv="10">
+                            <span class="swatch-color-dot" style="background: #2E7D32;"></span> Emerald
+                        </button>
+                        <button class="swatch-btn" data-color="#FFD166" data-name="Sundew Yellow (SW 6902)" data-lrv="60">
+                            <span class="swatch-color-dot" style="background: #FFD166;"></span> Sundew Yellow
+                        </button>
+                        <button class="swatch-btn" data-color="#6B302E" data-name="Rookwood Red (SW 2802)" data-lrv="5">
+                            <span class="swatch-color-dot" style="background: #6B302E;"></span> Rookwood Red
+                        </button>
+                        <button class="swatch-btn" data-color="#2A2A2D" data-name="Caviar (SW 6990)" data-lrv="3">
+                            <span class="swatch-color-dot" style="background: #2A2A2D;"></span> Caviar
+                        </button>
+                    </div>
+
+                    <!-- Roof Swatches -->
+                    <div class="control-group-title">4. Roof Shingles</div>
+                    <div class="swatch-group" data-type="roof">
+                        <button class="swatch-btn active" data-color="#3B3B3B" data-name="Charcoal Shingle">
+                            <span class="swatch-color-dot" style="background: #3B3B3B;"></span> Charcoal
+                        </button>
+                        <button class="swatch-btn" data-color="#6B6258" data-name="Weathered Wood Shingle">
+                            <span class="swatch-color-dot" style="background: #6B6258;"></span> Weathered Wood
+                        </button>
+                        <button class="swatch-btn" data-color="#5C6670" data-name="Slate Gray Shingle">
+                            <span class="swatch-color-dot" style="background: #5C6670;"></span> Slate Gray
+                        </button>
+                        <button class="swatch-btn" data-color="#5E5347" data-name="Driftwood Brown Shingle">
+                            <span class="swatch-color-dot" style="background: #5E5347;"></span> Driftwood
+                        </button>
+                    </div>
+
+                    <!-- Shutter Swatches -->
+                    <div class="control-group-title">5. Window Shutters</div>
+                    <div class="swatch-group" data-type="shutters">
+                        <button class="swatch-btn active" data-color="#303030" data-name="Tricorn Black (SW 6258)" data-lrv="3">
+                            <span class="swatch-color-dot" style="background: #303030;"></span> Tricorn Black
+                        </button>
+                        <button class="swatch-btn" data-color="#434341" data-name="Iron Ore (SW 7069)" data-lrv="6">
+                            <span class="swatch-color-dot" style="background: #434341;"></span> Iron Ore
+                        </button>
+                        <button class="swatch-btn" data-color="#1B355A" data-name="Naval (SW 6244)" data-lrv="4">
+                            <span class="swatch-color-dot" style="background: #1B355A;"></span> Naval
+                        </button>
+                        <button class="swatch-btn" data-color="#324038" data-name="Rookwood Dark Green (SW 2816)">
+                            <span class="swatch-color-dot" style="background: #324038;"></span> Dark Green
+                        </button>
+                    </div>
+
+                    <!-- Garage Swatches -->
+                    <div class="control-group-title">6. Garage Door</div>
+                    <div class="swatch-group" data-type="garage">
+                        <button class="swatch-btn active" data-color="#FAF9F6" data-name="Alabaster (SW 7008)" data-lrv="82">
+                            <span class="swatch-color-dot" style="background: #FAF9F6;"></span> Alabaster
+                        </button>
+                        <button class="swatch-btn" data-color="#434341" data-name="Iron Ore (SW 7069)" data-lrv="6">
+                            <span class="swatch-color-dot" style="background: #434341;"></span> Iron Ore
+                        </button>
+                        <button class="swatch-btn" data-color="#4B4640" data-name="Urbane Bronze (SW 7048)" data-lrv="8">
+                            <span class="swatch-color-dot" style="background: #4B4640;"></span> Bronze
+                        </button>
+                        <button class="swatch-btn" data-color="#7A5C43" data-name="Walnut Wood Tone">
+                            <span class="swatch-color-dot" style="background: #7A5C43;"></span> Walnut
+                        </button>
+                    </div>
+
+                    <!-- Live palette summary + conversion actions -->
+                    <div class="color-plan" data-color-plan>
+                        <div class="color-plan-title">Your Color Plan</div>
+                        <div class="color-plan-rows" data-plan-rows></div>
+                        <p class="color-plan-verdict" data-plan-verdict></p>
+                        <div class="palette-compare" data-palette-compare>
+                            <span class="compare-label">Compare two favorites:</span>
+                            <button type="button" class="btn btn-outline btn-sm" data-save-slot="a">Save as A</button>
+                            <button type="button" class="btn btn-outline btn-sm" data-save-slot="b">Save as B</button>
+                            <button type="button" class="btn btn-primary btn-sm" data-compare-toggle disabled title="Save a second palette to compare">Compare A/B</button>
+                        </div>
+                        <div class="color-plan-actions">
+                            <a href="#get-started" class="btn btn-primary btn-sm" data-palette-estimate>Get an Estimate with This Palette</a>
+                            <button type="button" class="btn btn-outline btn-sm" data-palette-share>Copy Share Link</button>
+                            <button type="button" class="btn btn-outline btn-sm" data-palette-download hidden>Download Palette Card</button>
                         </div>
                     </div>
                 </div>
-                <div class="pr-stage" id="paintRevealStage" hidden tabindex="0" role="slider"
-                     aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"
-                     aria-label="Paint the wall to reveal the finished result. Use the arrow keys to sweep across.">
-                    <img class="pr-after-img" src="after_paint.webp" alt="Wall with a smooth, premium repaint by Roly Home Services" loading="lazy" decoding="async">
-                    <canvas class="pr-canvas" id="paintRevealCanvas" aria-hidden="true"></canvas>
-                    <span class="ba-label before-label pr-label-before">Before Preparation</span>
-                    <span class="ba-label after-label pr-label-after">After Roly Painting</span>
-                    <div class="pr-cursor" id="paintRevealCursor" aria-hidden="true">
-                        <svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
-                            <rect x="9" y="7" width="42" height="17" rx="4" fill="#FF6B35"></rect>
-                            <rect x="13" y="11" width="34" height="6" rx="3" fill="#FFFFFF" opacity="0.3"></rect>
-                            <path d="M30 24 V33 H41" fill="none" stroke="#0F1E36" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"></path>
-                            <rect x="37" y="33" width="7" height="24" rx="3.5" fill="#0F1E36"></rect>
-                        </svg>
-                    </div>
-                    <p class="pr-hint" id="paintRevealHint">Grab the roller and paint the wall</p>
-                </div>
-            </div>
-
-            <div class="pr-toolbar" id="paintRevealToolbar" hidden>
-                <p class="pr-progress"><span id="paintRevealPercent">0</span>% repainted</p>
-                <span class="pr-sr-status" id="paintRevealStatus" aria-live="polite"></span>
-                <button type="button" class="btn btn-outline btn-sm" id="paintRevealReset">Reset Wall</button>
-                <button type="button" class="btn btn-primary btn-sm" id="paintRevealFinish">Reveal Full Finish</button>
             </div>
         </div>
     </section>
@@ -517,7 +706,7 @@
                 <div class="footer-col">
                     <h4>Resources</h4>
                     <ul class="footer-links">
-                        <li><a href="#portfolio">Before & After</a></li>
+                        <li><a href="#projects">Before & After</a></li>
                         <li><a href="#reviews">Reviews & Proof</a></li>
                         <li><a href="reviews.html">Reviews & Testimonials</a></li>
                         <li><a href="about.html">About Us</a></li>
