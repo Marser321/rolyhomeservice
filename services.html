@@ -54,11 +54,19 @@
 
             <ul class="nav-menu" id="navMenu">
                 <li><a href="index.html" class="nav-link">Home</a></li>
-                <li><a href="services.html" class="nav-link active">Services</a></li>
-                <li><a href="painting.html" class="nav-link">Painting</a></li>
-                <li><a href="presale.html" class="nav-link">Pre-Sale Prep</a></li>
-                <li><a href="renovations.html" class="nav-link">Renovations</a></li>
-                <li><a href="partners.html" class="nav-link">Partners</a></li>
+                <li class="nav-item nav-has-dropdown">
+                    <a href="services.html" class="nav-link active">Services</a>
+                    <button class="nav-dropdown-toggle" aria-expanded="false" aria-controls="servicesSubmenu" aria-label="Toggle Services menu">
+                        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 9l-7 7-7-7"></path></svg>
+                    </button>
+                    <ul class="nav-submenu" id="servicesSubmenu">
+                        <li><a href="services.html" class="nav-link active">All Services</a></li>
+                        <li><a href="painting.html" class="nav-link">Painting</a></li>
+                        <li><a href="presale.html" class="nav-link">Pre-Sale Home Preparation</a></li>
+                        <li><a href="renovations.html" class="nav-link">Renovations &amp; Repairs</a></li>
+                        <li><a href="partners.html" class="nav-link">Real Estate Partners</a></li>
+                    </ul>
+                </li>
                 <li><a href="gallery.html" class="nav-link">Gallery</a></li>
                 <li><a href="reviews.html" class="nav-link">Reviews</a></li>
                 <li><a href="about.html" class="nav-link">About</a></li>

@@ -354,32 +354,18 @@ button:focus-visible, a:focus-visible, input:focus-visible, select:focus-visible
     white-space: nowrap;
 }
 
-/* 10-item nav: compact desktop spacing so the full menu fits on one line */
+/* 6-item nav (service pages grouped under the Services dropdown) */
 @media (min-width: 1025px) {
     .nav-menu {
-        gap: 8px;
+        gap: 12px;
     }
     .nav-link {
-        font-size: 0.84rem;
+        font-size: 0.86rem;
     }
     .nav-menu .btn-sm {
-        padding: 8px 14px;
-        font-size: 0.8rem;
+        padding: 8px 16px;
+        font-size: 0.82rem;
         white-space: nowrap;
-    }
-}
-
-@media (min-width: 1025px) and (max-width: 1320px) {
-    .nav-menu {
-        gap: 4px;
-    }
-    .nav-link {
-        font-size: 0.79rem;
-        padding: 8px 3px;
-    }
-    /* Icon-only phone frees the room the two extra nav items need */
-    .phone-link span {
-        display: none;
     }
 }
 
@@ -403,6 +389,89 @@ button:focus-visible, a:focus-visible, input:focus-visible, select:focus-visible
 
 .nav-link:hover {
     color: var(--color-orange);
+}
+
+/* ---- Services dropdown ---- */
+.nav-has-dropdown {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 2px;
+}
+
+.nav-dropdown-toggle {
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: var(--color-navy);
+    padding: 6px 2px;
+    display: inline-flex;
+    align-items: center;
+}
+
+.nav-dropdown-toggle svg {
+    width: 14px;
+    height: 14px;
+    transition: transform var(--transition-fast);
+}
+
+.nav-dropdown-toggle[aria-expanded="true"] svg {
+    transform: rotate(180deg);
+}
+
+.nav-submenu {
+    list-style: none;
+}
+
+@media (min-width: 1025px) {
+    .nav-submenu {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        min-width: 244px;
+        background-color: var(--color-card-bg);
+        box-shadow: var(--shadow-lg);
+        border-radius: var(--radius-md);
+        border-top: 3px solid var(--color-orange);
+        padding: 10px;
+        display: flex;
+        flex-direction: column;
+        gap: 2px;
+        opacity: 0;
+        visibility: hidden;
+        transform: translateY(8px);
+        transition: opacity var(--transition-fast), transform var(--transition-fast), visibility var(--transition-fast);
+        z-index: 1200;
+    }
+
+    .nav-has-dropdown:hover .nav-submenu,
+    .nav-has-dropdown:focus-within .nav-submenu {
+        opacity: 1;
+        visibility: visible;
+        transform: translateY(0);
+    }
+
+    .nav-has-dropdown:hover .nav-dropdown-toggle svg {
+        transform: rotate(180deg);
+    }
+
+    .nav-submenu .nav-link {
+        display: block;
+        padding: 9px 12px;
+        border-radius: var(--radius-sm);
+        white-space: nowrap;
+        font-size: 0.84rem;
+    }
+
+    .nav-submenu .nav-link::after {
+        display: none; /* no underline sweep inside the dropdown card */
+    }
+
+    .nav-submenu .nav-link:hover,
+    .nav-submenu .nav-link.active {
+        background-color: var(--color-light-gray);
+        color: var(--color-orange);
+    }
 }
 
 .header-actions {
@@ -467,7 +536,34 @@ button:focus-visible, a:focus-visible, input:focus-visible, select:focus-visible
     }
     
     .header-actions .phone-link {
-        display: none; 
+        display: none;
+    }
+
+    /* Services dropdown: inline accordion inside the mobile menu */
+    .nav-has-dropdown {
+        flex-wrap: wrap;
+        width: 100%;
+        gap: 0;
+    }
+
+    .nav-dropdown-toggle {
+        margin-left: 8px;
+        padding: 8px;
+    }
+
+    .nav-submenu {
+        flex-basis: 100%;
+        width: 100%;
+        display: none;
+        flex-direction: column;
+        gap: 18px;
+        padding: 18px 0 6px 16px;
+        margin-top: 14px;
+        border-left: 2px solid var(--color-orange);
+    }
+
+    .nav-has-dropdown.open .nav-submenu {
+        display: flex;
     }
 }
 

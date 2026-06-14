@@ -27,12 +27,31 @@ document.addEventListener('DOMContentLoaded', () => {
         const closeMenu = () => {
             navMenu.classList.remove('active');
             renderMenuIcon(false);
+            // Collapse the Services submenu whenever the mobile menu closes.
+            navMenu.querySelectorAll('.nav-has-dropdown.open').forEach(dd => {
+                dd.classList.remove('open');
+                const t = dd.querySelector('.nav-dropdown-toggle');
+                if (t) t.setAttribute('aria-expanded', 'false');
+            });
         };
 
         hamburger.addEventListener('click', (e) => {
             e.stopPropagation();
             navMenu.classList.toggle('active');
             renderMenuIcon(navMenu.classList.contains('active'));
+        });
+
+        // Mobile: tap the caret to expand/collapse the Services submenu.
+        // Desktop reveals it on hover/focus-within via CSS, where the .open
+        // class is simply ignored, so this handler is safe on both.
+        navMenu.querySelectorAll('.nav-dropdown-toggle').forEach(toggle => {
+            toggle.addEventListener('click', (e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                const dropdown = toggle.closest('.nav-has-dropdown');
+                const isOpen = dropdown.classList.toggle('open');
+                toggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+            });
         });
 
         // Close when choosing any menu link, including the CTA button.
