@@ -4,6 +4,9 @@
 *.txt
 *.md
 !README.md
+!docs/visual-asset-system.md
+!docs/image-generation-prompts.md
+!docs/animation-generation-prompts.md
 
 # Reference material (not part of the deployed site)
 Referencias/

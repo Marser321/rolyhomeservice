@@ -31,3 +31,11 @@ no build command, output directory is the repo root. Pages are served at their
 `python verify_pages.py` runs the site integrity audit (links, SEO/OG,
 structured data, motion stack, image hygiene, accessibility, conversion
 elements).
+
+## Visual Assets
+
+`docs/visual-asset-system.md` and `docs/visual-asset-manifest.json` define the
+premium-local-real image prompt system, target filenames, formats, and
+replacement priorities. Use `python verify_pages.py --strict-visuals` once new
+assets are generated to fail the build on repeated hero imagery or missing
+target replacements.

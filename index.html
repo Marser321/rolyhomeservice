@@ -21,7 +21,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
-    <link rel="preload" as="image" href="hero_craftsman_atlanta.webp" fetchpriority="high">
+    <link rel="preload" as="image" href="hero-home-value.webp" fetchpriority="high">
     <script defer src="https://cdn.jsdelivr.net/npm/gsap@3.15.0/dist/gsap.min.js"></script>
     <script defer src="https://cdn.jsdelivr.net/npm/gsap@3.15.0/dist/ScrollTrigger.min.js"></script>
     <script defer src="https://cdn.jsdelivr.net/npm/gsap@3.15.0/dist/SplitText.min.js"></script>
@@ -159,7 +159,7 @@
             <!-- Contextual graphic representing clean preparation & premium finish -->
             <div class="hero-image-pane animate-scale-up animate-delay-2">
                 <div>
-                    <img src="hero_craftsman_atlanta.webp" alt="Beautifully painted home exterior by Roly Home Services" fetchpriority="high" decoding="async" width="1024" height="1024">
+                    <img src="hero-home-value.webp" alt="Freshly painted navy craftsman home by Roly Home Services" fetchpriority="high" decoding="async" width="2400" height="1350">
                 </div>
             </div>
         </div>
@@ -233,7 +233,7 @@
                 <div class="painting-card-main">
                     <div class="card-img-wrapper">
                         <span class="card-badge">Interior</span>
-                        <img class="crop-left" loading="lazy" decoding="async" src="interior_painting_prep.webp" alt="Interior painting job detail">
+                        <img class="crop-left" loading="lazy" decoding="async" src="card-interior-protection.webp" alt="Living room furniture wrapped and floors protected before interior painting">
                     </div>
                     <div class="card-content">
                         <h3>Meticulous Interior Painting</h3>
@@ -260,7 +260,7 @@
                 <div class="painting-card-main">
                     <div class="card-img-wrapper">
                         <span class="card-badge">Exterior</span>
-                        <img class="crop-bottom" loading="lazy" decoding="async" src="hero_craftsman_atlanta.webp" alt="Exterior painting home transformation">
+                        <img class="crop-bottom" loading="lazy" decoding="async" src="card-exterior-prep.webp" alt="Exterior siding being washed and prepped before painting">
                     </div>
                     <div class="card-content">
                         <h3>Durable Exterior Painting</h3>
@@ -287,7 +287,7 @@
                 <div class="painting-card-main">
                     <div class="card-img-wrapper">
                         <span class="card-badge">Cabinets</span>
-                        <img loading="lazy" decoding="async" src="cabinet_spraying.webp" alt="Cabinet painting detail">
+                        <img loading="lazy" decoding="async" src="gallery-cabinet-finished.webp" alt="Finished painted kitchen cabinets in a warm Atlanta home">
                     </div>
                     <div class="card-content">
                         <h3>High-End Cabinet Painting</h3>
@@ -885,22 +885,22 @@
             <!-- Left Pane: Visual layers wiped in with a diagonal paint sweep -->
             <div class="story-visual-pane" tabindex="0" aria-label="Painting process stages. On mobile, scroll horizontally to browse.">
                 <div class="visual-layer active" id="layerOldPaint">
-                    <div class="layer-img" style="background-image: linear-gradient(rgba(15,30,54,0.4), rgba(15,30,54,0.4)), url('before_paint.webp');"></div>
+                    <div class="layer-img" style="background-image: linear-gradient(rgba(15,30,54,0.4), rgba(15,30,54,0.4)), url('assets/contextual/painting-process-prep-card.webp');"></div>
                     <div class="layer-badge">Step 1: Damage Assessment</div>
                     <div class="layer-info-tag">Peeling paint and visible cracks caused by Atlanta's humid climate conditions.</div>
                 </div>
                 <div class="visual-layer" id="layerPrep">
-                    <div class="layer-img" style="background-image: linear-gradient(rgba(15,30,54,0.4), rgba(15,30,54,0.4)), url('drywall_repair.webp');"></div>
+                    <div class="layer-img" style="background-image: linear-gradient(rgba(15,30,54,0.4), rgba(15,30,54,0.4)), url('story-drywall-repair-stage.webp');"></div>
                     <div class="layer-badge" style="background-color: var(--color-orange);">Step 2: Dust-Free Sanding & Repair</div>
                     <div class="layer-info-tag">Festool vacuum-sanding systems capture 99.7% of dust for perfectly smooth, clean surfaces.</div>
                 </div>
                 <div class="visual-layer" id="layerPrime">
-                    <div class="layer-img" style="background-image: linear-gradient(rgba(15,30,54,0.4), rgba(15,30,54,0.4)), url('interior_painting_prep.webp');"></div>
+                    <div class="layer-img" style="background-image: linear-gradient(rgba(15,30,54,0.4), rgba(15,30,54,0.4)), url('assets/contextual/painting-process-application-card.webp');"></div>
                     <div class="layer-badge" style="background-color: var(--color-navy);">Step 3: Moisture-Blocking Primer</div>
                     <div class="layer-info-tag">High-adhesion sealing base coat that blocks humidity and prevents future peeling.</div>
                 </div>
                 <div class="visual-layer" id="layerFinish">
-                    <div class="layer-img" style="background-image: linear-gradient(rgba(15,30,54,0.4), rgba(15,30,54,0.4)), url('after_paint.webp');"></div>
+                    <div class="layer-img" style="background-image: linear-gradient(rgba(15,30,54,0.4), rgba(15,30,54,0.4)), url('assets/contextual/painting-process-walkthrough-card.webp');"></div>
                     <div class="layer-badge" style="background-color: #2e7d32;">Step 4: Two Premium Finish Coats</div>
                     <div class="layer-info-tag">Sherwin-Williams Emerald finish with a certified 2-year craftsmanship warranty.</div>
                 </div>
@@ -968,7 +968,7 @@
 
             <div class="grid-3">
                 <!-- Avatar Card A: Selling -->
-                <div class="avatar-card">
+                <div class="avatar-card" style="background-image: linear-gradient(rgba(15,30,54,0.80), rgba(15,30,54,0.86)), url('assets/contextual/home-avatar-sell-card.webp'); background-size: cover; background-position: center;">
                     <div class="avatar-header">
                         <span class="avatar-badge">Preparing to Sell</span>
                         <h3>Maximize Valuation</h3>
@@ -981,7 +981,7 @@
                 </div>
 
                 <!-- Avatar Card B: New Homebuyer -->
-                <div class="avatar-card">
+                <div class="avatar-card" style="background-image: linear-gradient(rgba(15,30,54,0.80), rgba(15,30,54,0.86)), url('assets/contextual/home-avatar-new-buyer-card.webp'); background-size: cover; background-position: center;">
                     <div class="avatar-header">
                         <span class="avatar-badge">Just Bought a Home</span>
                         <h3>Make it Your Own</h3>
@@ -994,7 +994,7 @@
                 </div>
 
                 <!-- Avatar Card C: Realtors / Investors -->
-                <div class="avatar-card">
+                <div class="avatar-card" style="background-image: linear-gradient(rgba(15,30,54,0.80), rgba(15,30,54,0.86)), url('assets/contextual/home-avatar-partner-card.webp'); background-size: cover; background-position: center;">
                     <div class="avatar-header">
                         <span class="avatar-badge">Realtors & Investors</span>
                         <h3>Unwavering Partner</h3>
@@ -1017,7 +1017,7 @@
             <!-- Owner Photo Placeholder with premium border -->
             <div class="about-image-pane" style="position: relative;">
                 <div style="border-radius: var(--radius-lg); overflow: hidden; box-shadow: var(--shadow-premium); border: 2px solid rgba(255, 107, 53, 0.2); outline: 1px solid rgba(255, 255, 255, 0.1);">
-                    <img loading="lazy" decoding="async" src="roly_owner.webp" alt="Roly, Owner of Roly Home Services" style="width: 100%; height: 420px; object-fit: cover; display: block;">
+                    <img loading="lazy" decoding="async" src="owner-roly-real-portrait.webp" alt="Roly, Owner of Roly Home Services" style="width: 100%; height: 420px; object-fit: cover; display: block;">
                 </div>
             </div>
             
