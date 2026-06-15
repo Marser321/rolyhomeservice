@@ -1129,4 +1129,64 @@ document.addEventListener('DOMContentLoaded', () => {
     // ==========================================================================
     // 6. SCROLLYTELLING — handled by motion.js (GSAP presentational layer)
     // ==========================================================================
+
+    // ==========================================================================
+    // 7. BEFORE / AFTER COMPARISON SLIDERS (gridded drag curtain)
+    //    Multi-instance, pointer + keyboard. Drives the --pos CSS var that the
+    //    .ba-after clip-path reads. No deps; degrades to a static 50/50 split.
+    // ==========================================================================
+    document.querySelectorAll('[data-ba-slider]').forEach(slider => {
+        const handle = slider.querySelector('.ba-handle');
+        if (!handle) return;
+
+        let dragging = false;
+
+        const setPos = (pct) => {
+            const clamped = Math.max(0, Math.min(100, pct));
+            slider.style.setProperty('--pos', clamped + '%');
+            handle.setAttribute('aria-valuenow', Math.round(clamped));
+        };
+
+        const posFromX = (clientX) => {
+            const rect = slider.getBoundingClientRect();
+            return ((clientX - rect.left) / rect.width) * 100;
+        };
+
+        handle.addEventListener('pointerdown', (e) => {
+            dragging = true;
+            handle.setPointerCapture(e.pointerId);
+            e.preventDefault();
+        });
+        handle.addEventListener('pointermove', (e) => {
+            if (dragging) setPos(posFromX(e.clientX));
+        });
+        const endDrag = (e) => {
+            dragging = false;
+            try { handle.releasePointerCapture(e.pointerId); } catch (_) {}
+        };
+        handle.addEventListener('pointerup', endDrag);
+        handle.addEventListener('pointercancel', endDrag);
+
+        // Tap/click anywhere on the track jumps the curtain to that point.
+        slider.addEventListener('pointerdown', (e) => {
+            if (e.target === handle || handle.contains(e.target)) return;
+            setPos(posFromX(e.clientX));
+        });
+
+        // Keyboard a11y: arrows nudge by 5%, Home/End snap to the edges.
+        handle.addEventListener('keydown', (e) => {
+            const cur = parseFloat(slider.style.getPropertyValue('--pos')) || 50;
+            let next = null;
+            if (e.key === 'ArrowLeft' || e.key === 'ArrowDown') next = cur - 5;
+            else if (e.key === 'ArrowRight' || e.key === 'ArrowUp') next = cur + 5;
+            else if (e.key === 'Home') next = 0;
+            else if (e.key === 'End') next = 100;
+            if (next !== null) {
+                e.preventDefault();
+                setPos(next);
+            }
+        });
+
+        setPos(50); // start centered
+    });
 });

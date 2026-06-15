@@ -57,6 +57,28 @@
             margin-bottom: 12px;
             display: inline-block;
         }
+        /* "Why homeowners choose Roly" cards (mirrors the lp-painting pattern) */
+        .vsl-why-card {
+            background: var(--color-card-bg);
+            padding: 28px 24px;
+            border-radius: var(--radius-md);
+            box-shadow: var(--shadow-md);
+            border: 1px solid var(--color-border);
+            text-align: center;
+        }
+        .vsl-why-card .vsl-why-icon { color: var(--color-orange); width: 34px; height: 34px; margin: 0 auto 14px; display: block; }
+        .vsl-why-card h3 { font-size: 1.05rem; margin-bottom: 8px; }
+        .vsl-why-card p { font-size: 0.86rem; color: var(--text-secondary); line-height: 1.55; }
+        /* Compact Google rating badge (no precise count claimed until the GBP profile is wired) */
+        .vsl-google-badge {
+            display: inline-flex; align-items: center; gap: 12px; flex-wrap: wrap; justify-content: center;
+            background: var(--color-card-bg); border: 1px solid var(--color-border);
+            border-radius: var(--radius-md); box-shadow: var(--shadow-sm);
+            padding: 12px 22px; margin-bottom: 30px;
+        }
+        .vsl-google-badge .g-name { font-family: var(--font-heading); font-weight: 800; font-size: 1.2rem; color: var(--color-navy); }
+        .vsl-google-badge .g-stars { color: var(--color-orange); letter-spacing: 2px; }
+        .vsl-google-badge .g-meta { font-size: 0.85rem; color: var(--text-secondary); }
     </style>
 </head>
 <body style="background-color: var(--color-neutral-bg);">
@@ -136,6 +158,141 @@
                 <div class="trust-bar-text">
                     <h4 style="font-size:0.85rem;">EPA Certified</h4>
                     <p style="font-size:0.65rem;">Lead-Safe Work practices</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==========================================================================
+       WHY HOMEOWNERS CHOOSE ROLY  (persuasion layer before the form)
+       ========================================================================== -->
+    <section class="section-alt reveal-on-scroll" id="why-roly">
+        <div class="container">
+            <div class="section-title-wrapper">
+                <span class="section-label">Painting First, Then Smart Improvements</span>
+                <h2 class="section-title">Why Homeowners Choose Roly Home Services</h2>
+            </div>
+            <div class="grid-3">
+                <div class="vsl-why-card">
+                    <svg class="vsl-why-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path></svg>
+                    <h3>Protection That Lasts</h3>
+                    <p>Our professional painting shields your home from the elements and keeps it looking beautiful for years.</p>
+                </div>
+                <div class="vsl-why-card">
+                    <svg class="vsl-why-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 10l7-7m0 0l7 7m-7-7v18"></path></svg>
+                    <h3>Smart Improvements</h3>
+                    <p>We handle the right repairs and finishing details that enhance function, style, and long-term property value.</p>
+                </div>
+                <div class="vsl-why-card">
+                    <svg class="vsl-why-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                    <h3>More Value, Less Stress</h3>
+                    <p>We manage the details and clean up after ourselves, so you get top results without the hassle.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==========================================================================
+       REAL RESULTS — before/after drag sliders (client-requested proof)
+       ========================================================================== -->
+    <section class="section reveal-on-scroll" id="real-results">
+        <div class="container">
+            <div class="section-title-wrapper">
+                <span class="section-label">Real Results. Real Value.</span>
+                <h2 class="section-title">See the Difference for Yourself</h2>
+                <p class="section-desc">Drag the handle on any project to reveal the finished result.</p>
+            </div>
+
+            <div class="ba-grid">
+                <figure class="ba-item">
+                    <div class="ba-slider" data-ba-slider>
+                        <img class="ba-img ba-before" src="assets/before-after/exterior-trim-front-door-before.webp" alt="Exterior trim and front door before painting by Roly Home Services" loading="lazy" decoding="async" width="1920" height="1080">
+                        <img class="ba-img ba-after" src="assets/before-after/exterior-trim-front-door-after.webp" alt="Exterior trim and front door after painting by Roly Home Services" loading="lazy" decoding="async" width="1920" height="1080">
+                        <span class="ba-label ba-label-before">Before</span>
+                        <span class="ba-label ba-label-after">After</span>
+                        <button class="ba-handle" type="button" role="slider" aria-label="Drag to compare the exterior painting before and after" aria-valuemin="0" aria-valuemax="100" aria-valuenow="50">
+                            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M8 9l-4 3 4 3m8-6l4 3-4 3"></path></svg>
+                        </button>
+                    </div>
+                    <figcaption class="ba-caption">Exterior Painting · Trim &amp; Door</figcaption>
+                </figure>
+
+                <figure class="ba-item">
+                    <div class="ba-slider" data-ba-slider>
+                        <img class="ba-img ba-before" src="assets/before-after/cabinet-kitchen-refresh-before.webp" alt="Kitchen cabinets before a factory-grade spray finish by Roly Home Services" loading="lazy" decoding="async" width="1920" height="1080">
+                        <img class="ba-img ba-after" src="assets/before-after/cabinet-kitchen-refresh-after.webp" alt="Kitchen cabinets after a factory-grade spray finish by Roly Home Services" loading="lazy" decoding="async" width="1920" height="1080">
+                        <span class="ba-label ba-label-before">Before</span>
+                        <span class="ba-label ba-label-after">After</span>
+                        <button class="ba-handle" type="button" role="slider" aria-label="Drag to compare the cabinet painting before and after" aria-valuemin="0" aria-valuemax="100" aria-valuenow="50">
+                            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M8 9l-4 3 4 3m8-6l4 3-4 3"></path></svg>
+                        </button>
+                    </div>
+                    <figcaption class="ba-caption">Cabinet Painting · Kitchen</figcaption>
+                </figure>
+
+                <figure class="ba-item">
+                    <div class="ba-slider" data-ba-slider>
+                        <img class="ba-img ba-before" src="assets/before-after/interior-hallway-scuffs-before.webp" alt="Interior hallway with scuffs before repainting by Roly Home Services" loading="lazy" decoding="async" width="1920" height="1080">
+                        <img class="ba-img ba-after" src="assets/before-after/interior-hallway-scuffs-after.webp" alt="Interior hallway after a clean repaint by Roly Home Services" loading="lazy" decoding="async" width="1920" height="1080">
+                        <span class="ba-label ba-label-before">Before</span>
+                        <span class="ba-label ba-label-after">After</span>
+                        <button class="ba-handle" type="button" role="slider" aria-label="Drag to compare the interior painting before and after" aria-valuemin="0" aria-valuemax="100" aria-valuenow="50">
+                            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M8 9l-4 3 4 3m8-6l4 3-4 3"></path></svg>
+                        </button>
+                    </div>
+                    <figcaption class="ba-caption">Interior Painting · Hallway</figcaption>
+                </figure>
+
+                <figure class="ba-item">
+                    <div class="ba-slider" data-ba-slider>
+                        <img class="ba-img ba-before" src="assets/before-after/soft-wash-siding-before.webp" alt="Home siding before a professional soft wash by Roly Home Services" loading="lazy" decoding="async" width="1920" height="1080">
+                        <img class="ba-img ba-after" src="assets/before-after/soft-wash-siding-after.webp" alt="Home siding after a professional soft wash by Roly Home Services" loading="lazy" decoding="async" width="1920" height="1080">
+                        <span class="ba-label ba-label-before">Before</span>
+                        <span class="ba-label ba-label-after">After</span>
+                        <button class="ba-handle" type="button" role="slider" aria-label="Drag to compare the exterior soft wash before and after" aria-valuemin="0" aria-valuemax="100" aria-valuenow="50">
+                            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M8 9l-4 3 4 3m8-6l4 3-4 3"></path></svg>
+                        </button>
+                    </div>
+                    <figcaption class="ba-caption">Exterior Improvements · Soft Wash</figcaption>
+                </figure>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==========================================================================
+       SOCIAL PROOF — Google rating badge + testimonials
+       ========================================================================== -->
+    <section class="section-alt reveal-on-scroll" id="vsl-reviews">
+        <div class="container text-center">
+            <div class="vsl-google-badge">
+                <span class="g-name">Google</span>
+                <span class="g-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+                <span class="g-meta">5-star rated by Tucker &amp; Atlanta homeowners</span>
+            </div>
+            <div class="grid-3 mb-4" style="text-align: left;">
+                <div class="review-card">
+                    <div class="review-stars"><span>&#9733;</span><span>&#9733;</span><span>&#9733;</span><span>&#9733;</span><span>&#9733;</span></div>
+                    <p class="review-text">Roly and his team painted the entire interior of our newly purchased home in Tucker. The baseboard lines are incredibly crisp, and they finished ahead of schedule. They left absolutely no dust behind!</p>
+                    <div class="review-author">
+                        <div class="author-initial">S</div>
+                        <div class="author-info"><h4>Sarah Jenkins</h4><p>Homeowner in Tucker, GA</p></div>
+                    </div>
+                </div>
+                <div class="review-card">
+                    <div class="review-stars"><span>&#9733;</span><span>&#9733;</span><span>&#9733;</span><span>&#9733;</span><span>&#9733;</span></div>
+                    <p class="review-text">As a real estate agent in Atlanta, I need contractors who are reliable and respect timelines. Roly Home Services is my go-to team for pre-sale preparations. Their work always increases the listing value.</p>
+                    <div class="review-author">
+                        <div class="author-initial">M</div>
+                        <div class="author-info"><h4>Marcus Vance</h4><p>Realtor / Keller Williams Atl</p></div>
+                    </div>
+                </div>
+                <div class="review-card">
+                    <div class="review-stars"><span>&#9733;</span><span>&#9733;</span><span>&#9733;</span><span>&#9733;</span><span>&#9733;</span></div>
+                    <p class="review-text">Their cabinet painting transformed our kitchen completely! We saved thousands compared to a cabinet replacement. Professional spray finish, clean masking, and very friendly service.</p>
+                    <div class="review-author">
+                        <div class="author-initial">D</div>
+                        <div class="author-info"><h4>David L.</h4><p>Homeowner in Buckhead, GA</p></div>
+                    </div>
                 </div>
             </div>
         </div>

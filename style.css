@@ -3134,3 +3134,180 @@ button:focus-visible, a:focus-visible, input:focus-visible, select:focus-visible
     outline: 2px solid #FFFFFF;
     outline-offset: -4px;
 }
+
+/* ==========================================================================
+   BEFORE / AFTER COMPARISON SLIDER  (reintroduced — gridded drag curtain)
+   Multi-instance: app.js wires every [data-ba-slider]. Real <img> elements
+   (alt text + lazy loading); the "after" layer is revealed by a clip-path
+   driven by the --pos CSS var. With no JS it degrades to a static 50/50 split.
+   ========================================================================== */
+.ba-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(258px, 1fr));
+    gap: 24px;
+}
+
+.ba-item {
+    margin: 0;
+}
+
+.ba-slider {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 3 / 2; /* source pairs are 16:9; object-fit: cover trims the sides */
+    overflow: hidden;
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-lg);
+    border: 1px solid var(--color-border);
+    background: var(--color-light-gray);
+    --pos: 50%;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: pan-y; /* vertical scroll passes through; the handle owns horizontal drag */
+}
+
+.ba-img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    pointer-events: none;
+    -webkit-user-drag: none;
+    user-select: none;
+}
+
+.ba-before {
+    z-index: 1;
+}
+
+/* "After" sits on top, revealed from --pos to the right edge; "before" shows
+   through on the left. Labels match: BEFORE bottom-left, AFTER bottom-right. */
+.ba-after {
+    z-index: 2;
+    clip-path: inset(0 0 0 var(--pos));
+}
+
+.ba-label {
+    position: absolute;
+    bottom: 14px;
+    z-index: 3;
+    background: rgba(15, 30, 54, 0.85);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+    color: #FFFFFF;
+    padding: 5px 12px;
+    border-radius: var(--radius-sm);
+    font-family: var(--font-heading);
+    font-weight: 700;
+    font-size: 0.7rem;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    pointer-events: none;
+}
+
+.ba-label-before {
+    left: 14px;
+}
+
+.ba-label-after {
+    right: 14px;
+}
+
+/* Transparent 44px-wide button = comfortable touch/drag target; the visible
+   line (::after) and knob (::before) stay slim. */
+.ba-handle {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: var(--pos);
+    width: 44px;
+    transform: translateX(-50%);
+    background: transparent;
+    border: none;
+    padding: 0;
+    margin: 0;
+    z-index: 4;
+    cursor: ew-resize;
+    touch-action: none;
+}
+
+.ba-handle::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 50%;
+    width: 2px;
+    transform: translateX(-50%);
+    background: #FFFFFF;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.35);
+}
+
+.ba-handle::before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 42px;
+    height: 42px;
+    transform: translate(-50%, -50%);
+    background: var(--color-orange);
+    border: 3px solid #FFFFFF;
+    border-radius: 50%;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+    transition: background-color var(--transition-fast);
+    z-index: 1;
+}
+
+.ba-handle svg {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 22px;
+    height: 22px;
+    color: #FFFFFF;
+    z-index: 2;
+    pointer-events: none;
+}
+
+.ba-handle:hover::before,
+.ba-handle:active::before {
+    background: var(--color-orange-hover);
+}
+
+.ba-handle:focus-visible {
+    outline: none;
+}
+
+.ba-handle:focus-visible::before {
+    box-shadow: 0 0 0 4px rgba(255, 107, 53, 0.55), 0 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+.ba-caption {
+    margin-top: 12px;
+    font-family: var(--font-heading);
+    font-weight: 600;
+    font-size: 0.9rem;
+    color: var(--color-navy);
+    text-align: center;
+}
+
+/* A short customer quote can ride under the caption (reviews page). */
+.ba-quote {
+    margin-top: 6px;
+    font-family: var(--font-body);
+    font-weight: 400;
+    font-size: 0.84rem;
+    font-style: italic;
+    line-height: 1.5;
+    color: var(--text-secondary);
+    text-align: center;
+}
+
+@media (max-width: 480px) {
+    .ba-grid {
+        grid-template-columns: 1fr;
+    }
+}
