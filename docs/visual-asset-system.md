@@ -237,22 +237,26 @@ Base after prompt:
 Create the after state from the same camera angle and same room/home geometry as the before image. Preserve structure, windows, furniture placement, landscaping, lens, perspective, and lighting. Change only the painted, repaired, washed, stained, or refreshed surfaces. Premium local real finish, clean professional result, no readable text, no fake logos.
 ```
 
-Planned pairs:
+Canonical client pairs:
 
 | Pair ID | Service | Intended use |
 | --- | --- | --- |
 | `exterior-siding-curb-appeal` | Exterior Painting | Home, Painting, Gallery hero proof |
+| `exterior-curb-appeal-2` | Exterior Painting | Alternate warm-white exterior proof |
 | `exterior-trim-front-door` | Exterior Painting | Close exterior detail slider |
-| `interior-living-room-paint` | Interior Painting | Core painting transformation |
 | `interior-hallway-scuffs` | Interior Painting | Mobile story and scuff repair proof |
 | `cabinet-kitchen-refresh` | Cabinet Painting | High-value kitchen conversion proof |
 | `drywall-patch-repair` | Drywall Repair | Process education and repair trust |
-| `bathroom-refresh` | Home Improvement | Small refresh without full renovation |
-| `kitchen-presale-neutral` | Pre-Sale Preparation | Realtor/seller market-ready story |
 | `soft-wash-siding` | Soft Full House Washing | Clean/dirty wipe |
 | `deck-staining` | Deck Staining | Wood protection proof |
 | `fence-staining` | Fence Staining | Exterior wood finish proof |
 | `garage-door-trim` | Exterior Painting | Compact curb appeal proof |
+
+Do not publish `interior-living-room-paint`, `bathroom-refresh`, or
+`kitchen-presale-neutral` as separate before/after stories unless new
+locked-camera source pairs are supplied. They previously reused pair 3 or pair
+5 and made the site feel repetitive. Unused JPGs in `Roldan New Feedback/` are
+reference screenshots only, not site visuals.
 
 Animation QA:
 

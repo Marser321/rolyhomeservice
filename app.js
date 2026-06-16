@@ -7,6 +7,54 @@ document.addEventListener('DOMContentLoaded', () => {
     //    console, so the site is shippable before the CRM is wired.
     // ==========================================================================
     const GHL_WEBHOOK_URL = ''; // TODO(client): paste GoHighLevel inbound webhook URL
+    const GHL_FILE_UPLOAD_ENABLED = false;
+    const GUIDED_ESTIMATE_ENABLED = true;
+
+    // Broad planning ranges only. Roly should approve these bands before
+    // campaigns drive paid traffic to the form.
+    const ESTIMATE_RATE_CARD = {
+        interiorBase: [650, 1200],
+        interiorRoom: [450, 875],
+        trimPerRoom: [180, 375],
+        ceilingPerRoom: [220, 450],
+        interiorCondition: {
+            clean: [0, 0],
+            average: [250, 650],
+            repairs: [650, 1600]
+        },
+        exteriorSize: {
+            small: [3200, 6200],
+            medium: [5200, 9800],
+            large: [7800, 14500],
+            estate: [11500, 22000]
+        },
+        storyAdd: {
+            one: [0, 0],
+            two: [900, 1900],
+            three: [1800, 3600]
+        },
+        exteriorCondition: {
+            clean: [0, 0],
+            weathered: [700, 1800],
+            repair: [1600, 3800]
+        },
+        cabinetCount: {
+            small: [2800, 4800],
+            medium: [4200, 7200],
+            large: [6200, 9800],
+            estate: [8500, 14000]
+        },
+        cabinetCondition: {
+            clean: [0, 0],
+            worn: [650, 1600],
+            heavy: [1400, 3200]
+        },
+        addOns: {
+            drywall: [450, 1800],
+            pressureWashing: [450, 1200],
+            deckFence: [900, 3600]
+        }
+    };
 
     // ==========================================================================
     // 1. MOBILE HAMBURGER MENU & HEADER SCROLL
@@ -143,8 +191,266 @@ document.addEventListener('DOMContentLoaded', () => {
             email: '',
             projectDescription: '',
             preferredTime: '',
-            photoAttached: false
+            photoAttached: false,
+            photoStatus: GHL_FILE_UPLOAD_ENABLED ? 'not_attached' : 'requested_after_submit',
+            scopeInputs: {},
+            addOns: [],
+            estimateRangeLow: null,
+            estimateRangeHigh: null,
+            estimateConfidence: 'planning'
         };
+
+        const applyFieldMetadata = () => {
+            const metadata = {
+                projectZip: { name: 'projectZip', autocomplete: 'postal-code', inputmode: 'numeric' },
+                projectAddress: { name: 'projectAddress', autocomplete: 'street-address' },
+                clientName: { name: 'fullName', autocomplete: 'name' },
+                clientPhone: { name: 'phoneNumber', autocomplete: 'tel', inputmode: 'tel' },
+                clientEmail: { name: 'email', autocomplete: 'email', inputmode: 'email' },
+                preferredSchedule: { name: 'preferredVisitWindow' },
+                projectDesc: { name: 'projectDescription' },
+                projectPhotos: { name: 'projectPhotos' }
+            };
+
+            Object.entries(metadata).forEach(([id, attrs]) => {
+                const field = document.getElementById(id);
+                if (!field) return;
+                Object.entries(attrs).forEach(([attr, value]) => field.setAttribute(attr, value));
+            });
+        };
+
+        const injectGuidedEstimateFields = () => {
+            if (!GUIDED_ESTIMATE_ENABLED || formContainer.querySelector('#estimateScopePanel')) return;
+            const descriptionField = document.getElementById('projectDesc');
+            const descriptionGroup = descriptionField ? descriptionField.closest('.form-group') : null;
+            if (!descriptionGroup) return;
+
+            const panel = document.createElement('div');
+            panel.className = 'estimate-scope-panel';
+            panel.id = 'estimateScopePanel';
+            panel.innerHTML = `
+                <div class="estimate-panel-header">
+                    <div>
+                        <span class="section-label">Guided Planning Range</span>
+                        <h5>Help us build a useful first estimate</h5>
+                    </div>
+                    <span class="estimate-pill">Approximate</span>
+                </div>
+                <p class="estimate-panel-copy">These details create a planning range only. Your final quote is confirmed after photos, scope review, or an on-site visit.</p>
+
+                <div class="scope-fields" data-scope-fields="interior">
+                    <div class="grid-2">
+                        <div class="form-group">
+                            <label class="form-label" for="scopeInteriorRooms">Rooms or areas</label>
+                            <input class="form-control" id="scopeInteriorRooms" name="scopeInteriorRooms" type="number" inputmode="numeric" min="1" max="12" value="2">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label" for="scopeWallCondition">Wall condition</label>
+                            <select class="form-control" id="scopeWallCondition" name="scopeWallCondition">
+                                <option value="clean">Mostly clean / color change</option>
+                                <option value="average" selected>Average scuffs and touch-ups</option>
+                                <option value="repairs">Visible drywall or texture repairs</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="estimate-check-row" aria-label="Interior add-ons">
+                        <label><input type="checkbox" id="scopeInteriorTrim" name="scopeInteriorTrim"> Include trim/baseboards</label>
+                        <label><input type="checkbox" id="scopeInteriorCeilings" name="scopeInteriorCeilings"> Include ceilings</label>
+                    </div>
+                </div>
+
+                <div class="scope-fields" data-scope-fields="exterior">
+                    <div class="grid-2">
+                        <div class="form-group">
+                            <label class="form-label" for="scopeExteriorSize">Home size</label>
+                            <select class="form-control" id="scopeExteriorSize" name="scopeExteriorSize">
+                                <option value="small">Small / single section</option>
+                                <option value="medium" selected>Average home</option>
+                                <option value="large">Large home</option>
+                                <option value="estate">Large or complex exterior</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label" for="scopeExteriorStories">Stories</label>
+                            <select class="form-control" id="scopeExteriorStories" name="scopeExteriorStories">
+                                <option value="one">1 story</option>
+                                <option value="two" selected>2 stories</option>
+                                <option value="three">3 stories / high access</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label" for="scopeExteriorCondition">Exterior condition</label>
+                        <select class="form-control" id="scopeExteriorCondition" name="scopeExteriorCondition">
+                            <option value="clean">Mostly clean</option>
+                            <option value="weathered" selected>Weathered paint or prep needed</option>
+                            <option value="repair">Peeling paint, repair, or heavy prep</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="scope-fields" data-scope-fields="cabinets">
+                    <div class="grid-2">
+                        <div class="form-group">
+                            <label class="form-label" for="scopeCabinetCount">Doors and drawers</label>
+                            <select class="form-control" id="scopeCabinetCount" name="scopeCabinetCount">
+                                <option value="small">Under 15</option>
+                                <option value="medium" selected>15-25</option>
+                                <option value="large">26-40</option>
+                                <option value="estate">40+</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label" for="scopeCabinetCondition">Cabinet condition</label>
+                            <select class="form-control" id="scopeCabinetCondition" name="scopeCabinetCondition">
+                                <option value="clean">Clean, ready to prep</option>
+                                <option value="worn" selected>Worn finish / standard prep</option>
+                                <option value="heavy">Heavy grain, damage, or extra prep</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="estimate-addons">
+                    <p class="form-label">Optional restoration &amp; finishing add-ons</p>
+                    <div class="estimate-check-row">
+                        <label><input type="checkbox" id="addOnDrywall" name="addOnDrywall" value="drywall"> Drywall, trim &amp; repairs</label>
+                        <label><input type="checkbox" id="addOnPressureWashing" name="addOnPressureWashing" value="pressureWashing"> Pressure washing / exterior prep</label>
+                        <label><input type="checkbox" id="addOnDeckFence" name="addOnDeckFence" value="deckFence"> Deck or fence staining</label>
+                    </div>
+                </div>
+
+                <div class="estimate-range-preview" id="estimateRangePreview" aria-live="polite">
+                    <span>Planning range</span>
+                    <strong>Choose a service to preview</strong>
+                    <small>Not a final quote. Roly confirms scope before pricing.</small>
+                </div>
+            `;
+            descriptionGroup.parentNode.insertBefore(panel, descriptionGroup);
+        };
+
+        const formatCurrency = (value) => {
+            const rounded = Math.round(value / 50) * 50;
+            return `$${rounded.toLocaleString('en-US')}`;
+        };
+
+        const addRange = (base, addition) => [base[0] + addition[0], base[1] + addition[1]];
+
+        const collectScopeInputs = () => {
+            const checkedAddOns = Array.from(formContainer.querySelectorAll('.estimate-addons input[type="checkbox"]:checked'))
+                .map(input => input.value);
+            const rooms = Math.max(1, Math.min(12, parseInt(document.getElementById('scopeInteriorRooms')?.value || '2', 10) || 2));
+
+            const scope = {
+                interiorRooms: rooms,
+                includeTrim: Boolean(document.getElementById('scopeInteriorTrim')?.checked),
+                includeCeilings: Boolean(document.getElementById('scopeInteriorCeilings')?.checked),
+                wallCondition: document.getElementById('scopeWallCondition')?.value || 'average',
+                exteriorSize: document.getElementById('scopeExteriorSize')?.value || 'medium',
+                exteriorStories: document.getElementById('scopeExteriorStories')?.value || 'two',
+                exteriorCondition: document.getElementById('scopeExteriorCondition')?.value || 'weathered',
+                cabinetCount: document.getElementById('scopeCabinetCount')?.value || 'medium',
+                cabinetCondition: document.getElementById('scopeCabinetCondition')?.value || 'worn'
+            };
+
+            return { scope, checkedAddOns };
+        };
+
+        const calculateGuidedEstimate = () => {
+            const { scope, checkedAddOns } = collectScopeInputs();
+            let range = [0, 0];
+
+            if (leadData.projectType === 'interior') {
+                range = addRange(ESTIMATE_RATE_CARD.interiorBase, [
+                    ESTIMATE_RATE_CARD.interiorRoom[0] * scope.interiorRooms,
+                    ESTIMATE_RATE_CARD.interiorRoom[1] * scope.interiorRooms
+                ]);
+                range = addRange(range, ESTIMATE_RATE_CARD.interiorCondition[scope.wallCondition]);
+                if (scope.includeTrim) range = addRange(range, [
+                    ESTIMATE_RATE_CARD.trimPerRoom[0] * scope.interiorRooms,
+                    ESTIMATE_RATE_CARD.trimPerRoom[1] * scope.interiorRooms
+                ]);
+                if (scope.includeCeilings) range = addRange(range, [
+                    ESTIMATE_RATE_CARD.ceilingPerRoom[0] * scope.interiorRooms,
+                    ESTIMATE_RATE_CARD.ceilingPerRoom[1] * scope.interiorRooms
+                ]);
+            } else if (leadData.projectType === 'exterior') {
+                range = ESTIMATE_RATE_CARD.exteriorSize[scope.exteriorSize];
+                range = addRange(range, ESTIMATE_RATE_CARD.storyAdd[scope.exteriorStories]);
+                range = addRange(range, ESTIMATE_RATE_CARD.exteriorCondition[scope.exteriorCondition]);
+            } else if (leadData.projectType === 'cabinets') {
+                range = ESTIMATE_RATE_CARD.cabinetCount[scope.cabinetCount];
+                range = addRange(range, ESTIMATE_RATE_CARD.cabinetCondition[scope.cabinetCondition]);
+            } else {
+                // Defensive fallback: project type is always one of the three
+                // painting categories now, but keep a painting base just in case.
+                range = ESTIMATE_RATE_CARD.interiorBase;
+            }
+
+            checkedAddOns.forEach(addOn => {
+                range = addRange(range, ESTIMATE_RATE_CARD.addOns[addOn] || [0, 0]);
+            });
+
+            if (leadData.avatarContext === 'sell') {
+                range = addRange(range, [350, 950]);
+            }
+
+            return {
+                low: range[0],
+                high: Math.max(range[1], range[0] + 600),
+                confidence: checkedAddOns.length || leadData.projectType ? 'planning' : 'needs-more-info',
+                scope,
+                addOns: checkedAddOns
+            };
+        };
+
+        const updateEstimatePreview = () => {
+            const preview = document.getElementById('estimateRangePreview');
+            if (!preview) return;
+            if (!leadData.projectType) {
+                preview.innerHTML = `
+                    <span>Planning range</span>
+                    <strong>Choose a service to preview</strong>
+                    <small>Not a final quote. Roly confirms scope before pricing.</small>
+                `;
+                return;
+            }
+            const estimate = calculateGuidedEstimate();
+            preview.innerHTML = `
+                <span>Planning range</span>
+                <strong>${formatCurrency(estimate.low)} - ${formatCurrency(estimate.high)}</strong>
+                <small>Approximate only. Final pricing is confirmed after photos, review, or visit.</small>
+            `;
+        };
+
+        const syncScopeVisibility = () => {
+            formContainer.querySelectorAll('[data-scope-fields]').forEach(group => {
+                const scope = group.getAttribute('data-scope-fields');
+                group.hidden = scope !== leadData.projectType;
+            });
+            updateEstimatePreview();
+        };
+
+        applyFieldMetadata();
+        injectGuidedEstimateFields();
+
+        if (!GHL_FILE_UPLOAD_ENABLED && photoInput && fileLabelText) {
+            const uploadGroup = photoInput.closest('.form-group');
+            if (uploadGroup) {
+                uploadGroup.innerHTML = `
+                    <label class="form-label">Project Photos</label>
+                    <div class="photo-followup-note">
+                        Photos are requested by text after you submit, so Roly can review the right surfaces before confirming the estimate.
+                    </div>
+                `;
+            }
+        }
+
+        formContainer.querySelectorAll('#estimateScopePanel input, #estimateScopePanel select').forEach(field => {
+            field.addEventListener('change', updateEstimatePreview);
+            field.addEventListener('input', updateEstimatePreview);
+        });
+        syncScopeVisibility();
 
         // File upload attachment check
         if (photoInput && fileLabelText) {
@@ -153,10 +459,12 @@ document.addEventListener('DOMContentLoaded', () => {
                     fileLabelText.textContent = `Attached: ${e.target.files[0].name}`;
                     fileLabelText.style.color = 'var(--color-orange)';
                     leadData.photoAttached = true;
+                    leadData.photoStatus = 'attached_pending_file_endpoint';
                 } else {
                     fileLabelText.textContent = "Upload project photos (optional)";
                     fileLabelText.style.color = 'var(--text-secondary)';
                     leadData.photoAttached = false;
+                    leadData.photoStatus = GHL_FILE_UPLOAD_ENABLED ? 'not_attached' : 'requested_after_submit';
                 }
             });
         }
@@ -174,8 +482,12 @@ document.addEventListener('DOMContentLoaded', () => {
             
             if (category === 'project-type') {
                 leadData.projectType = val;
+                clearSlideError(1);
+                syncScopeVisibility();
             } else if (category === 'avatar-context') {
                 leadData.avatarContext = val;
+                clearSlideError(2);
+                updateEstimatePreview();
             }
         };
 
@@ -192,17 +504,64 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         });
 
+        const clearFieldError = (field) => {
+            if (!field) return;
+            field.removeAttribute('aria-invalid');
+            const describedBy = (field.getAttribute('aria-describedby') || '')
+                .split(/\s+/)
+                .filter(id => id && !id.endsWith('-error'))
+                .join(' ');
+            if (describedBy) field.setAttribute('aria-describedby', describedBy);
+            else field.removeAttribute('aria-describedby');
+            const error = document.getElementById(`${field.id}-error`);
+            if (error) error.remove();
+        };
+
+        const setFieldError = (field, message) => {
+            if (!field) return;
+            clearFieldError(field);
+            field.setAttribute('aria-invalid', 'true');
+            const error = document.createElement('p');
+            error.className = 'field-error';
+            error.id = `${field.id}-error`;
+            error.textContent = message;
+            field.insertAdjacentElement('afterend', error);
+            const describedBy = field.getAttribute('aria-describedby');
+            field.setAttribute('aria-describedby', describedBy ? `${describedBy} ${error.id}` : error.id);
+        };
+
+        const setSlideError = (step, message) => {
+            const slide = slides[step - 1];
+            if (!slide) return;
+            let error = slide.querySelector('.slide-error');
+            if (!error) {
+                error = document.createElement('p');
+                error.className = 'slide-error';
+                const title = slide.querySelector('.form-slide-title');
+                if (title) title.insertAdjacentElement('afterend', error);
+                else slide.prepend(error);
+            }
+            error.textContent = message;
+        };
+
+        const clearSlideError = (step) => {
+            const error = slides[step - 1]?.querySelector('.slide-error');
+            if (error) error.remove();
+        };
+
         // Error Feedback - Shake the form wrapper and highlight
-        const triggerShakeError = (inputToFocus = null) => {
+        const triggerShakeError = (inputToFocus = null, message = '') => {
             formContainer.classList.remove('shake');
             void formContainer.offsetWidth; // Trigger reflow to restart animation
             formContainer.classList.add('shake');
             
             if (inputToFocus) {
+                if (message) setFieldError(inputToFocus, message);
                 inputToFocus.focus();
                 inputToFocus.style.borderColor = 'var(--color-orange)';
                 inputToFocus.addEventListener('input', function removeHighlight() {
                     this.style.borderColor = '';
+                    clearFieldError(this);
                     this.removeEventListener('input', removeHighlight);
                 });
             }
@@ -243,7 +602,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 backBtn.style.visibility = step === 1 ? 'hidden' : 'visible';
 
                 if (step === totalSteps) {
-                    nextBtn.innerHTML = `Secure My Free Estimate <svg style="width: 18px; height:18px;" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path></svg>`;
+                    nextBtn.innerHTML = `Send My Estimate Request <svg style="width: 18px; height:18px;" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path></svg>`;
                     nextBtn.style.backgroundColor = 'var(--color-orange)';
                 } else {
                     nextBtn.innerHTML = `Next Step <svg style="width:16px; height:16px;" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 5l7 7-7 7"></path></svg>`;
@@ -283,13 +642,18 @@ document.addEventListener('DOMContentLoaded', () => {
         };
 
         const validateStep = (step) => {
+            clearSlideError(step);
             if (step === 1) {
                 if (!leadData.projectType) {
+                    setSlideError(step, 'Choose the main service so we can guide the estimate.');
+                    slides[0]?.querySelector('.option-box')?.focus();
                     triggerShakeError();
                     return false;
                 }
             } else if (step === 2) {
                 if (!leadData.avatarContext) {
+                    setSlideError(step, 'Choose the goal that best matches this project.');
+                    slides[1]?.querySelector('.option-box')?.focus();
                     triggerShakeError();
                     return false;
                 }
@@ -298,13 +662,15 @@ document.addEventListener('DOMContentLoaded', () => {
                 const address = document.getElementById('projectAddress');
                 
                 if (!zip.value.trim() || zip.value.trim().length < 5) {
-                    triggerShakeError(zip);
+                    triggerShakeError(zip, 'Enter a 5-digit ZIP code.');
                     return false;
                 }
+                clearFieldError(zip);
                 if (!address.value.trim()) {
-                    triggerShakeError(address);
+                    triggerShakeError(address, 'Enter the project street address.');
                     return false;
                 }
+                clearFieldError(address);
                 leadData.zipCode = zip.value.trim();
                 leadData.streetAddress = address.value.trim();
             } else if (step === 4) {
@@ -313,23 +679,32 @@ document.addEventListener('DOMContentLoaded', () => {
                 const email = document.getElementById('clientEmail');
                 
                 if (!name.value.trim()) {
-                    triggerShakeError(name);
+                    triggerShakeError(name, 'Enter the name our project manager should ask for.');
                     return false;
                 }
+                clearFieldError(name);
                 if (!phone.value.trim() || phone.value.trim().length < 10) {
-                    triggerShakeError(phone);
+                    triggerShakeError(phone, 'Enter a phone number with area code.');
                     return false;
                 }
+                clearFieldError(phone);
                 if (!email.value.trim() || !email.value.includes('@')) {
-                    triggerShakeError(email);
+                    triggerShakeError(email, 'Enter a valid email address.');
                     return false;
                 }
+                clearFieldError(email);
                 
                 leadData.fullName = name.value.trim();
                 leadData.phoneNumber = phone.value.trim();
                 leadData.email = email.value.trim();
                 leadData.projectDescription = document.getElementById('projectDesc').value.trim();
                 leadData.preferredTime = document.getElementById('preferredSchedule').value;
+                const estimate = calculateGuidedEstimate();
+                leadData.scopeInputs = estimate.scope;
+                leadData.addOns = estimate.addOns;
+                leadData.estimateRangeLow = estimate.low;
+                leadData.estimateRangeHigh = estimate.high;
+                leadData.estimateConfidence = estimate.confidence;
             }
             return true;
         };
@@ -360,7 +735,8 @@ document.addEventListener('DOMContentLoaded', () => {
             if (leadData.projectType === 'interior') ghlTags.push('Painting-Interior');
             if (leadData.projectType === 'exterior') ghlTags.push('Painting-Exterior');
             if (leadData.projectType === 'cabinets') ghlTags.push('Cabinet-Refinishing');
-            if (leadData.projectType === 'improvements') ghlTags.push('Smart-Renovations');
+            // Restoration is now a secondary add-on; tag the lead when it's selected.
+            if (Array.isArray(leadData.addOns) && leadData.addOns.includes('drywall')) ghlTags.push('Smart-Renovations');
             
             if (leadData.avatarContext === 'sell') ghlTags.push('Preparing-to-Sell');
             if (leadData.avatarContext === 'buy') ghlTags.push('New-Homeowner');
@@ -373,6 +749,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const payload = {
                 ...leadData,
                 tags: ghlTags,
+                preferredVisitWindow: leadData.preferredTime,
                 source: 'website',
                 pageUrl: window.location.href,
                 submittedAt: new Date().toISOString()
@@ -398,6 +775,18 @@ document.addEventListener('DOMContentLoaded', () => {
             setTimeout(() => {
                 slidesWrapper.style.display = 'none';
                 actionButtonsBar.style.display = 'none';
+                const existingRange = successCard.querySelector('.success-estimate-range');
+                if (existingRange) existingRange.remove();
+                const rangeCard = document.createElement('div');
+                rangeCard.className = 'success-estimate-range';
+                rangeCard.innerHTML = `
+                    <span>Your guided planning range</span>
+                    <strong>${formatCurrency(leadData.estimateRangeLow)} - ${formatCurrency(leadData.estimateRangeHigh)}</strong>
+                    <p>This is a non-binding planning range. Roly confirms the final quote after reviewing photos, access, repairs, materials, and schedule.</p>
+                `;
+                const successParagraph = successCard.querySelector('p');
+                if (successParagraph) successParagraph.insertAdjacentElement('afterend', rangeCard);
+                else successCard.appendChild(rangeCard);
                 successCard.style.display = 'block';
                 
                 const tracker = document.getElementById('formStepsTracker');
@@ -407,28 +796,65 @@ document.addEventListener('DOMContentLoaded', () => {
 
         // Pre-select options based on the active page
         const pathname = window.location.pathname.toLowerCase();
-        
+
+        // Restoration/repairs are now a secondary add-on rather than a project
+        // type, so pages that used to default to "improvements" instead anchor to
+        // a painting category and pre-check the restoration add-on.
+        const checkRestorationAddOn = () => {
+            const restorationAddOn = formContainer.querySelector('#addOnDrywall');
+            if (restorationAddOn) {
+                restorationAddOn.checked = true;
+                updateEstimatePreview();
+            }
+        };
+
         if (pathname.includes('painting.html')) {
             const interiorBox = formContainer.querySelector('.option-box[data-value="interior"]');
             if (interiorBox) selectOption(interiorBox);
         } else if (pathname.includes('presale.html')) {
-            const improvementsBox = formContainer.querySelector('.option-box[data-value="improvements"]');
+            const interiorBox = formContainer.querySelector('.option-box[data-value="interior"]');
             const sellBox = formContainer.querySelector('.option-box[data-value="sell"]');
-            if (improvementsBox) selectOption(improvementsBox);
+            if (interiorBox) selectOption(interiorBox);
             if (sellBox) selectOption(sellBox);
+            checkRestorationAddOn();
         } else if (pathname.includes('renovations.html')) {
-            const improvementsBox = formContainer.querySelector('.option-box[data-value="improvements"]');
+            const interiorBox = formContainer.querySelector('.option-box[data-value="interior"]');
             const updateBox = formContainer.querySelector('.option-box[data-value="update"]');
-            if (improvementsBox) selectOption(improvementsBox);
+            if (interiorBox) selectOption(interiorBox);
             if (updateBox) selectOption(updateBox);
+            checkRestorationAddOn();
         } else if (pathname.includes('partners.html')) {
-            const improvementsBox = formContainer.querySelector('.option-box[data-value="improvements"]');
+            const interiorBox = formContainer.querySelector('.option-box[data-value="interior"]');
             const partnerBox = formContainer.querySelector('.option-box[data-value="partner"]');
-            if (improvementsBox) selectOption(improvementsBox);
+            if (interiorBox) selectOption(interiorBox);
             if (partnerBox) selectOption(partnerBox);
         }
 
         goToStep(1);
+    }
+
+    // Gallery filters: keep the full project library on one page while making
+    // painting, cabinets, and support work easy to scan.
+    const galleryFilters = document.getElementById('galleryFilters');
+    const galleryCards = document.querySelectorAll('#galleryGrid .gallery-card');
+    if (galleryFilters && galleryCards.length) {
+        galleryFilters.querySelectorAll('.gallery-filter').forEach(button => {
+            button.setAttribute('aria-selected', button.classList.contains('is-active') ? 'true' : 'false');
+            button.addEventListener('click', () => {
+                const filter = button.getAttribute('data-filter');
+                galleryFilters.querySelectorAll('.gallery-filter').forEach(btn => {
+                    btn.classList.remove('is-active');
+                    btn.setAttribute('aria-selected', 'false');
+                });
+                button.classList.add('is-active');
+                button.setAttribute('aria-selected', 'true');
+
+                galleryCards.forEach(card => {
+                    const show = filter === 'all' || card.getAttribute('data-category') === filter;
+                    card.classList.toggle('is-hidden', !show);
+                });
+            });
+        });
     }
 
     // ==========================================================================
@@ -482,6 +908,21 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         };
 
+        // Keep the data-card container exactly as tall as the ACTIVE card.
+        // Inactive cards are position:absolute (see style.css) so they no longer
+        // inflate the box to the tallest (interactive) card; setting an explicit
+        // pixel height lets the CSS height-transition animate the grow/shrink so
+        // the static palettes stay compact and only the interactive one stretches.
+        const cardsGrid = document.querySelector('.lab-data-cards-grid');
+        const syncLabCardsHeight = () => {
+            if (!cardsGrid) return;
+            const activeCard = cardsGrid.querySelector('.lab-data-card.active');
+            if (!activeCard) return;
+            requestAnimationFrame(() => {
+                cardsGrid.style.height = activeCard.offsetHeight + 'px';
+            });
+        };
+
         const switchPalette = (targetId) => {
             // Toggle active classes on buttons (tablist A11y compliant)
             colorChips.forEach(btn => {
@@ -509,6 +950,9 @@ document.addEventListener('DOMContentLoaded', () => {
                 dbTitle.textContent = dashboardMetadata[targetId].title;
                 dbRating.textContent = dashboardMetadata[targetId].rating;
             }
+
+            // Resize the container to fit the newly active card.
+            syncLabCardsHeight();
         };
 
         // Attach mouse click and keyboard key listeners
@@ -524,6 +968,16 @@ document.addEventListener('DOMContentLoaded', () => {
                     switchPalette(target);
                 }
             });
+        });
+
+        // Set the initial height (default state is Navy) and keep it correct as
+        // the cards reflow on viewport changes or once web fonts finish loading.
+        syncLabCardsHeight();
+        window.addEventListener('load', syncLabCardsHeight);
+        let labResizeTimer;
+        window.addEventListener('resize', () => {
+            clearTimeout(labResizeTimer);
+            labResizeTimer = setTimeout(syncLabCardsHeight, 150);
         });
 
     }

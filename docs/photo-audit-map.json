@@ -2,65 +2,426 @@
   "_comment": "Audit map: matches generated PNGs in 'Fotos roly home/' to manifest slots. 'source' is a unique timestamp token resolved by substring match against the PNG filenames. Built 2026-06-15.",
   "source_dir": "Fotos roly home",
   "stills": [
-    { "target": "hero-home-value.webp", "source": "00_34_35", "format": "hero_wide", "kind": "hero", "alt": "Freshly painted navy craftsman home by Roly Home Services" },
-    { "target": "hero-services-system.webp", "source": "00_40_12", "format": "hero_wide", "kind": "hero", "alt": "Organized painting and home improvement preparation in an Atlanta home" },
-    { "target": "hero-painting-prep.webp", "source": "00_39_44", "format": "hero_wide", "kind": "hero", "alt": "Professional interior painting preparation with protected furniture and precise masking" },
-    { "target": "hero-presale-punchlist.webp", "source": "00_46_01", "format": "hero_wide", "kind": "hero", "alt": "Pre-listing punch list review in a staged Atlanta home" },
-    { "target": "hero-partners-realtor.webp", "source": "00_39_11", "format": "hero_wide", "kind": "hero", "alt": "Realtor and painting contractor planning pre-listing improvements" },
-    { "target": "hero-renovations-refresh.webp", "source": "00_45_04", "format": "hero_wide", "kind": "hero", "alt": "High-impact bathroom refresh prepared for paint" },
-    { "target": "vsl-thumbnail-cabinet-finish.webp", "source": "00_44_03", "format": "story_process", "kind": "hero", "alt": "Premium cabinet finish consultation" },
-
-    { "target": "card-interior-protection.webp", "source": "00_45_37", "format": "card", "kind": "section", "alt": "Living room furniture wrapped and floors protected before interior painting" },
-    { "target": "gallery-interior-trim-line.webp", "source": "00_38_00 (1)", "format": "card", "kind": "section", "alt": "Crisp interior trim and baseboard cut line with smooth satin finish" },
-    { "target": "card-exterior-prep.webp", "source": "00_48_13", "format": "card", "kind": "section", "alt": "Exterior siding being washed and prepped before painting" },
-    { "target": "gallery-exterior-before-after.webp", "source": "00_48_26", "format": "card", "kind": "section", "alt": "Before and after exterior painting transformation" },
-    { "target": "card-cabinet-spray.webp", "source": "00_36_03", "format": "card", "kind": "section", "alt": "Cabinet doors being spray finished in a controlled setup" },
-    { "target": "gallery-cabinet-finished.webp", "source": "00_48_40", "format": "card", "kind": "section", "alt": "Finished painted kitchen cabinets in a warm Atlanta home" },
-    { "target": "card-drywall-vacuum-sanding.webp", "source": "00_46_38", "format": "story_process", "kind": "section", "alt": "Smooth drywall repair after dust-controlled sanding" },
-    { "target": "story-drywall-repair-stage.webp", "source": "00_48_52", "format": "story_process", "kind": "section", "alt": "Dust-extraction sanding on a repaired drywall patch" },
-    { "target": "card-soft-wash-prep.webp", "source": "00_49_16", "format": "card", "kind": "section", "alt": "Controlled soft-wash exterior preparation on a local home" },
-    { "target": "owner-roly-real-portrait.webp", "source": "00_38_13", "format": "card", "kind": "section", "prefer_real_photo": true, "alt": "Roly, the local painting business owner, in a finished kitchen" },
-    { "target": "community-mural-abstract.webp", "source": "00_47_26", "format": "card", "kind": "section", "alt": "Community mural painting day with volunteers and abstract shapes" },
-    { "target": "og-cover-premium-local.jpg", "source": "00_34_35", "format": "social_og", "kind": "section", "alt": "Roly Home Services premium local painting" },
-    { "target": "social-story-painting-estimate.webp", "source": "00_50_08", "format": "social_vertical", "kind": "section", "alt": "Protected interior painting prep, vertical social story" },
-
-    { "target": "assets/contextual/home-avatar-sell-card.webp", "source": "00_44_26", "format": "card", "kind": "contextual", "alt": "Home being prepared to sell, packed and protected" },
-    { "target": "assets/contextual/home-avatar-new-buyer-card.webp", "source": "00_44_14", "format": "card", "kind": "contextual", "alt": "Bright, freshly finished living room for a new homeowner" },
-    { "target": "assets/contextual/home-avatar-partner-card.webp", "source": "00_39_20", "format": "card", "kind": "contextual", "alt": "Contractor and partner planning improvements at a property" },
-    { "target": "assets/contextual/services-route-presale-card.webp", "source": "00_42_18", "format": "card", "kind": "contextual", "alt": "Seller and contractor reviewing a pre-sale plan" },
-    { "target": "assets/contextual/services-route-renovations-card.webp", "source": "00_42_43", "format": "card", "kind": "contextual", "alt": "Bathroom refresh preparation with protected fixtures" },
-    { "target": "assets/contextual/services-route-partners-card.webp", "source": "00_41_10", "format": "card", "kind": "contextual", "alt": "Homeowner and contractors reviewing a property plan" },
-    { "target": "assets/contextual/presale-checklist-section.webp", "source": "00_49_56", "format": "hero_wide", "kind": "contextual", "alt": "Freshly painted home exterior with open sky for checklist overlay" },
-    { "target": "assets/contextual/painting-process-prep-card.webp", "source": "00_40_36", "format": "story_process", "kind": "contextual", "alt": "Painter prepping and protecting a room before application" },
-    { "target": "assets/contextual/painting-process-application-card.webp", "source": "00_46_14", "format": "story_process", "kind": "contextual", "alt": "Painter applying a smooth coat to a wall beside cabinets" },
-    { "target": "assets/contextual/painting-process-walkthrough-card.webp", "source": "00_47_01", "format": "story_process", "kind": "contextual", "alt": "Final walkthrough and inspection in a freshly painted room" },
-    { "target": "assets/contextual/renovations-kitchen-card.webp", "source": "00_52_13", "format": "card", "kind": "contextual", "alt": "Updated kitchen with refreshed cabinets and finishes" },
-    { "target": "assets/contextual/renovations-bathroom-card.webp", "source": "00_46_27", "format": "card", "kind": "contextual", "alt": "Bathroom being repainted with protected fixtures" },
-    { "target": "assets/contextual/renovations-drywall-card.webp", "source": "00_37_34", "format": "card", "kind": "contextual", "alt": "Drywall repair sanding detail before paint" },
-    { "target": "assets/contextual/renovations-deck-card.webp", "source": "00_53_05", "format": "card", "kind": "contextual", "alt": "Freshly stained warm-wood deck" },
-    { "target": "assets/contextual/reviews-proof-bg.webp", "source": "00_41_35", "format": "hero_wide", "kind": "contextual", "alt": "Bright finished living room as subtle proof background" },
-    { "target": "assets/contextual/about-hero-team.webp", "source": "00_45_27", "format": "hero_wide", "kind": "contextual", "prefer_real_photo": true, "alt": "The Roly team reviewing a project at a kitchen counter" },
-    { "target": "assets/contextual/contact-hero-consultation.webp", "source": "00_38_35", "format": "hero_wide", "kind": "contextual", "alt": "Organized paint-color consultation with a homeowner" },
-    { "target": "assets/contextual/community-hero-mural.webp", "source": "00_38_23", "format": "hero_wide", "kind": "contextual", "alt": "Community mural painting day with families" },
-    { "target": "assets/contextual/vsl-thumbnail-premium.webp", "source": "00_43_41", "format": "story_process", "kind": "contextual", "alt": "Premium consultation scene with dark negative space for a play button" }
+    {
+      "target": "hero-home-value.webp",
+      "source": "00_50_30",
+      "format": "hero_wide",
+      "kind": "hero",
+      "alt": "Freshly painted navy craftsman home by Roly Home Services"
+    },
+    {
+      "target": "hero-services-system.webp",
+      "source": "00_40_12",
+      "format": "hero_wide",
+      "kind": "hero",
+      "alt": "Organized painting and home improvement preparation in an Atlanta home"
+    },
+    {
+      "target": "hero-painting-prep.webp",
+      "source": "00_39_44",
+      "format": "hero_wide",
+      "kind": "hero",
+      "alt": "Professional interior painting preparation with protected furniture and precise masking"
+    },
+    {
+      "target": "hero-presale-punchlist.webp",
+      "source": "00_46_01",
+      "format": "hero_wide",
+      "kind": "hero",
+      "alt": "Pre-listing punch list review in a staged Atlanta home"
+    },
+    {
+      "target": "hero-partners-realtor.webp",
+      "source": "00_39_11",
+      "format": "hero_wide",
+      "kind": "hero",
+      "alt": "Realtor and painting contractor planning pre-listing improvements"
+    },
+    {
+      "target": "hero-renovations-refresh.webp",
+      "source": "00_45_04",
+      "format": "hero_wide",
+      "kind": "hero",
+      "alt": "High-impact bathroom refresh prepared for paint"
+    },
+    {
+      "target": "vsl-thumbnail-cabinet-finish.webp",
+      "source": "00_44_03",
+      "format": "story_process",
+      "kind": "hero",
+      "alt": "Premium cabinet finish consultation"
+    },
+    {
+      "target": "card-interior-protection.webp",
+      "source": "00_45_37",
+      "format": "card",
+      "kind": "section",
+      "alt": "Living room furniture wrapped and floors protected before interior painting"
+    },
+    {
+      "target": "gallery-interior-trim-line.webp",
+      "source": "00_38_00 (1)",
+      "format": "card",
+      "kind": "section",
+      "alt": "Crisp interior trim and baseboard cut line with smooth satin finish"
+    },
+    {
+      "target": "card-exterior-prep.webp",
+      "source": "00_48_13",
+      "format": "card",
+      "kind": "section",
+      "alt": "Exterior siding being washed and prepped before painting"
+    },
+    {
+      "target": "gallery-exterior-before-after.webp",
+      "source": "00_48_26",
+      "format": "card",
+      "kind": "section",
+      "alt": "Before and after exterior painting transformation"
+    },
+    {
+      "target": "card-cabinet-spray.webp",
+      "source": "00_36_03",
+      "format": "card",
+      "kind": "section",
+      "alt": "Cabinet doors being spray finished in a controlled setup"
+    },
+    {
+      "target": "gallery-cabinet-finished.webp",
+      "source": "00_48_40",
+      "format": "card",
+      "kind": "section",
+      "alt": "Finished painted kitchen cabinets in a warm Atlanta home"
+    },
+    {
+      "target": "card-drywall-vacuum-sanding.webp",
+      "source": "00_46_38",
+      "format": "story_process",
+      "kind": "section",
+      "alt": "Smooth drywall repair after dust-controlled sanding"
+    },
+    {
+      "target": "story-drywall-repair-stage.webp",
+      "source": "00_48_52",
+      "format": "story_process",
+      "kind": "section",
+      "alt": "Dust-extraction sanding on a repaired drywall patch"
+    },
+    {
+      "target": "card-soft-wash-prep.webp",
+      "source": "00_49_16",
+      "format": "card",
+      "kind": "section",
+      "alt": "Controlled soft-wash exterior preparation on a local home"
+    },
+    {
+      "target": "owner-roly-real-portrait.webp",
+      "source": "00_38_13",
+      "format": "card",
+      "kind": "section",
+      "prefer_real_photo": true,
+      "alt": "Roly, the local painting business owner, in a finished kitchen"
+    },
+    {
+      "target": "community-mural-abstract.webp",
+      "source": "00_47_26",
+      "format": "card",
+      "kind": "section",
+      "alt": "Community mural painting day with volunteers and abstract shapes"
+    },
+    {
+      "target": "og-cover-premium-local.jpg",
+      "source": "00_50_30",
+      "format": "social_og",
+      "kind": "section",
+      "alt": "Roly Home Services premium local painting"
+    },
+    {
+      "target": "social-story-painting-estimate.webp",
+      "source": "00_50_08",
+      "format": "social_vertical",
+      "kind": "section",
+      "alt": "Protected interior painting prep, vertical social story"
+    },
+    {
+      "target": "assets/contextual/home-avatar-sell-card.webp",
+      "source": "00_44_26",
+      "format": "card",
+      "kind": "contextual",
+      "alt": "Home being prepared to sell, packed and protected"
+    },
+    {
+      "target": "assets/contextual/home-avatar-new-buyer-card.webp",
+      "source": "00_44_14",
+      "format": "card",
+      "kind": "contextual",
+      "alt": "Bright, freshly finished living room for a new homeowner"
+    },
+    {
+      "target": "assets/contextual/home-avatar-partner-card.webp",
+      "source": "00_39_20",
+      "format": "card",
+      "kind": "contextual",
+      "alt": "Contractor and partner planning improvements at a property"
+    },
+    {
+      "target": "assets/contextual/services-route-presale-card.webp",
+      "source": "00_42_18",
+      "format": "card",
+      "kind": "contextual",
+      "alt": "Seller and contractor reviewing a pre-sale plan"
+    },
+    {
+      "target": "assets/contextual/services-route-renovations-card.webp",
+      "source": "00_42_43",
+      "format": "card",
+      "kind": "contextual",
+      "alt": "Bathroom refresh preparation with protected fixtures"
+    },
+    {
+      "target": "assets/contextual/services-route-partners-card.webp",
+      "source": "00_41_10",
+      "format": "card",
+      "kind": "contextual",
+      "alt": "Homeowner and contractors reviewing a property plan"
+    },
+    {
+      "target": "assets/contextual/presale-checklist-section.webp",
+      "source": "00_49_56",
+      "format": "hero_wide",
+      "kind": "contextual",
+      "alt": "Freshly painted home exterior with open sky for checklist overlay"
+    },
+    {
+      "target": "assets/contextual/painting-process-prep-card.webp",
+      "source": "00_40_36",
+      "format": "story_process",
+      "kind": "contextual",
+      "alt": "Painter prepping and protecting a room before application"
+    },
+    {
+      "target": "assets/contextual/painting-process-application-card.webp",
+      "source": "00_46_14",
+      "format": "story_process",
+      "kind": "contextual",
+      "alt": "Painter applying a smooth coat to a wall beside cabinets"
+    },
+    {
+      "target": "assets/contextual/painting-process-walkthrough-card.webp",
+      "source": "00_47_01",
+      "format": "story_process",
+      "kind": "contextual",
+      "alt": "Final walkthrough and inspection in a freshly painted room"
+    },
+    {
+      "target": "assets/contextual/renovations-kitchen-card.webp",
+      "source": "00_48_40",
+      "format": "card",
+      "kind": "contextual",
+      "alt": "Updated kitchen with refreshed cabinets and finishes"
+    },
+    {
+      "target": "assets/contextual/renovations-bathroom-card.webp",
+      "source": "00_46_27",
+      "format": "card",
+      "kind": "contextual",
+      "alt": "Bathroom being repainted with protected fixtures"
+    },
+    {
+      "target": "assets/contextual/renovations-drywall-card.webp",
+      "source": "00_37_34",
+      "format": "card",
+      "kind": "contextual",
+      "alt": "Drywall repair sanding detail before paint"
+    },
+    {
+      "target": "assets/contextual/renovations-deck-card.webp",
+      "source": "00_46_49",
+      "format": "card",
+      "kind": "contextual",
+      "alt": "Freshly stained warm-wood deck"
+    },
+    {
+      "target": "assets/contextual/reviews-proof-bg.webp",
+      "source": "00_41_35",
+      "format": "hero_wide",
+      "kind": "contextual",
+      "alt": "Bright finished living room as subtle proof background"
+    },
+    {
+      "target": "assets/contextual/about-hero-team.webp",
+      "source": "00_45_27",
+      "format": "hero_wide",
+      "kind": "contextual",
+      "prefer_real_photo": true,
+      "alt": "The Roly team reviewing a project at a kitchen counter"
+    },
+    {
+      "target": "assets/contextual/contact-hero-consultation.webp",
+      "source": "00_38_35",
+      "format": "hero_wide",
+      "kind": "contextual",
+      "alt": "Organized paint-color consultation with a homeowner"
+    },
+    {
+      "target": "assets/contextual/community-hero-mural.webp",
+      "source": "00_38_23",
+      "format": "hero_wide",
+      "kind": "contextual",
+      "alt": "Community mural painting day with families"
+    },
+    {
+      "target": "assets/contextual/vsl-thumbnail-premium.webp",
+      "source": "00_43_41",
+      "format": "story_process",
+      "kind": "contextual",
+      "alt": "Premium consultation scene with dark negative space for a play button"
+    },
+    {
+      "target": "card-interior-rolling.webp",
+      "source": "00_41_00",
+      "format": "card",
+      "kind": "section",
+      "alt": "Painter rolling a smooth fresh coat onto an interior wall"
+    },
+    {
+      "target": "card-cabinet-refresh.webp",
+      "source": "00_47_41",
+      "format": "card",
+      "kind": "section",
+      "alt": "Reviewing a freshly refinished cabinet door during a kitchen refresh"
+    },
+    {
+      "target": "owner-roly-walkthrough.webp",
+      "source": "00_45_15",
+      "format": "card",
+      "kind": "section",
+      "prefer_real_photo": true,
+      "alt": "Roly walking a homeowner through the finished result"
+    }
+  ],
+  "hero_color_loop": [
+    {
+      "target": "hero-home-color-1.webp",
+      "file": "1.png",
+      "format": "hero_wide",
+      "alt": "Craftsman home with deep navy siding and cream trim painted by Roly Home Services"
+    },
+    {
+      "target": "hero-home-color-2.webp",
+      "file": "2.png",
+      "format": "hero_wide",
+      "alt": "Same craftsman home in warm off-white with black trim painted by Roly Home Services"
+    },
+    {
+      "target": "hero-home-color-3.webp",
+      "file": "3.png",
+      "format": "hero_wide",
+      "alt": "Same craftsman home in organic sage green painted by Roly Home Services"
+    },
+    {
+      "target": "hero-home-color-4.webp",
+      "file": "4.png",
+      "format": "hero_wide",
+      "alt": "Same craftsman home in deep blue with white columns painted by Roly Home Services"
+    }
   ],
   "before_after": [
-    { "id": "exterior-siding-curb-appeal", "before": "00_52_36", "after": "00_36_14", "approximate": true },
-    { "id": "exterior-trim-front-door", "before": "00_52_25", "after": "00_36_37", "approximate": true },
-    { "id": "interior-living-room-paint", "before": "00_39_44", "after": "00_37_06", "approximate": true },
-    { "id": "interior-hallway-scuffs", "before": "00_43_12", "after": "00_51_06", "approximate": true },
-    { "id": "cabinet-kitchen-refresh", "before": "00_40_24", "after": "00_48_40", "approximate": true },
-    { "id": "drywall-patch-repair", "before": "00_51_35", "after": "00_51_45", "approximate": false },
-    { "id": "bathroom-refresh", "before": "00_45_04", "after": "00_46_27", "approximate": true },
-    { "id": "kitchen-presale-neutral", "before": "00_43_41", "after": "00_48_40", "approximate": true },
-    { "id": "soft-wash-siding", "before": "00_49_16", "after": "00_40_48", "approximate": false },
-    { "id": "deck-staining", "before": "00_52_51", "after": "00_53_05", "approximate": false },
-    { "id": "fence-staining", "before": "00_53_15", "after": "00_53_35", "approximate": false },
-    { "id": "garage-door-trim", "before": "00_52_36", "after": "00_53_47", "approximate": true }
+    {
+      "id": "exterior-siding-curb-appeal",
+      "before": "00_52_36",
+      "after": "00_36_14",
+      "before_file": "antes 1.png",
+      "after_file": "despues 1.png",
+      "approximate": false,
+      "service": "Exterior Painting"
+    },
+    {
+      "id": "exterior-curb-appeal-2",
+      "before": "00_52_36",
+      "after": "00_36_14",
+      "before_file": "antes 2.png",
+      "after_file": "despues 2.png",
+      "approximate": false,
+      "service": "Exterior Painting"
+    },
+    {
+      "id": "exterior-trim-front-door",
+      "before": "00_52_25",
+      "after": "00_36_37",
+      "before_file": "antes 9.png",
+      "after_file": "despues 9.png",
+      "approximate": false,
+      "service": "Exterior Painting"
+    },
+    {
+      "id": "interior-hallway-scuffs",
+      "before": "00_43_12",
+      "after": "00_51_06",
+      "before_file": "antes 3.png",
+      "after_file": "despues 3.png",
+      "approximate": false,
+      "service": "Interior Painting"
+    },
+    {
+      "id": "cabinet-kitchen-refresh",
+      "before": "00_40_24",
+      "after": "00_48_40",
+      "before_file": "antes 5.png",
+      "after_file": "despues 5.png",
+      "approximate": false,
+      "service": "Cabinet Painting"
+    },
+    {
+      "id": "drywall-patch-repair",
+      "before": "00_51_35",
+      "after": "00_51_45",
+      "before_file": "antes 4.png",
+      "after_file": "despues 4.png",
+      "approximate": false,
+      "service": "Drywall Repair"
+    },
+    {
+      "id": "soft-wash-siding",
+      "before": "00_49_16",
+      "after": "00_40_48",
+      "before_file": "antes 6 .png",
+      "after_file": "despues 6.png",
+      "approximate": false,
+      "service": "Pressure Washing"
+    },
+    {
+      "id": "deck-staining",
+      "before": "00_52_51",
+      "after": "00_53_05",
+      "before_file": "antes 7.png",
+      "after_file": "despues 7.png",
+      "approximate": false,
+      "service": "Deck Staining"
+    },
+    {
+      "id": "fence-staining",
+      "before": "00_53_15",
+      "after": "00_53_35",
+      "before_file": "antes 8.png",
+      "after_file": "despues 8.png",
+      "approximate": false,
+      "service": "Fence Staining"
+    },
+    {
+      "id": "garage-door-trim",
+      "before": "00_52_36",
+      "after": "00_53_47",
+      "before_file": "antes 10.png",
+      "after_file": "despues 10.png",
+      "approximate": false,
+      "service": "Exterior Painting"
+    }
   ],
   "notes": {
     "color_lab": "Kept existing same-house renders color_navy_cream/sage_charcoal/white_bronze.webp; generated set has no true same-house triptych. Not QA-gated (section pack).",
-    "needs_regen": "before_after entries with approximate=true are not locked-camera pairs; flagged for future dedicated generation.",
+    "hero_color_loop": "1-4.png are the SAME craftsman house in four colorways (navy / off-white / sage / deep blue); the home hero cross-fades through them.",
+    "before_after": "Only the ten client-supplied locked-camera pairs (antes/despues 1-10) are canonical. Removed duplicate pseudo-pairs that reused pair 3 or pair 5 under different project names. Unused Roldan New Feedback screenshots are references only.",
     "prefer_real_photo": "owner portrait and about-hero use generated placeholders; replace with real team photography when available."
   }
 }

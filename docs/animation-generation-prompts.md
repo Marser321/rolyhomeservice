@@ -242,12 +242,12 @@ Negative motion prompt:
 no readable text, no logos, no fake logos, no geometry drift, no warped architecture, no new objects, no changing windows, no morphing roofline, no flicker, no jitter, no harsh camera shake
 ```
 
-### assets/animations/interior-living-room-paint-reveal.webm
+### assets/animations/interior-hallway-scuffs-reveal.webm
 
 - ID: `anim-before-after-interior`
-- Source asset: `assets/before-after/interior-living-room-paint-before.webp`
-- After-state reference: `assets/before-after/interior-living-room-paint-after.webp`
-- Pages: `index.html`, `services.html`, `painting.html`, `lp-painting.html`
+- Source asset: `assets/before-after/interior-hallway-scuffs-before.webp`
+- After-state reference: `assets/before-after/interior-hallway-scuffs-after.webp`
+- Pages: `painting.html`, `gallery.html`, `vsl.html`
 - Use case: `before_after_reveal`
 - Duration: 8 seconds
 - Loop type: `single_reveal`
@@ -256,7 +256,7 @@ no readable text, no logos, no fake logos, no geometry drift, no warped architec
 
 Prompt:
 ```text
-Locked-camera transformation from tired beige living room walls with scuffs to clean luminous neutral paint and fresh white baseboards, using assets/before-after/interior-living-room-paint-after.webp as the after-state reference, preserve furniture, windows, rug, lighting and perspective, smooth crossfade/wipe, no text, 8 second reveal.
+Locked-camera transformation from hallway scuffs, corner dings, and worn baseboards to clean repaired walls and fresh trim, using assets/before-after/interior-hallway-scuffs-after.webp as the after-state reference, preserve door spacing, floor lines, lighting, and perspective, smooth crossfade/wipe, no text, 8 second reveal.
 ```
 
 Negative motion prompt:
@@ -288,8 +288,8 @@ no readable text, no logos, no fake logos, no geometry drift, no warped cabinet 
 
 ## Scrollytelling Candidates
 
-- Highest value: `interior-living-room-paint`
-  Use as a four-step story: damage/scuffs, protection/prep, application, finished walkthrough.
+- Highest value: `interior-hallway-scuffs`
+  Use as a four-step story: scuffs and dings, protection/prep, repair and paint, finished walkthrough.
 - Strong secondary: `cabinet-kitchen-refresh`
   Use as a premium transformation story: old cabinets, prep/sanding, sprayed doors, finished kitchen.
 - Exterior proof: `exterior-siding-curb-appeal`

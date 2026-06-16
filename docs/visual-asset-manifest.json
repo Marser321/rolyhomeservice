@@ -93,7 +93,9 @@
     {
       "id": "home_hero_value",
       "priority": 1,
-      "pages": ["index.html"],
+      "pages": [
+        "index.html"
+      ],
       "slot": "Home hero image pane",
       "current_asset": "hero_craftsman_atlanta.webp",
       "target_asset": "hero-home-value.webp",
@@ -108,7 +110,9 @@
     {
       "id": "services_hero_system",
       "priority": 1,
-      "pages": ["services.html"],
+      "pages": [
+        "services.html"
+      ],
       "slot": "Services hero image pane",
       "current_asset": "hero_craftsman_atlanta.webp",
       "target_asset": "hero-services-system.webp",
@@ -123,7 +127,10 @@
     {
       "id": "painting_hero_prep",
       "priority": 1,
-      "pages": ["painting.html", "lp-painting.html"],
+      "pages": [
+        "painting.html",
+        "lp-painting.html"
+      ],
       "slot": "Painting and LP hero image panes",
       "current_asset": "hero_craftsman_atlanta.webp",
       "target_asset": "hero-painting-prep.webp",
@@ -138,7 +145,9 @@
     {
       "id": "presale_hero_punchlist",
       "priority": 1,
-      "pages": ["presale.html"],
+      "pages": [
+        "presale.html"
+      ],
       "slot": "Pre-sale hero image pane",
       "current_asset": "hero_craftsman_atlanta.webp",
       "target_asset": "hero-presale-punchlist.webp",
@@ -153,7 +162,9 @@
     {
       "id": "partners_hero_realtor",
       "priority": 1,
-      "pages": ["partners.html"],
+      "pages": [
+        "partners.html"
+      ],
       "slot": "Real estate partners hero image pane",
       "current_asset": "real_estate_partner.webp",
       "target_asset": "hero-partners-realtor.webp",
@@ -168,7 +179,9 @@
     {
       "id": "renovations_hero_refresh",
       "priority": 1,
-      "pages": ["renovations.html"],
+      "pages": [
+        "renovations.html"
+      ],
       "slot": "Renovations hero image pane",
       "current_asset": "drywall_repair.webp",
       "target_asset": "hero-renovations-refresh.webp",
@@ -183,7 +196,9 @@
     {
       "id": "vsl_thumbnail",
       "priority": 1,
-      "pages": ["vsl.html"],
+      "pages": [
+        "vsl.html"
+      ],
       "slot": "VSL video wrapper background",
       "current_asset": "interior_painting_prep.webp",
       "target_asset": "vsl-thumbnail-cabinet-finish.webp",
@@ -199,7 +214,10 @@
   "section_packs": [
     {
       "id": "interior_painting_cards",
-      "target_assets": ["card-interior-protection.webp", "gallery-interior-trim-line.webp"],
+      "target_assets": [
+        "card-interior-protection.webp",
+        "gallery-interior-trim-line.webp"
+      ],
       "format": "card",
       "prompts": [
         "Bright living room with furniture fully wrapped, drop cloths, blue tape, painter cutting a crisp line around trim, warm natural light, premium local service realism, no text.",
@@ -208,7 +226,10 @@
     },
     {
       "id": "exterior_painting_cards",
-      "target_assets": ["card-exterior-prep.webp", "gallery-exterior-before-after.webp"],
+      "target_assets": [
+        "card-exterior-prep.webp",
+        "gallery-exterior-before-after.webp"
+      ],
       "format": "card",
       "prompts": [
         "Exterior painting prep on a Southern home, siding being washed and scraped before paint, controlled water spray, safe equipment, crisp composition, communicates durability and care.",
@@ -217,7 +238,10 @@
     },
     {
       "id": "cabinet_finish_cards",
-      "target_assets": ["card-cabinet-spray.webp", "gallery-cabinet-finished.webp"],
+      "target_assets": [
+        "card-cabinet-spray.webp",
+        "gallery-cabinet-finished.webp"
+      ],
       "format": "card",
       "prompts": [
         "Factory-grade cabinet painting scene, cabinet doors on racks inside a clean spray booth, painter in protective suit, glossy smooth white finish, technical precision, no readable labels.",
@@ -226,7 +250,10 @@
     },
     {
       "id": "drywall_process_cards",
-      "target_assets": ["card-drywall-vacuum-sanding.webp", "story-drywall-repair-stage.webp"],
+      "target_assets": [
+        "card-drywall-vacuum-sanding.webp",
+        "story-drywall-repair-stage.webp"
+      ],
       "format": "story_process",
       "prompts": [
         "Close detail of smooth drywall repair after sanding, vacuum sanding tool nearby, clean wall surface ready for primer, technical craftsmanship macro shot.",
@@ -235,7 +262,9 @@
     },
     {
       "id": "pressure_washing_cards",
-      "target_assets": ["card-soft-wash-prep.webp"],
+      "target_assets": [
+        "card-soft-wash-prep.webp"
+      ],
       "format": "card",
       "prompts": [
         "Soft wash exterior preparation on a local Atlanta home, controlled low-pressure water cleaning siding, clear before-and-after cleaning boundary, safe stance, clean property surroundings, no text."
@@ -243,7 +272,11 @@
     },
     {
       "id": "color_lab",
-      "target_assets": ["color-lab-navy-cream.webp", "color-lab-sage-charcoal.webp", "color-lab-white-bronze.webp"],
+      "target_assets": [
+        "color-lab-navy-cream.webp",
+        "color-lab-sage-charcoal.webp",
+        "color-lab-white-bronze.webp"
+      ],
       "format": "square_detail",
       "prompts": [
         "Same Atlanta craftsman house front elevation, navy siding with warm cream trim, realistic landscaping, consistent camera angle, clean daylight, designed for color comparison UI.",
@@ -253,7 +286,9 @@
     },
     {
       "id": "about_trust",
-      "target_assets": ["owner-roly-real-portrait.webp"],
+      "target_assets": [
+        "owner-roly-real-portrait.webp"
+      ],
       "format": "card",
       "prompts": [
         "Authentic local painting business owner portrait in a finished kitchen, navy polo with no logo, warm approachable expression, shallow depth of field, no text, no fake company name."
@@ -262,7 +297,9 @@
     },
     {
       "id": "community",
-      "target_assets": ["community-mural-abstract.webp"],
+      "target_assets": [
+        "community-mural-abstract.webp"
+      ],
       "format": "card",
       "prompts": [
         "Local school community mural painting day, families and volunteers painting abstract colorful wall shapes, joyful but realistic, no readable words, no school names, clean safe setup."
@@ -270,7 +307,10 @@
     },
     {
       "id": "social",
-      "target_assets": ["og-cover-premium-local.jpg", "social-story-painting-estimate.webp"],
+      "target_assets": [
+        "og-cover-premium-local.jpg",
+        "social-story-painting-estimate.webp"
+      ],
       "format": "social_og",
       "prompts": [
         "OpenGraph cover for a premium local painting company: freshly painted Atlanta craftsman home, clean navy and cream palette, warm front porch, negative space for HTML text overlay, no text inside image.",
@@ -512,7 +552,11 @@
     {
       "id": "exterior-siding-curb-appeal",
       "service": "Exterior Painting",
-      "pages": ["index.html", "gallery.html", "painting.html"],
+      "pages": [
+        "index.html",
+        "gallery.html",
+        "painting.html"
+      ],
       "format": "story_process",
       "before_asset": "assets/before-after/exterior-siding-curb-appeal-before.webp",
       "after_asset": "assets/before-after/exterior-siding-curb-appeal-after.webp",
@@ -522,9 +566,28 @@
       "priority": 1
     },
     {
+      "id": "exterior-curb-appeal-2",
+      "service": "Exterior Painting",
+      "pages": [
+        "gallery.html",
+        "painting.html"
+      ],
+      "format": "story_process",
+      "before_asset": "assets/before-after/exterior-curb-appeal-2-before.webp",
+      "after_asset": "assets/before-after/exterior-curb-appeal-2-after.webp",
+      "before_prompt": "Photorealistic locked-camera before image, believable Tucker/Atlanta home, same exact composition needed for later animation, natural warm daylight, realistic residential scale, detailed surfaces, no readable text, no fake logos, no brand names, no watermark. Exterior craftsman home with tired beige siding, worn trim, and curb appeal that needs a brighter repaint.",
+      "after_prompt": "Create the after state from the same camera angle and same room/home geometry as the before image. Preserve structure, windows, furniture placement, landscaping, lens, perspective, and lighting. Change only the painted, repaired, washed, stained, or refreshed surfaces. Premium local real finish, clean professional result, no readable text, no fake logos. Same exterior with warm-white siding, crisp trim, and clean listing-ready curb appeal.",
+      "animation_notes": "Alternate exterior proof pair. Keep roofline, porch, shrubs, steps, windows, and shadows aligned; transition only siding, trim, door, and surface cleanliness.",
+      "priority": 1
+    },
+    {
       "id": "exterior-trim-front-door",
       "service": "Exterior Painting",
-      "pages": ["services.html", "painting.html", "gallery.html"],
+      "pages": [
+        "services.html",
+        "painting.html",
+        "gallery.html"
+      ],
       "format": "story_process",
       "before_asset": "assets/before-after/exterior-trim-front-door-before.webp",
       "after_asset": "assets/before-after/exterior-trim-front-door-after.webp",
@@ -534,21 +597,13 @@
       "priority": 1
     },
     {
-      "id": "interior-living-room-paint",
-      "service": "Interior Painting",
-      "pages": ["index.html", "services.html", "painting.html", "lp-painting.html"],
-      "format": "story_process",
-      "before_asset": "assets/before-after/interior-living-room-paint-before.webp",
-      "after_asset": "assets/before-after/interior-living-room-paint-after.webp",
-      "before_prompt": "Photorealistic locked-camera before image, believable Tucker/Atlanta home, same exact composition needed for later animation, natural warm daylight, realistic residential scale, detailed surfaces, no readable text, no fake logos, no brand names, no watermark. Bright living room with tired beige walls, visible scuffs near switches and corners, worn baseboards, furniture in place and easy to protect, realistic family-home warmth.",
-      "after_prompt": "Create the after state from the same camera angle and same room/home geometry as the before image. Preserve structure, windows, furniture placement, landscaping, lens, perspective, and lighting. Change only the painted, repaired, washed, stained, or refreshed surfaces. Premium local real finish, clean professional result, no readable text, no fake logos. Same living room with luminous neutral wall color, bright clean baseboards, repaired scuffs, crisp cut lines around windows and trim, furniture unchanged.",
-      "animation_notes": "Designed for crossfade or reveal wipe. Keep furniture, window light, rug, artwork shapes, and camera height identical; transition wall color, scuffs, and baseboards.",
-      "priority": 1
-    },
-    {
       "id": "interior-hallway-scuffs",
       "service": "Interior Painting",
-      "pages": ["painting.html", "gallery.html", "vsl.html"],
+      "pages": [
+        "painting.html",
+        "gallery.html",
+        "vsl.html"
+      ],
       "format": "story_process",
       "before_asset": "assets/before-after/interior-hallway-scuffs-before.webp",
       "after_asset": "assets/before-after/interior-hallway-scuffs-after.webp",
@@ -560,7 +615,12 @@
     {
       "id": "cabinet-kitchen-refresh",
       "service": "Cabinet Painting",
-      "pages": ["index.html", "services.html", "painting.html", "gallery.html"],
+      "pages": [
+        "index.html",
+        "services.html",
+        "painting.html",
+        "gallery.html"
+      ],
       "format": "story_process",
       "before_asset": "assets/before-after/cabinet-kitchen-refresh-before.webp",
       "after_asset": "assets/before-after/cabinet-kitchen-refresh-after.webp",
@@ -572,7 +632,11 @@
     {
       "id": "drywall-patch-repair",
       "service": "Drywall Repair",
-      "pages": ["index.html", "renovations.html", "gallery.html"],
+      "pages": [
+        "index.html",
+        "renovations.html",
+        "gallery.html"
+      ],
       "format": "story_process",
       "before_asset": "assets/before-after/drywall-patch-repair-before.webp",
       "after_asset": "assets/before-after/drywall-patch-repair-after.webp",
@@ -582,33 +646,13 @@
       "priority": 1
     },
     {
-      "id": "bathroom-refresh",
-      "service": "Home Improvement",
-      "pages": ["renovations.html", "gallery.html", "presale.html"],
-      "format": "story_process",
-      "before_asset": "assets/before-after/bathroom-refresh-before.webp",
-      "after_asset": "assets/before-after/bathroom-refresh-after.webp",
-      "before_prompt": "Photorealistic locked-camera before image, believable Tucker/Atlanta home, same exact composition needed for later animation, natural warm daylight, realistic residential scale, detailed surfaces, no readable text, no fake logos, no brand names, no watermark. Small bathroom with protected vanity, tired wall color, worn trim, minor drywall damage near towel bar area, practical home improvement scope, not a full renovation.",
-      "after_prompt": "Create the after state from the same camera angle and same room/home geometry as the before image. Preserve structure, windows, furniture placement, landscaping, lens, perspective, and lighting. Change only the painted, repaired, washed, stained, or refreshed surfaces. Premium local real finish, clean professional result, no readable text, no fake logos. Same bathroom with fresh wall paint, clean trim, repaired minor wall damage, protected vanity restored in place, brighter refined finish without changing layout.",
-      "animation_notes": "Keep vanity, mirror, fixtures, tile, and camera corner identical; transition wall color, repair spot, trim, and cleanliness.",
-      "priority": 2
-    },
-    {
-      "id": "kitchen-presale-neutral",
-      "service": "Pre-Sale Preparation",
-      "pages": ["presale.html", "partners.html", "gallery.html"],
-      "format": "story_process",
-      "before_asset": "assets/before-after/kitchen-presale-neutral-before.webp",
-      "after_asset": "assets/before-after/kitchen-presale-neutral-after.webp",
-      "before_prompt": "Photorealistic locked-camera before image, believable Tucker/Atlanta home, same exact composition needed for later animation, natural warm daylight, realistic residential scale, detailed surfaces, no readable text, no fake logos, no brand names, no watermark. Lived-in kitchen with visually heavy wall color, slightly worn trim, small scuffs near cabinets, a few distracting outdated accents, but clean and realistic for a pre-listing refresh.",
-      "after_prompt": "Create the after state from the same camera angle and same room/home geometry as the before image. Preserve structure, windows, furniture placement, landscaping, lens, perspective, and lighting. Change only the painted, repaired, washed, stained, or refreshed surfaces. Premium local real finish, clean professional result, no readable text, no fake logos. Same kitchen with neutral listing-friendly paint, cleaner trim, reduced visual distractions, brighter market-ready feel, no layout or furniture changes.",
-      "animation_notes": "Good for realtors and sellers. Keep counters, cabinets, fixtures, appliance reflections, and window light identical; transition color temperature, scuffs, trim, and staging cleanliness.",
-      "priority": 1
-    },
-    {
       "id": "soft-wash-siding",
       "service": "Soft Full House Washing",
-      "pages": ["services.html", "gallery.html", "presale.html"],
+      "pages": [
+        "services.html",
+        "gallery.html",
+        "presale.html"
+      ],
       "format": "story_process",
       "before_asset": "assets/before-after/soft-wash-siding-before.webp",
       "after_asset": "assets/before-after/soft-wash-siding-after.webp",
@@ -620,7 +664,11 @@
     {
       "id": "deck-staining",
       "service": "Deck Staining",
-      "pages": ["services.html", "renovations.html", "gallery.html"],
+      "pages": [
+        "services.html",
+        "renovations.html",
+        "gallery.html"
+      ],
       "format": "story_process",
       "before_asset": "assets/before-after/deck-staining-before.webp",
       "after_asset": "assets/before-after/deck-staining-after.webp",
@@ -632,7 +680,11 @@
     {
       "id": "fence-staining",
       "service": "Fence Staining",
-      "pages": ["services.html", "renovations.html", "gallery.html"],
+      "pages": [
+        "services.html",
+        "renovations.html",
+        "gallery.html"
+      ],
       "format": "story_process",
       "before_asset": "assets/before-after/fence-staining-before.webp",
       "after_asset": "assets/before-after/fence-staining-after.webp",
@@ -644,7 +696,11 @@
     {
       "id": "garage-door-trim",
       "service": "Exterior Painting",
-      "pages": ["services.html", "painting.html", "gallery.html"],
+      "pages": [
+        "services.html",
+        "painting.html",
+        "gallery.html"
+      ],
       "format": "story_process",
       "before_asset": "assets/before-after/garage-door-trim-before.webp",
       "after_asset": "assets/before-after/garage-door-trim-after.webp",
@@ -659,7 +715,9 @@
       "id": "anim-home-hero-exterior",
       "source_asset": "hero-home-value.webp",
       "target_video": "assets/animations/home-hero-exterior-loop.webm",
-      "pages": ["index.html"],
+      "pages": [
+        "index.html"
+      ],
       "use_case": "ambient_background",
       "duration_seconds": 8,
       "loop_type": "seamless_loop",
@@ -673,7 +731,11 @@
       "id": "anim-interior-painting-prep",
       "source_asset": "assets/contextual/painting-process-prep-card.webp",
       "target_video": "assets/animations/interior-painting-prep-loop.webm",
-      "pages": ["services.html", "painting.html", "lp-painting.html"],
+      "pages": [
+        "services.html",
+        "painting.html",
+        "lp-painting.html"
+      ],
       "use_case": "process_loop",
       "duration_seconds": 6,
       "loop_type": "seamless_loop",
@@ -687,7 +749,10 @@
       "id": "anim-painting-application",
       "source_asset": "assets/contextual/painting-process-application-card.webp",
       "target_video": "assets/animations/painting-application-loop.webm",
-      "pages": ["painting.html", "lp-painting.html"],
+      "pages": [
+        "painting.html",
+        "lp-painting.html"
+      ],
       "use_case": "process_loop",
       "duration_seconds": 6,
       "loop_type": "seamless_loop",
@@ -701,7 +766,12 @@
       "id": "anim-cabinet-finish",
       "source_asset": "assets/contextual/vsl-thumbnail-premium.webp",
       "target_video": "assets/animations/cabinet-finish-rack-focus-loop.webm",
-      "pages": ["index.html", "painting.html", "gallery.html", "vsl.html"],
+      "pages": [
+        "index.html",
+        "painting.html",
+        "gallery.html",
+        "vsl.html"
+      ],
       "use_case": "process_loop",
       "duration_seconds": 6,
       "loop_type": "seamless_loop",
@@ -715,7 +785,11 @@
       "id": "anim-drywall-repair",
       "source_asset": "assets/contextual/renovations-drywall-card.webp",
       "target_video": "assets/animations/drywall-repair-craft-loop.webm",
-      "pages": ["renovations.html", "painting.html", "gallery.html"],
+      "pages": [
+        "renovations.html",
+        "painting.html",
+        "gallery.html"
+      ],
       "use_case": "process_loop",
       "duration_seconds": 6,
       "loop_type": "seamless_loop",
@@ -729,7 +803,10 @@
       "id": "anim-presale-punchlist",
       "source_asset": "assets/contextual/presale-checklist-section.webp",
       "target_video": "assets/animations/presale-punchlist-loop.webm",
-      "pages": ["presale.html", "partners.html"],
+      "pages": [
+        "presale.html",
+        "partners.html"
+      ],
       "use_case": "ambient_background",
       "duration_seconds": 7,
       "loop_type": "seamless_loop",
@@ -743,7 +820,10 @@
       "id": "anim-reviews-proof",
       "source_asset": "assets/contextual/reviews-proof-bg.webp",
       "target_video": "assets/animations/reviews-proof-walkthrough-loop.webm",
-      "pages": ["reviews.html", "index.html"],
+      "pages": [
+        "reviews.html",
+        "index.html"
+      ],
       "use_case": "ambient_background",
       "duration_seconds": 6,
       "loop_type": "seamless_loop",
@@ -757,7 +837,9 @@
       "id": "anim-contact-hero",
       "source_asset": "assets/contextual/contact-hero-consultation.webp",
       "target_video": "assets/animations/contact-consultation-loop.webm",
-      "pages": ["contact.html"],
+      "pages": [
+        "contact.html"
+      ],
       "use_case": "ambient_background",
       "duration_seconds": 8,
       "loop_type": "seamless_loop",
@@ -771,7 +853,9 @@
       "id": "anim-community-hero",
       "source_asset": "assets/contextual/community-hero-mural.webp",
       "target_video": "assets/animations/community-mural-loop.webm",
-      "pages": ["community.html"],
+      "pages": [
+        "community.html"
+      ],
       "use_case": "ambient_background",
       "duration_seconds": 6,
       "loop_type": "seamless_loop",
@@ -785,7 +869,11 @@
       "id": "anim-before-after-exterior",
       "source_asset": "assets/before-after/exterior-siding-curb-appeal-before.webp",
       "target_video": "assets/animations/exterior-siding-curb-appeal-reveal.webm",
-      "pages": ["index.html", "gallery.html", "painting.html"],
+      "pages": [
+        "index.html",
+        "gallery.html",
+        "painting.html"
+      ],
       "use_case": "before_after_reveal",
       "duration_seconds": 8,
       "loop_type": "single_reveal",
@@ -796,24 +884,15 @@
       "priority": 1
     },
     {
-      "id": "anim-before-after-interior",
-      "source_asset": "assets/before-after/interior-living-room-paint-before.webp",
-      "target_video": "assets/animations/interior-living-room-paint-reveal.webm",
-      "pages": ["index.html", "services.html", "painting.html", "lp-painting.html"],
-      "use_case": "before_after_reveal",
-      "duration_seconds": 8,
-      "loop_type": "single_reveal",
-      "motion_intensity": "cinematic",
-      "animation_prompt": "Locked-camera transformation from tired beige living room walls with scuffs to clean luminous neutral paint and fresh white baseboards, using assets/before-after/interior-living-room-paint-after.webp as the after-state reference, preserve furniture, windows, rug, lighting and perspective, smooth crossfade/wipe, no text, 8 second reveal.",
-      "negative_motion_prompt": "no readable text, no logos, no fake logos, no geometry drift, no warped furniture, no new objects, no changing windows, no morphing floor lines, no flicker, no jitter, no harsh camera shake",
-      "scrollytelling_candidate": true,
-      "priority": 1
-    },
-    {
       "id": "anim-before-after-cabinets",
       "source_asset": "assets/before-after/cabinet-kitchen-refresh-before.webp",
       "target_video": "assets/animations/cabinet-kitchen-refresh-reveal.webm",
-      "pages": ["index.html", "services.html", "painting.html", "gallery.html"],
+      "pages": [
+        "index.html",
+        "services.html",
+        "painting.html",
+        "gallery.html"
+      ],
       "use_case": "before_after_reveal",
       "duration_seconds": 8,
       "loop_type": "single_reveal",
@@ -830,6 +909,8 @@
     "preload_only_above_fold_hero_assets": true,
     "lazy_load_below_fold_assets": true,
     "update_width_height_to_generated_dimensions": true,
-    "prefer_real_photography_for_owner_and_completed_projects": true
+    "prefer_real_photography_for_owner_and_completed_projects": true,
+    "canonical_before_after_only": true,
+    "feedback_screenshots_reference_only": true
   }
 }

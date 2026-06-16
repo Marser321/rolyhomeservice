@@ -29,7 +29,12 @@ def parse_px(spec):
 
 
 def resolve_source(source_dir, token):
-    """Find the single PNG whose filename contains the timestamp token."""
+    """Resolve a source PNG. If `token` names a file that exists in source_dir,
+    use it verbatim (exact-filename mode); otherwise treat it as a unique
+    timestamp substring and match by glob."""
+    exact = os.path.join(source_dir, token)
+    if os.path.isfile(exact):
+        return exact
     matches = sorted(glob.glob(os.path.join(source_dir, f"*{token}*.png")))
     if not matches:
         raise FileNotFoundError(f"no source PNG matches token '{token}'")
@@ -76,9 +81,13 @@ def main(base_dir="."):
     jobs = []  # (target_rel, source_token, format_key)
     for s in audit["stills"]:
         jobs.append((s["target"], s["source"], s["format"]))
+    for h in audit.get("hero_color_loop", []):
+        jobs.append((h["target"], h["file"], h["format"]))
     for pair in audit["before_after"]:
-        jobs.append((f"assets/before-after/{pair['id']}-before.webp", pair["before"], "story_process"))
-        jobs.append((f"assets/before-after/{pair['id']}-after.webp", pair["after"], "story_process"))
+        before = pair.get("before_file", pair["before"])
+        after = pair.get("after_file", pair["after"])
+        jobs.append((f"assets/before-after/{pair['id']}-before.webp", before, "story_process"))
+        jobs.append((f"assets/before-after/{pair['id']}-after.webp", after, "story_process"))
 
     print(f"{'target':<54}{'fmt':<14}{'KB':>6}{'max':>6}  src")
     print("-" * 100)

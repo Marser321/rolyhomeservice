@@ -767,6 +767,56 @@ button:focus-visible, a:focus-visible, input:focus-visible, select:focus-visible
     outline-offset: -1px;
 }
 
+/* Same-home, four-finishes hero loop — cross-fades through the 4 colorways */
+.hero-color-loop {
+    position: relative;
+    width: 100%;
+    height: 360px;
+}
+.hero-color-loop .hero-color-frame {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    animation: heroColorCycle 16s linear infinite;
+}
+.hero-color-loop .hero-color-frame:nth-child(1) { animation-delay: 0s; }
+.hero-color-loop .hero-color-frame:nth-child(2) { animation-delay: 4s; }
+.hero-color-loop .hero-color-frame:nth-child(3) { animation-delay: 8s; }
+.hero-color-loop .hero-color-frame:nth-child(4) { animation-delay: 12s; }
+
+.hero-color-chip {
+    position: absolute;
+    left: 14px;
+    bottom: 14px;
+    z-index: 3;
+    background: rgba(15, 30, 54, 0.85);
+    backdrop-filter: blur(4px);
+    color: #FFFFFF;
+    padding: 6px 12px;
+    border-radius: var(--radius-sm);
+    font-size: 0.7rem;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    pointer-events: none;
+}
+
+/* 4 frames x 4s each within a 16s loop, with a short cross-fade overlap */
+@keyframes heroColorCycle {
+    0%   { opacity: 0; }
+    3%   { opacity: 1; }
+    22%  { opacity: 1; }
+    25%  { opacity: 0; }
+    100% { opacity: 0; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .hero-color-loop .hero-color-frame { animation: none; opacity: 0; }
+    .hero-color-loop .hero-color-frame.is-active { opacity: 1; }
+}
+
 /* Standalone VSL Hero */
 .vsl-hero {
     background-color: var(--color-navy);
@@ -820,6 +870,9 @@ button:focus-visible, a:focus-visible, input:focus-visible, select:focus-visible
         order: -1;
     }
     .hero-image-pane img {
+        height: 168px;
+    }
+    .hero-color-loop {
         height: 168px;
     }
     .hero-tagline {
@@ -1456,6 +1509,13 @@ button:focus-visible, a:focus-visible, input:focus-visible, select:focus-visible
     color: var(--color-navy);
 }
 
+.form-slide-hint {
+    margin-top: 18px;
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+    line-height: 1.5;
+}
+
 /* Inputs & Custom Checkboxes */
 .form-group {
     margin-bottom: 22px;
@@ -1485,6 +1545,155 @@ button:focus-visible, a:focus-visible, input:focus-visible, select:focus-visible
     border-color: var(--color-orange);
     background-color: #FFFFFF;
     box-shadow: 0 0 0 3px rgba(255, 107, 53, 0.18);
+}
+
+.form-control[aria-invalid="true"] {
+    border-color: var(--color-orange);
+    background-color: rgba(255, 107, 53, 0.05);
+}
+
+.field-error,
+.slide-error {
+    margin-top: 8px;
+    color: var(--color-orange);
+    font-size: 0.78rem;
+    font-weight: 700;
+    line-height: 1.4;
+}
+
+.slide-error {
+    margin: -12px 0 20px;
+}
+
+.estimate-scope-panel {
+    margin: 2px 0 24px;
+    padding: 22px;
+    border: 1px solid rgba(15, 30, 54, 0.12);
+    border-radius: var(--radius-md);
+    background: linear-gradient(180deg, #FFFFFF 0%, var(--color-neutral-bg) 100%);
+    box-shadow: var(--shadow-sm);
+}
+
+.estimate-panel-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 16px;
+    margin-bottom: 10px;
+}
+
+.estimate-panel-header .section-label {
+    margin-bottom: 6px;
+    color: var(--color-orange);
+}
+
+.estimate-panel-header h5 {
+    margin: 0;
+    font-family: var(--font-heading);
+    font-size: 1.05rem;
+    color: var(--color-navy);
+}
+
+.estimate-pill {
+    flex: 0 0 auto;
+    padding: 6px 10px;
+    border-radius: var(--radius-full);
+    background: rgba(255, 107, 53, 0.1);
+    color: var(--color-orange);
+    font-family: var(--font-heading);
+    font-size: 0.68rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+}
+
+.estimate-panel-copy {
+    margin: 0 0 18px;
+    color: var(--text-secondary);
+    font-size: 0.86rem;
+    line-height: 1.55;
+}
+
+.scope-fields[hidden] {
+    display: none;
+}
+
+.estimate-check-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 18px;
+}
+
+.estimate-check-row label {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    min-height: 40px;
+    padding: 9px 12px;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-sm);
+    background: #FFFFFF;
+    font-size: 0.82rem;
+    font-weight: 700;
+    color: var(--text-primary);
+}
+
+.estimate-check-row input {
+    width: 16px;
+    height: 16px;
+    accent-color: var(--color-orange);
+}
+
+.estimate-addons {
+    margin-top: 4px;
+}
+
+.estimate-range-preview,
+.success-estimate-range {
+    display: grid;
+    gap: 5px;
+    margin-top: 16px;
+    padding: 16px;
+    border-radius: var(--radius-md);
+    background: var(--color-navy);
+    color: #FFFFFF;
+    text-align: left;
+}
+
+.estimate-range-preview span,
+.success-estimate-range span {
+    color: rgba(255, 255, 255, 0.68);
+    font-size: 0.72rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+}
+
+.estimate-range-preview strong,
+.success-estimate-range strong {
+    font-family: var(--font-heading);
+    font-size: 1.35rem;
+    color: #FFFFFF;
+}
+
+.estimate-range-preview small,
+.success-estimate-range p {
+    color: rgba(255, 255, 255, 0.72);
+    font-size: 0.8rem;
+    line-height: 1.45;
+    margin: 0;
+}
+
+.photo-followup-note {
+    min-height: 72px;
+    padding: 18px;
+    border: 1px dashed var(--color-border);
+    border-radius: var(--radius-md);
+    background: rgba(15, 30, 54, 0.04);
+    color: var(--text-secondary);
+    font-size: 0.84rem;
+    line-height: 1.5;
 }
 
 /* Visual Options Grids (Step 1 & 2) */
@@ -1818,13 +2027,22 @@ button:focus-visible, a:focus-visible, input:focus-visible, select:focus-visible
 }
 
 .lab-data-cards-grid {
-    display: grid;
-    grid-template-columns: 1fr;
-    align-items: start;
+    position: relative;
+    /* JS sets an explicit height equal to the active card so the section stays
+       compact for the static palettes (balanced with the 440px image pane) and
+       only stretches for the taller interactive customizer. The transition
+       animates that resize so the section grows/shrinks smoothly. */
+    transition: height 0.45s cubic-bezier(0.25, 1, 0.5, 1);
 }
 
 .lab-data-card {
-    grid-area: 1 / 1 / 2 / 2;
+    /* Inactive cards are pulled out of flow so they no longer inflate the
+       container to the tallest (interactive) card's height. */
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    min-height: 360px;
     opacity: 0;
     visibility: hidden;
     transform: translateY(15px) scale(0.98);
@@ -1836,6 +2054,8 @@ button:focus-visible, a:focus-visible, input:focus-visible, select:focus-visible
 }
 
 .lab-data-card.active {
+    /* The active card sits in flow and defines the container's natural height. */
+    position: relative;
     opacity: 1;
     visibility: visible;
     transform: translateY(0) scale(1);

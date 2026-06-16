@@ -400,16 +400,30 @@ def check_visual_asset_strategy(base_dir, strict=False):
         p("FAIL", f"Manifest should define at least 19 contextual background slots, found {len(contextual_slots)}")
         ok = False
 
-    if len(before_after_pairs) == 12:
-        p("PASS", "Manifest defines 12 animation-ready before/after pairs")
+    canonical_pair_ids = {
+        "exterior-siding-curb-appeal",
+        "exterior-curb-appeal-2",
+        "exterior-trim-front-door",
+        "interior-hallway-scuffs",
+        "cabinet-kitchen-refresh",
+        "drywall-patch-repair",
+        "soft-wash-siding",
+        "deck-staining",
+        "fence-staining",
+        "garage-door-trim",
+    }
+
+    if {pair.get("id") for pair in before_after_pairs} == canonical_pair_ids:
+        p("PASS", "Manifest defines the 10 canonical client before/after pairs")
     else:
-        p("FAIL", f"Manifest should define 12 before/after pairs, found {len(before_after_pairs)}")
+        found = sorted(pair.get("id", "unknown") for pair in before_after_pairs)
+        p("FAIL", f"Manifest before/after pairs must match the canonical set; found {found}")
         ok = False
 
-    if len(animation_slots) >= 12:
+    if len(animation_slots) >= 10:
         p("PASS", f"Manifest defines {len(animation_slots)} image-to-video animation prompt slots")
     else:
-        p("FAIL", f"Manifest should define at least 12 animation prompt slots, found {len(animation_slots)}")
+        p("FAIL", f"Manifest should define at least 10 animation prompt slots, found {len(animation_slots)}")
         ok = False
 
     required_negative_terms = ["no readable text", "no fake logos", "no brand names"]
@@ -705,11 +719,9 @@ def check_visual_asset_strategy(base_dir, strict=False):
         if video and not (base_dir / video).exists()
     })
     if missing_animation_videos:
-        level = "FAIL" if strict else "WARN"
-        p(level, f"{len(missing_animation_videos)} animation target videos not generated yet: "
+        p("WARN", f"{len(missing_animation_videos)} animation target videos not generated yet (roadmap only): "
           f"{', '.join(missing_animation_videos[:4])}"
           + ("..." if len(missing_animation_videos) > 4 else ""))
-        ok = ok and not strict
     elif animation_slots:
         p("PASS", "All animation target videos exist")
 

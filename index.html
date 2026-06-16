@@ -21,7 +21,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
-    <link rel="preload" as="image" href="hero-home-value.webp" fetchpriority="high">
+    <link rel="preload" as="image" href="hero-home-color-1.webp" fetchpriority="high">
     <script defer src="https://cdn.jsdelivr.net/npm/gsap@3.15.0/dist/gsap.min.js"></script>
     <script defer src="https://cdn.jsdelivr.net/npm/gsap@3.15.0/dist/ScrollTrigger.min.js"></script>
     <script defer src="https://cdn.jsdelivr.net/npm/gsap@3.15.0/dist/SplitText.min.js"></script>
@@ -141,7 +141,7 @@
                 <h2 class="hero-title animate-fade-in-up animate-delay-1">Professional Painting & Property Improvements That <span>Increase Home Value</span></h2>
                 <p class="hero-subtitle animate-fade-in-up animate-delay-2">Meticulously clean interior and exterior painting, drywall repairs, and smart renovations designed to help your home look better, feel better, and sell faster.</p>
                 <div class="hero-btns animate-fade-in-up animate-delay-3">
-                    <a href="#get-started" class="btn btn-primary btn-lg">Schedule Your Free Estimate</a>
+                    <a href="#get-started" class="btn btn-primary btn-lg">Request Your Free Estimate</a>
                     <a href="tel:7707690008" class="btn btn-outline" style="border-color: rgba(255,255,255,0.3); color: #FFFFFF;">Call or Text Us</a>
                 </div>
                 <div class="hero-trust-badges animate-fade-in-up animate-delay-4">
@@ -156,10 +156,16 @@
                 </div>
             </div>
             
-            <!-- Contextual graphic representing clean preparation & premium finish -->
+            <!-- Same home, four professional finishes — cross-fades on a loop -->
             <div class="hero-image-pane animate-scale-up animate-delay-2">
                 <div>
-                    <img src="hero-home-value.webp" alt="Freshly painted navy craftsman home by Roly Home Services" fetchpriority="high" decoding="async" width="2400" height="1350">
+                    <div class="hero-color-loop" aria-label="The same home shown in four professional Roly Home Services paint finishes">
+                        <img class="hero-color-frame is-active" src="hero-home-color-1.webp" alt="Craftsman home with deep navy siding and cream trim painted by Roly Home Services" fetchpriority="high" decoding="async" width="2400" height="1350">
+                        <img class="hero-color-frame" src="hero-home-color-2.webp" alt="The same home in warm off-white with black trim" loading="lazy" decoding="async" width="2400" height="1350">
+                        <img class="hero-color-frame" src="hero-home-color-3.webp" alt="The same home in organic sage green" loading="lazy" decoding="async" width="2400" height="1350">
+                        <img class="hero-color-frame" src="hero-home-color-4.webp" alt="The same home in deep blue with white columns" loading="lazy" decoding="async" width="2400" height="1350">
+                        <span class="hero-color-chip">Same home · 4 finishes</span>
+                    </div>
                 </div>
             </div>
         </div>
@@ -233,7 +239,7 @@
                 <div class="painting-card-main">
                     <div class="card-img-wrapper">
                         <span class="card-badge">Interior</span>
-                        <img class="crop-left" loading="lazy" decoding="async" src="card-interior-protection.webp" alt="Living room furniture wrapped and floors protected before interior painting">
+                        <img class="crop-left" loading="lazy" decoding="async" src="card-interior-protection.webp" alt="Living room furniture wrapped and floors protected before interior painting" width="1600" height="1200">
                     </div>
                     <div class="card-content">
                         <h3>Meticulous Interior Painting</h3>
@@ -260,7 +266,7 @@
                 <div class="painting-card-main">
                     <div class="card-img-wrapper">
                         <span class="card-badge">Exterior</span>
-                        <img class="crop-bottom" loading="lazy" decoding="async" src="card-exterior-prep.webp" alt="Exterior siding being washed and prepped before painting">
+                        <img class="crop-bottom" loading="lazy" decoding="async" src="card-exterior-prep.webp" alt="Exterior siding being washed and prepped before painting" width="1600" height="1200">
                     </div>
                     <div class="card-content">
                         <h3>Durable Exterior Painting</h3>
@@ -287,7 +293,7 @@
                 <div class="painting-card-main">
                     <div class="card-img-wrapper">
                         <span class="card-badge">Cabinets</span>
-                        <img loading="lazy" decoding="async" src="gallery-cabinet-finished.webp" alt="Finished painted kitchen cabinets in a warm Atlanta home">
+                        <img loading="lazy" decoding="async" src="gallery-cabinet-finished.webp" alt="Finished painted kitchen cabinets in a warm Atlanta home" width="1600" height="1200">
                     </div>
                     <div class="card-content">
                         <h3>High-End Cabinet Painting</h3>
@@ -516,7 +522,7 @@
                     </div>
                     
                     <!-- Dynamic Data Cards Container -->
-                    <div class="lab-data-cards-grid" style="position: relative; min-height: 380px;">
+                    <div class="lab-data-cards-grid" style="position: relative;">
                         <!-- Navy Card (Active) -->
                         <div class="lab-data-card active" id="labCardNavy" role="tabpanel" aria-labelledby="chipNavy" style="background: #FFFFFF; padding: 24px; border-radius: var(--radius-lg); box-shadow: var(--shadow-premium); border-left: 5px solid var(--color-navy); transition: all 0.3s ease;">
                             <h3 style="color: var(--color-navy); font-size: 1.35rem; margin-bottom: 12px; font-weight: 800; font-family: var(--font-heading);">Classic Luxury Navy & Cream</h3>
@@ -1017,7 +1023,7 @@
             <!-- Owner Photo Placeholder with premium border -->
             <div class="about-image-pane" style="position: relative;">
                 <div style="border-radius: var(--radius-lg); overflow: hidden; box-shadow: var(--shadow-premium); border: 2px solid rgba(255, 107, 53, 0.2); outline: 1px solid rgba(255, 255, 255, 0.1);">
-                    <img loading="lazy" decoding="async" src="owner-roly-real-portrait.webp" alt="Roly, Owner of Roly Home Services" style="width: 100%; height: 420px; object-fit: cover; display: block;">
+                    <img loading="lazy" decoding="async" src="owner-roly-walkthrough.webp" alt="Roly walking a homeowner through the finished result" width="1600" height="1200" style="width: 100%; height: 420px; object-fit: cover; display: block;">
                 </div>
             </div>
             
@@ -1065,56 +1071,56 @@
         <div class="container">
             <div class="section-title-wrapper">
                 <span class="section-label">Real Customers. Real Trust.</span>
-                <h2 class="section-title">What Your Atlanta Neighbors Say</h2>
+                <h2 class="section-title">How We Prove the Work</h2>
                 <p class="section-desc">Read honest feedback from homeowners in Tucker, Buckhead, and the surrounding Atlanta communities.</p>
             </div>
 
             <div class="grid-3 mb-4">
                 <div class="review-card">
-                    <div class="review-stars">
-                        <span>&#9733;</span><span>&#9733;</span><span>&#9733;</span><span>&#9733;</span><span>&#9733;</span>
+                    <div class="review-stars" aria-hidden="true">
+                        <span>&#10003;</span><span>&#10003;</span><span>&#10003;</span>
                     </div>
-                    <p class="review-text">Roly and his team painted the entire interior of our newly purchased home in Tucker. The baseboard lines are incredibly crisp, and they finished ahead of schedule. They left absolutely no dust behind!</p>
+                    <p class="review-text">Interior painting projects are documented around clean protection, crisp trim lines, and final walkthrough notes so customers can ask for relevant references.</p>
                     <div class="review-author">
                         <div class="author-initial">S</div>
                         <div class="author-info">
-                            <h4>Sarah Jenkins</h4>
-                            <p>Homeowner in Tucker, GA</p>
+                            <h4>Interior Painting Proof</h4>
+                            <p>Reference available on request</p>
                         </div>
                     </div>
                 </div>
 
                 <div class="review-card">
-                    <div class="review-stars">
-                        <span>&#9733;</span><span>&#9733;</span><span>&#9733;</span><span>&#9733;</span><span>&#9733;</span>
+                    <div class="review-stars" aria-hidden="true">
+                        <span>&#10003;</span><span>&#10003;</span><span>&#10003;</span>
                     </div>
-                    <p class="review-text">As a real estate agent in Atlanta, I need contractors who are reliable and respect timelines. Roly Home Services is my go-to team for pre-sale preparations. Their work always increases the listing value.</p>
+                    <p class="review-text">Pre-sale and partner projects are tracked by scope, timing, and finish quality so sellers and agents know what was completed before listing.</p>
                     <div class="review-author">
                         <div class="author-initial">M</div>
                         <div class="author-info">
-                            <h4>Marcus Vance</h4>
-                            <p>Realtor / Keller Williams Atl</p>
+                            <h4>Pre-Sale Project Proof</h4>
+                            <p>Reference available on request</p>
                         </div>
                     </div>
                 </div>
 
                 <div class="review-card">
-                    <div class="review-stars">
-                        <span>&#9733;</span><span>&#9733;</span><span>&#9733;</span><span>&#9733;</span><span>&#9733;</span>
+                    <div class="review-stars" aria-hidden="true">
+                        <span>&#10003;</span><span>&#10003;</span><span>&#10003;</span>
                     </div>
-                    <p class="review-text">Their cabinet painting transformed our kitchen completely! We saved thousands compared to a cabinet replacement. Professional spray finish, clean masking, and very friendly service.</p>
+                    <p class="review-text">Cabinet painting proof focuses on masking, finish consistency, hardware handling, and clean jobsite delivery without claiming unverified customer quotes.</p>
                     <div class="review-author">
                         <div class="author-initial">D</div>
                         <div class="author-info">
-                            <h4>David L.</h4>
-                            <p>Homeowner in Buckhead, GA</p>
+                            <h4>Cabinet Painting Proof</h4>
+                            <p>Reference available on request</p>
                         </div>
                     </div>
                 </div>
             </div>
 
             <div class="text-center">
-                <a href="reviews.html" class="btn btn-outline">Read All Reviews</a>
+                <a href="reviews.html" class="btn btn-outline">View Project Proof</a>
             </div>
 
         </div>
@@ -1134,54 +1140,54 @@
             <div class="ba-grid">
                 <figure class="ba-item">
                     <div class="ba-slider" data-ba-slider>
-                        <img class="ba-img ba-before" src="assets/before-after/interior-living-room-paint-before.webp" alt="Living room before a professional interior repaint by Roly Home Services" loading="lazy" decoding="async" width="1920" height="1080">
-                        <img class="ba-img ba-after" src="assets/before-after/interior-living-room-paint-after.webp" alt="Living room after a professional interior repaint by Roly Home Services" loading="lazy" decoding="async" width="1920" height="1080">
-                        <span class="ba-label ba-label-before">Before</span>
-                        <span class="ba-label ba-label-after">After</span>
-                        <button class="ba-handle" type="button" role="slider" aria-label="Drag to compare the interior repaint before and after" aria-valuemin="0" aria-valuemax="100" aria-valuenow="50">
-                            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M8 9l-4 3 4 3m8-6l4 3-4 3"></path></svg>
-                        </button>
-                    </div>
-                    <figcaption class="ba-caption">Interior Repaint · Living Room</figcaption>
-                </figure>
-
-                <figure class="ba-item">
-                    <div class="ba-slider" data-ba-slider>
-                        <img class="ba-img ba-before" src="assets/before-after/exterior-siding-curb-appeal-before.webp" alt="Home exterior siding before a professional repaint by Roly Home Services" loading="lazy" decoding="async" width="1920" height="1080">
-                        <img class="ba-img ba-after" src="assets/before-after/exterior-siding-curb-appeal-after.webp" alt="Home exterior siding after a professional repaint by Roly Home Services" loading="lazy" decoding="async" width="1920" height="1080">
+                        <img class="ba-img ba-before" src="assets/before-after/exterior-siding-curb-appeal-before.webp" alt="Craftsman home exterior with faded siding before a professional repaint by Roly Home Services" loading="lazy" decoding="async" width="1920" height="1080">
+                        <img class="ba-img ba-after" src="assets/before-after/exterior-siding-curb-appeal-after.webp" alt="The same craftsman home with fresh navy siding and cream trim after a Roly Home Services repaint" loading="lazy" decoding="async" width="1920" height="1080">
                         <span class="ba-label ba-label-before">Before</span>
                         <span class="ba-label ba-label-after">After</span>
                         <button class="ba-handle" type="button" role="slider" aria-label="Drag to compare the exterior repaint before and after" aria-valuemin="0" aria-valuemax="100" aria-valuenow="50">
                             <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M8 9l-4 3 4 3m8-6l4 3-4 3"></path></svg>
                         </button>
                     </div>
-                    <figcaption class="ba-caption">Exterior Repaint · Full Home</figcaption>
+                    <figcaption class="ba-caption">Exterior Repaint &middot; Full Home</figcaption>
                 </figure>
 
                 <figure class="ba-item">
                     <div class="ba-slider" data-ba-slider>
-                        <img class="ba-img ba-before" src="assets/before-after/cabinet-kitchen-refresh-before.webp" alt="Kitchen cabinets before a factory-grade spray finish by Roly Home Services" loading="lazy" decoding="async" width="1920" height="1080">
-                        <img class="ba-img ba-after" src="assets/before-after/cabinet-kitchen-refresh-after.webp" alt="Kitchen cabinets after a factory-grade spray finish by Roly Home Services" loading="lazy" decoding="async" width="1920" height="1080">
+                        <img class="ba-img ba-before" src="assets/before-after/exterior-trim-front-door-before.webp" alt="Front porch with worn trim, columns, and front door before a Roly Home Services repaint" loading="lazy" decoding="async" width="1920" height="1080">
+                        <img class="ba-img ba-after" src="assets/before-after/exterior-trim-front-door-after.webp" alt="The same front porch with crisp fresh trim, clean columns, and a refinished door after a Roly Home Services repaint" loading="lazy" decoding="async" width="1920" height="1080">
                         <span class="ba-label ba-label-before">Before</span>
                         <span class="ba-label ba-label-after">After</span>
-                        <button class="ba-handle" type="button" role="slider" aria-label="Drag to compare the cabinet painting before and after" aria-valuemin="0" aria-valuemax="100" aria-valuenow="50">
+                        <button class="ba-handle" type="button" role="slider" aria-label="Drag to compare the trim and front door before and after" aria-valuemin="0" aria-valuemax="100" aria-valuenow="50">
                             <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M8 9l-4 3 4 3m8-6l4 3-4 3"></path></svg>
                         </button>
                     </div>
-                    <figcaption class="ba-caption">Cabinet Painting · Kitchen</figcaption>
+                    <figcaption class="ba-caption">Trim &amp; Front Door &middot; Porch</figcaption>
                 </figure>
 
                 <figure class="ba-item">
                     <div class="ba-slider" data-ba-slider>
-                        <img class="ba-img ba-before" src="assets/before-after/kitchen-presale-neutral-before.webp" alt="Kitchen before neutral pre-sale prep by Roly Home Services" loading="lazy" decoding="async" width="1920" height="1080">
-                        <img class="ba-img ba-after" src="assets/before-after/kitchen-presale-neutral-after.webp" alt="Kitchen after neutral pre-sale prep by Roly Home Services" loading="lazy" decoding="async" width="1920" height="1080">
+                        <img class="ba-img ba-before" src="assets/before-after/cabinet-kitchen-refresh-before.webp" alt="Kitchen cabinets before a cabinet painting refresh by Roly Home Services" loading="lazy" decoding="async" width="1920" height="1080">
+                        <img class="ba-img ba-after" src="assets/before-after/cabinet-kitchen-refresh-after.webp" alt="The same kitchen cabinets after a clean painted finish by Roly Home Services" loading="lazy" decoding="async" width="1920" height="1080">
                         <span class="ba-label ba-label-before">Before</span>
                         <span class="ba-label ba-label-after">After</span>
-                        <button class="ba-handle" type="button" role="slider" aria-label="Drag to compare the pre-sale prep before and after" aria-valuemin="0" aria-valuemax="100" aria-valuenow="50">
+                        <button class="ba-handle" type="button" role="slider" aria-label="Drag to compare the kitchen refresh before and after" aria-valuemin="0" aria-valuemax="100" aria-valuenow="50">
                             <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M8 9l-4 3 4 3m8-6l4 3-4 3"></path></svg>
                         </button>
                     </div>
-                    <figcaption class="ba-caption">Pre-Sale Prep · Kitchen</figcaption>
+                    <figcaption class="ba-caption">Cabinet Painting &middot; Kitchen</figcaption>
+                </figure>
+
+                <figure class="ba-item">
+                    <div class="ba-slider" data-ba-slider>
+                        <img class="ba-img ba-before" src="assets/before-after/interior-hallway-scuffs-before.webp" alt="Interior hallway with wall scuffs before repainting by Roly Home Services" loading="lazy" decoding="async" width="1920" height="1080">
+                        <img class="ba-img ba-after" src="assets/before-after/interior-hallway-scuffs-after.webp" alt="The same hallway after a clean interior repaint by Roly Home Services" loading="lazy" decoding="async" width="1920" height="1080">
+                        <span class="ba-label ba-label-before">Before</span>
+                        <span class="ba-label ba-label-after">After</span>
+                        <button class="ba-handle" type="button" role="slider" aria-label="Drag to compare the interior hallway repaint before and after" aria-valuemin="0" aria-valuemax="100" aria-valuenow="50">
+                            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M8 9l-4 3 4 3m8-6l4 3-4 3"></path></svg>
+                        </button>
+                    </div>
+                    <figcaption class="ba-caption">Interior Painting &middot; Hallway</figcaption>
                 </figure>
             </div>
 
@@ -1198,8 +1204,8 @@
         <div class="container">
             <div class="section-title-wrapper" style="margin-bottom: 36px;">
                 <span class="section-label">Friction-Free Qualification</span>
-                <h2 class="section-title">Schedule Your Property Assessment</h2>
-                <p class="section-desc">Complete our 4-step assessment tool. This informs our project manager about your goals to build a precise estimate.</p>
+                <h2 class="section-title">Request Your Planning Range</h2>
+                <p class="section-desc">Complete the 4-step assessment tool so Roly can review your scope, share a planning range, and confirm the right next step.</p>
             </div>
 
             <div class="form-outer-wrapper" id="ghlProgressiveForm">
@@ -1256,14 +1262,8 @@
                                 <h4>Cabinet Painting</h4>
                                 <p>Factory-grade spray refinishing</p>
                             </div>
-                            <div class="option-box" tabindex="0" data-category="project-type" data-value="improvements">
-                                <div class="option-icon">
-                                    <svg style="width:28px; height:28px;" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"></path></svg>
-                                </div>
-                                <h4>Value Enhancements</h4>
-                                <p>Drywall repairs, trim & updates</p>
-                            </div>
                         </div>
+                        <p class="form-slide-hint">Restoration, drywall, and deck work are added as finishing touches to your painting project on the next step.</p>
                     </div>
 
                     <!-- STEP 2: AVATAR / GOALS -->
@@ -1392,9 +1392,9 @@
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path>
                         </svg>
                     </div>
-                    <h3>Assessment Received!</h3>
-                    <p>Thank you. Roly Home Services has captured your project parameters. Our pipeline coordinator has been notified.</p>
-                    <p style="font-size: 0.9rem; color: var(--color-orange); font-weight: 600;">A Roly project manager will reach out within one business day to schedule your free estimate.</p>
+                    <h3>Estimate Request Received!</h3>
+                    <p>Thank you. Roly Home Services received your project details. A project manager will review the scope and follow up with the right next step.</p>
+                    <p style="font-size: 0.9rem; color: var(--color-orange); font-weight: 600;">A Roly project manager will reach out within one business day to review your request and confirm the right next step.</p>
                     <a href="tel:7707690008" class="btn btn-secondary btn-sm">Need Instant Help? Call Us Now</a>
                 </div>
             </div>

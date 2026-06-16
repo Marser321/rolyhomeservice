@@ -670,6 +670,27 @@ Animation notes:
 Use as a hero or gallery wipe. Lock roofline, windows, porch columns, driveway, shrubs, and shadows so only siding, trim, door, and surface cleanliness transition.
 ```
 
+### exterior-curb-appeal-2
+
+- Service: Exterior Painting
+- Pages: gallery.html, painting.html, vsl.html
+- Format: `story_process` / 1920x1080 WebP
+- Before asset: `assets/before-after/exterior-curb-appeal-2-before.webp`
+- After asset: `assets/before-after/exterior-curb-appeal-2-after.webp`
+
+Before prompt:
+```text
+Photorealistic locked-camera before image, believable Tucker/Atlanta home, same exact composition needed for later animation, natural warm daylight, realistic residential scale, detailed surfaces, no readable text, no fake logos, no brand names, no watermark. Second exterior curb appeal project with tired siding, dull trim, softened edges, and ordinary landscaping, distinct from the navy craftsman hero pair.
+```
+After prompt:
+```text
+Create the after state from the same camera angle and same home geometry as the before image. Preserve roofline, windows, porch, driveway, landscaping, lens, perspective, and lighting. Change only painted and cleaned surfaces. Fresh exterior paint, crisp trim contrast, repaired caulk lines, cleaner front elevation, and believable Atlanta curb appeal without luxury exaggeration.
+```
+Animation notes:
+```text
+Use as an exterior painting proof point below the primary hero pair. Keep architecture and landscaping locked; transition siding, trim, edge cleanliness, and overall curb appeal only.
+```
+
 ### exterior-trim-front-door
 
 - Service: Exterior Painting
@@ -689,27 +710,6 @@ Create the after state from the same camera angle and same room/home geometry as
 Animation notes:
 ```text
 Best for a tight slider. Keep porch decor, railing, door hardware, and column silhouettes identical; transition only trim, door, caulk, and surface cleanliness.
-```
-
-### interior-living-room-paint
-
-- Service: Interior Painting
-- Pages: index.html, services.html, painting.html, lp-painting.html
-- Format: `story_process` / 1920x1080 WebP
-- Before asset: `assets/before-after/interior-living-room-paint-before.webp`
-- After asset: `assets/before-after/interior-living-room-paint-after.webp`
-
-Before prompt:
-```text
-Photorealistic locked-camera before image, believable Tucker/Atlanta home, same exact composition needed for later animation, natural warm daylight, realistic residential scale, detailed surfaces, no readable text, no fake logos, no brand names, no watermark. Bright living room with tired beige walls, visible scuffs near switches and corners, worn baseboards, furniture in place and easy to protect, realistic family-home warmth.
-```
-After prompt:
-```text
-Create the after state from the same camera angle and same room/home geometry as the before image. Preserve structure, windows, furniture placement, landscaping, lens, perspective, and lighting. Change only the painted, repaired, washed, stained, or refreshed surfaces. Premium local real finish, clean professional result, no readable text, no fake logos. Same living room with luminous neutral wall color, bright clean baseboards, repaired scuffs, crisp cut lines around windows and trim, furniture unchanged.
-```
-Animation notes:
-```text
-Designed for crossfade or reveal wipe. Keep furniture, window light, rug, artwork shapes, and camera height identical; transition wall color, scuffs, and baseboards.
 ```
 
 ### interior-hallway-scuffs
@@ -773,48 +773,6 @@ Create the after state from the same camera angle and same room/home geometry as
 Animation notes:
 ```text
 Use for process education. Keep wall plane, outlet/baseboard location, and shadow gradient identical; transition patch visibility, texture, and paint blend.
-```
-
-### bathroom-refresh
-
-- Service: Home Improvement
-- Pages: renovations.html, gallery.html, presale.html
-- Format: `story_process` / 1920x1080 WebP
-- Before asset: `assets/before-after/bathroom-refresh-before.webp`
-- After asset: `assets/before-after/bathroom-refresh-after.webp`
-
-Before prompt:
-```text
-Photorealistic locked-camera before image, believable Tucker/Atlanta home, same exact composition needed for later animation, natural warm daylight, realistic residential scale, detailed surfaces, no readable text, no fake logos, no brand names, no watermark. Small bathroom with protected vanity, tired wall color, worn trim, minor drywall damage near towel bar area, practical home improvement scope, not a full renovation.
-```
-After prompt:
-```text
-Create the after state from the same camera angle and same room/home geometry as the before image. Preserve structure, windows, furniture placement, landscaping, lens, perspective, and lighting. Change only the painted, repaired, washed, stained, or refreshed surfaces. Premium local real finish, clean professional result, no readable text, no fake logos. Same bathroom with fresh wall paint, clean trim, repaired minor wall damage, protected vanity restored in place, brighter refined finish without changing layout.
-```
-Animation notes:
-```text
-Keep vanity, mirror, fixtures, tile, and camera corner identical; transition wall color, repair spot, trim, and cleanliness.
-```
-
-### kitchen-presale-neutral
-
-- Service: Pre-Sale Preparation
-- Pages: presale.html, partners.html, gallery.html
-- Format: `story_process` / 1920x1080 WebP
-- Before asset: `assets/before-after/kitchen-presale-neutral-before.webp`
-- After asset: `assets/before-after/kitchen-presale-neutral-after.webp`
-
-Before prompt:
-```text
-Photorealistic locked-camera before image, believable Tucker/Atlanta home, same exact composition needed for later animation, natural warm daylight, realistic residential scale, detailed surfaces, no readable text, no fake logos, no brand names, no watermark. Lived-in kitchen with visually heavy wall color, slightly worn trim, small scuffs near cabinets, a few distracting outdated accents, but clean and realistic for a pre-listing refresh.
-```
-After prompt:
-```text
-Create the after state from the same camera angle and same room/home geometry as the before image. Preserve structure, windows, furniture placement, landscaping, lens, perspective, and lighting. Change only the painted, repaired, washed, stained, or refreshed surfaces. Premium local real finish, clean professional result, no readable text, no fake logos. Same kitchen with neutral listing-friendly paint, cleaner trim, reduced visual distractions, brighter market-ready feel, no layout or furniture changes.
-```
-Animation notes:
-```text
-Good for realtors and sellers. Keep counters, cabinets, fixtures, appliance reflections, and window light identical; transition color temperature, scuffs, trim, and staging cleanliness.
 ```
 
 ### soft-wash-siding
