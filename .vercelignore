@@ -1,0 +1,35 @@
+# Only the static site (HTML / CSS / JS / assets) should reach production.
+# Everything below is build tooling, internal docs, or source material and
+# must NOT be publicly served.
+
+# Build & QA tooling
+*.py
+__pycache__/
+
+# Internal docs, manifests, strategy (build-time source of truth, not runtime)
+docs/
+README.md
+NEXT-LEVEL-PLAN.md
+*.md
+*.txt
+*.pdf
+*.docx
+
+# Source / reference material (site ships optimized .webp instead of these)
+*.png
+Fotos roly home/
+Referencias/
+Roldan New Feedback/
+image_73930D78BA88C5.jpg
+image_E4F7E4C3EDC049.jpg
+
+# Dev / local only
+.claude/
+.agents/
+.git/
+.gitignore
+skills-lock.json
+skills.lock.json
+*.zip
+Thumbs.db
+desktop.ini

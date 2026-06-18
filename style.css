@@ -277,9 +277,12 @@ button:focus-visible, a:focus-visible, input:focus-visible, select:focus-visible
    HEADER & NAVIGATION
    ========================================================================== */
 .site-header {
-    background-color: rgba(255, 255, 255, 0.92);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
+    /* Near-opaque base so the header reads clean WITHOUT a backdrop blur.
+       A backdrop-filter on a sticky bar re-samples and re-blurs everything
+       scrolling behind it every frame — the main source of site-wide scroll
+       jank, worst on mobile GPUs. The frosted look is re-applied only for
+       mouse-driven desktops below, where the GPU budget can absorb it. */
+    background-color: rgba(255, 255, 255, 0.95);
     border-bottom: 1px solid var(--color-border);
     position: sticky;
     top: 0;
@@ -288,8 +291,16 @@ button:focus-visible, a:focus-visible, input:focus-visible, select:focus-visible
     box-shadow: var(--shadow-sm);
 }
 
+@media (hover: hover) and (pointer: fine) {
+    .site-header {
+        background-color: rgba(255, 255, 255, 0.9);
+        backdrop-filter: blur(8px);
+        -webkit-backdrop-filter: blur(8px);
+    }
+}
+
 .site-header.shrink {
-    background-color: rgba(255, 255, 255, 0.96);
+    background-color: rgba(255, 255, 255, 0.97);
     box-shadow: var(--shadow-md);
 }
 
@@ -2073,6 +2084,32 @@ button:focus-visible, a:focus-visible, input:focus-visible, select:focus-visible
     width: var(--target-width, 100%) !important;
 }
 
+/* --------------------------------------------------------------------------
+   DISTINCTIVE TOUCH — Color Lab / Gallery only. Restrained, brand colors
+   only, every layer under 0.15 alpha, so the client's white reference holds.
+   Goal: give the signature "paint your home" zone subconscious depth instead
+   of flat white, and mark the live palette card without adding chrome.
+   -------------------------------------------------------------------------- */
+#color-science-lab,
+#paint-your-home {
+    background-image:
+        radial-gradient(circle at 14% -10%, rgba(255, 107, 53, 0.05), transparent 42%),
+        radial-gradient(circle at 104% 112%, rgba(15, 30, 54, 0.045), transparent 46%);
+}
+
+/* Live-state hairline on the active palette card. */
+.lab-data-card.active::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+    background: linear-gradient(90deg, transparent, var(--color-orange), transparent);
+    pointer-events: none;
+}
+
 .lrv-pointer, .lrv-pointer-secondary {
     transition: left 1s cubic-bezier(0.34, 1.56, 0.64, 1);
 }
@@ -3363,7 +3400,9 @@ button:focus-visible, a:focus-visible, input:focus-visible, select:focus-visible
    ========================================================================== */
 .ba-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(258px, 1fr));
+    /* Two large columns so each real before/after gets room to read; the
+       client's locked-camera proof is the point, not a dense thumbnail wall. */
+    grid-template-columns: repeat(2, 1fr);
     gap: 24px;
 }
 
@@ -3374,7 +3413,7 @@ button:focus-visible, a:focus-visible, input:focus-visible, select:focus-visible
 .ba-slider {
     position: relative;
     width: 100%;
-    aspect-ratio: 3 / 2; /* source pairs are 16:9; object-fit: cover trims the sides */
+    aspect-ratio: 16 / 9; /* match the 16:9 source so object-fit: cover crops nothing — full transformation shows */
     overflow: hidden;
     border-radius: var(--radius-lg);
     box-shadow: var(--shadow-lg);
@@ -3526,8 +3565,9 @@ button:focus-visible, a:focus-visible, input:focus-visible, select:focus-visible
     text-align: center;
 }
 
-@media (max-width: 480px) {
+@media (max-width: 768px) {
     .ba-grid {
+        /* One large column on tablet/phone — more prominent than two cramped tiles. */
         grid-template-columns: 1fr;
     }
 }

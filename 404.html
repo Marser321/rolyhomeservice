@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Page Not Found | Roly Home Services</title>
+    <meta name="robots" content="noindex, follow">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .nf-wrap {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 40px 24px;
+            gap: 8px;
+        }
+        .nf-code {
+            font-size: clamp(5rem, 18vw, 9rem);
+            font-weight: 800;
+            line-height: 1;
+            color: var(--color-navy);
+            letter-spacing: -2px;
+        }
+        .nf-code span { color: var(--color-orange); }
+        .nf-title { font-size: clamp(1.4rem, 4vw, 2rem); color: var(--text-primary); margin: 8px 0 4px; }
+        .nf-text { color: var(--text-secondary); max-width: 30rem; margin: 0 auto 24px; line-height: 1.6; }
+        .nf-actions { display: flex; flex-wrap: wrap; gap: 12px; justify-content: center; }
+        .nf-logo { margin-bottom: 28px; }
+    </style>
+</head>
+<body>
+    <main class="nf-wrap">
+        <a href="index.html" class="logo-wrapper nf-logo">
+            <div class="logo-icon-box" style="color: var(--color-orange);">
+                <svg style="width: 32px; height: 32px;" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M19 2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h4l3 3 3-3h4c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm-2 10h-4v4h-2v-4H7v-2h4V6h2v4h4v2z"/>
+                </svg>
+            </div>
+            <div>
+                <span class="logo-text">Roly<span> Home Services</span></span>
+                <p class="logo-slogan">Your Property Best Friend</p>
+            </div>
+        </a>
+        <div class="nf-code">4<span>0</span>4</div>
+        <h1 class="nf-title">This page needs a fresh coat</h1>
+        <p class="nf-text">We couldn't find the page you were looking for. Let's get you back to a finished surface.</p>
+        <div class="nf-actions">
+            <a href="index.html" class="btn btn-primary">Back to Home</a>
+            <a href="contact.html" class="btn btn-outline">Get a Free Estimate</a>
+        </div>
+    </main>
+</body>
+</html>

@@ -123,15 +123,19 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // Shrink header on scroll
+    // Shrink header on scroll. Passive listener + a state guard so the class is
+    // only written when the threshold is actually crossed (Lenis emits a scroll
+    // event every frame; re-toggling an unchanged class wastes paint work).
     if (header) {
-        window.addEventListener('scroll', () => {
-            if (window.scrollY > 50) {
-                header.classList.add('shrink');
-            } else {
-                header.classList.remove('shrink');
-            }
-        });
+        let shrunk = false;
+        const syncHeaderShrink = () => {
+            const should = window.scrollY > 50;
+            if (should === shrunk) return;
+            shrunk = should;
+            header.classList.toggle('shrink', should);
+        };
+        window.addEventListener('scroll', syncHeaderShrink, { passive: true });
+        syncHeaderShrink();
     }
 
     // ==========================================================================
@@ -661,7 +665,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 const zip = document.getElementById('projectZip');
                 const address = document.getElementById('projectAddress');
                 
-                if (!zip.value.trim() || zip.value.trim().length < 5) {
+                if (!/^\d{5}$/.test(zip.value.trim())) {
                     triggerShakeError(zip, 'Enter a 5-digit ZIP code.');
                     return false;
                 }
@@ -688,7 +692,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     return false;
                 }
                 clearFieldError(phone);
-                if (!email.value.trim() || !email.value.includes('@')) {
+                if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.value.trim())) {
                     triggerShakeError(email, 'Enter a valid email address.');
                     return false;
                 }
@@ -1594,20 +1598,29 @@ document.addEventListener('DOMContentLoaded', () => {
         if (!handle) return;
 
         let dragging = false;
+        // Cache the track geometry instead of measuring it on every pointermove.
+        // The pointer is captured during a drag so the slider can't scroll out
+        // from under the cursor; we just refresh on drag start and on resize.
+        let rect = null;
+        const refreshRect = () => { rect = slider.getBoundingClientRect(); };
 
         const setPos = (pct) => {
             const clamped = Math.max(0, Math.min(100, pct));
+            const rounded = Math.round(clamped);
             slider.style.setProperty('--pos', clamped + '%');
-            handle.setAttribute('aria-valuenow', Math.round(clamped));
+            handle.setAttribute('aria-valuenow', rounded);
+            // Spoken feedback for screen readers as the curtain moves.
+            handle.setAttribute('aria-valuetext', rounded + '% of the finished result revealed');
         };
 
         const posFromX = (clientX) => {
-            const rect = slider.getBoundingClientRect();
+            if (!rect) refreshRect();
             return ((clientX - rect.left) / rect.width) * 100;
         };
 
         handle.addEventListener('pointerdown', (e) => {
             dragging = true;
+            refreshRect();
             handle.setPointerCapture(e.pointerId);
             e.preventDefault();
         });
@@ -1624,8 +1637,12 @@ document.addEventListener('DOMContentLoaded', () => {
         // Tap/click anywhere on the track jumps the curtain to that point.
         slider.addEventListener('pointerdown', (e) => {
             if (e.target === handle || handle.contains(e.target)) return;
+            refreshRect();
             setPos(posFromX(e.clientX));
         });
+
+        // Geometry changes on resize; drop the cache so it re-measures lazily.
+        window.addEventListener('resize', () => { rect = null; }, { passive: true });
 
         // Keyboard a11y: arrows nudge by 5%, Home/End snap to the edges.
         handle.addEventListener('keydown', (e) => {
