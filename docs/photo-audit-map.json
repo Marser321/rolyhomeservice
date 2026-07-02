@@ -416,6 +416,39 @@
       "after_file": "despues 10.png",
       "approximate": false,
       "service": "Exterior Painting"
+    },
+    {
+      "id": "bathroom-refresh",
+      "before": null,
+      "after": null,
+      "before_file": null,
+      "after_file": null,
+      "approximate": true,
+      "generated": true,
+      "source": "ai-generated (no source frame)",
+      "service": "Interior Painting"
+    },
+    {
+      "id": "interior-living-room-paint",
+      "before": null,
+      "after": null,
+      "before_file": null,
+      "after_file": null,
+      "approximate": true,
+      "generated": true,
+      "source": "ai-generated (no source frame)",
+      "service": "Interior Painting"
+    },
+    {
+      "id": "kitchen-presale-neutral",
+      "before": null,
+      "after": null,
+      "before_file": null,
+      "after_file": null,
+      "approximate": true,
+      "generated": true,
+      "source": "ai-generated (no source frame)",
+      "service": "Pre-Sale Repaint"
     }
   ],
   "notes": {

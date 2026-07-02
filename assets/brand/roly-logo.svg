@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 286 56" role="img" aria-label="Roly Home Services — Your Property Best Friend">
+  <defs>
+    <linearGradient id="rolyBadgeL" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#1B3A63"/>
+      <stop offset="1" stop-color="#0A1424"/>
+    </linearGradient>
+  </defs>
+  <!-- Mark -->
+  <g transform="translate(4,4)">
+    <rect width="48" height="48" rx="11" fill="url(#rolyBadgeL)"/>
+    <rect x="30.4" y="12.5" width="3.4" height="8" rx="1" fill="#F4F6F9"/>
+    <path d="M24 9.2 41 25 H7 Z" fill="#FF6B35"/>
+    <rect x="7.5" y="24.2" width="33" height="2.3" rx="1.15" fill="#E0531F"/>
+    <rect x="13" y="25.6" width="22" height="12.4" rx="1.6" fill="#F4F6F9"/>
+    <path d="M21 38 V31.6 a3 3 0 0 1 6 0 V38 Z" fill="#0F1E36"/>
+    <circle cx="25.4" cy="34.4" r="0.7" fill="#FF6B35"/>
+    <rect x="15.4" y="29.4" width="3.6" height="3.6" rx="0.6" fill="#0F1E36"/>
+    <rect x="29" y="29.4" width="3.6" height="3.6" rx="0.6" fill="#0F1E36"/>
+  </g>
+  <!-- Wordmark -->
+  <text x="64" y="29" font-family="'Outfit','Segoe UI',Roboto,sans-serif" font-weight="800" font-size="21" fill="#0F1E36">Roly<tspan fill="#FF6B35"> Home Services</tspan></text>
+  <text x="65" y="44" font-family="'Outfit','Segoe UI',Roboto,sans-serif" font-weight="600" font-size="9" letter-spacing="1.2" fill="#5A6573">YOUR PROPERTY BEST FRIEND</text>
+</svg>

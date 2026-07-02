@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" role="img" aria-label="Roly Home Services">
+  <defs>
+    <linearGradient id="rolyBadge" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#1B3A63"/>
+      <stop offset="1" stop-color="#0A1424"/>
+    </linearGradient>
+  </defs>
+  <!-- Badge -->
+  <rect width="48" height="48" rx="11" fill="url(#rolyBadge)"/>
+  <!-- Chimney (drawn behind the roof so its base tucks under the slope) -->
+  <rect x="30.4" y="12.5" width="3.4" height="8" rx="1" fill="#F4F6F9"/>
+  <!-- Roof -->
+  <path d="M24 9.2 41 25 H7 Z" fill="#FF6B35"/>
+  <!-- Eave shadow line -->
+  <rect x="7.5" y="24.2" width="33" height="2.3" rx="1.15" fill="#E0531F"/>
+  <!-- House body -->
+  <rect x="13" y="25.6" width="22" height="12.4" rx="1.6" fill="#F4F6F9"/>
+  <!-- Arched front door -->
+  <path d="M21 38 V31.6 a3 3 0 0 1 6 0 V38 Z" fill="#0F1E36"/>
+  <!-- Door knob -->
+  <circle cx="25.4" cy="34.4" r="0.7" fill="#FF6B35"/>
+  <!-- Windows -->
+  <rect x="15.4" y="29.4" width="3.6" height="3.6" rx="0.6" fill="#0F1E36"/>
+  <rect x="29" y="29.4" width="3.6" height="3.6" rx="0.6" fill="#0F1E36"/>
+</svg>

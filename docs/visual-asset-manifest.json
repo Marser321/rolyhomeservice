@@ -708,6 +708,45 @@
       "after_prompt": "Create the after state from the same camera angle and same room/home geometry as the before image. Preserve structure, windows, furniture placement, landscaping, lens, perspective, and lighting. Change only the painted, repaired, washed, stained, or refreshed surfaces. Premium local real finish, clean professional result, no readable text, no fake logos. Same garage facade with clean painted garage door, crisp trim contrast, refreshed lower panels, stronger premium curb appeal, driveway and shrubs unchanged.",
       "animation_notes": "Useful as a compact exterior proof point. Keep garage panel geometry, driveway lines, shrubs, and shadow edges locked; transition trim, garage paint, and dirt.",
       "priority": 2
+    },
+    {
+      "id": "bathroom-refresh",
+      "service": "Interior Painting",
+      "pages": [
+        "gallery.html"
+      ],
+      "format": "story_process",
+      "generated": true,
+      "before_asset": "assets/before-after/bathroom-refresh-before.webp",
+      "after_asset": "assets/before-after/bathroom-refresh-after.webp",
+      "before_prompt": "Photorealistic locked-camera before image of a dated residential bathroom in a Tucker/Atlanta home, tired wall paint, dull trim, ordinary fixtures, natural daylight, same exact composition needed for later animation, no readable text, no fake logos, no brand names, no watermark.",
+      "after_prompt": "Create the after state from the same camera angle and same room/home geometry as the before image. Preserve structure, windows, furniture placement, landscaping, lens, perspective, and lighting. Change only the painted, repaired, washed, stained, or refreshed surfaces. Premium local real finish, clean professional result, no readable text, no fake logos, no brand names, no watermark."
+    },
+    {
+      "id": "interior-living-room-paint",
+      "service": "Interior Painting",
+      "pages": [
+        "gallery.html"
+      ],
+      "format": "story_process",
+      "generated": true,
+      "before_asset": "assets/before-after/interior-living-room-paint-before.webp",
+      "after_asset": "assets/before-after/interior-living-room-paint-after.webp",
+      "before_prompt": "Photorealistic locked-camera before image of a residential living room in a Tucker/Atlanta home, worn dated wall color, scuffs, ordinary furniture, natural daylight, same exact composition needed for later animation, no readable text, no fake logos, no brand names, no watermark.",
+      "after_prompt": "Create the after state from the same camera angle and same room/home geometry as the before image. Preserve structure, windows, furniture placement, landscaping, lens, perspective, and lighting. Change only the painted, repaired, washed, stained, or refreshed surfaces. Premium local real finish, clean professional result, no readable text, no fake logos, no brand names, no watermark."
+    },
+    {
+      "id": "kitchen-presale-neutral",
+      "service": "Pre-Sale Repaint",
+      "pages": [
+        "gallery.html"
+      ],
+      "format": "story_process",
+      "generated": true,
+      "before_asset": "assets/before-after/kitchen-presale-neutral-before.webp",
+      "after_asset": "assets/before-after/kitchen-presale-neutral-after.webp",
+      "before_prompt": "Photorealistic locked-camera before image of a residential kitchen in a Tucker/Atlanta home, bold or dated wall color that dampens resale appeal, ordinary cabinets and counters, natural daylight, same exact composition needed for later animation, no readable text, no fake logos, no brand names, no watermark.",
+      "after_prompt": "Create the after state from the same camera angle and same room/home geometry as the before image. Preserve structure, windows, furniture placement, landscaping, lens, perspective, and lighting. Change only the painted, repaired, washed, stained, or refreshed surfaces. Premium local real finish, clean professional result, no readable text, no fake logos, no brand names, no watermark."
     }
   ],
   "animation_prompt_slots": [

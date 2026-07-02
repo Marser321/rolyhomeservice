@@ -1660,4 +1660,69 @@ document.addEventListener('DOMContentLoaded', () => {
 
         setPos(50); // start centered
     });
+
+    // ==========================================================================
+    // 7.1. FEATURED BEFORE/AFTER CAROUSEL
+    //   Wraps a single [data-ba-slider] "stage" with a thumbnail rail + arrows.
+    //   Each thumbnail carries that pair's image paths / alts / caption; picking
+    //   one swaps the stage images and recentres the curtain. The slider engine
+    //   above already wired the stage, so we only swap inputs and reset --pos.
+    // ==========================================================================
+    document.querySelectorAll('[data-ba-carousel]').forEach(carousel => {
+        const stage = carousel.querySelector('.ba-stage');
+        if (!stage) return;
+        const beforeImg = stage.querySelector('.ba-before');
+        const afterImg = stage.querySelector('.ba-after');
+        const handle = stage.querySelector('.ba-handle');
+        const caption = carousel.querySelector('[data-ba-caption]');
+        const thumbs = Array.from(carousel.querySelectorAll('.ba-thumb'));
+        const prevBtn = carousel.querySelector('.ba-nav-prev');
+        const nextBtn = carousel.querySelector('.ba-nav-next');
+        if (!thumbs.length) return;
+        let idx = 0;
+
+        const recentre = () => {
+            stage.style.setProperty('--pos', '50%');
+            if (handle) {
+                handle.setAttribute('aria-valuenow', 50);
+                handle.setAttribute('aria-valuetext', '50% of the finished result revealed');
+            }
+        };
+
+        const show = (i, opts) => {
+            opts = opts || {};
+            idx = (i + thumbs.length) % thumbs.length;
+            const t = thumbs[idx];
+            if (beforeImg && t.dataset.before) {
+                beforeImg.src = t.dataset.before;
+                beforeImg.alt = t.dataset.altBefore || '';
+            }
+            if (afterImg && t.dataset.after) {
+                afterImg.src = t.dataset.after;
+                afterImg.alt = t.dataset.altAfter || '';
+            }
+            if (caption) caption.textContent = t.dataset.caption || '';
+            recentre();
+            thumbs.forEach((b, j) => {
+                const on = j === idx;
+                b.classList.toggle('is-active', on);
+                b.setAttribute('aria-selected', on ? 'true' : 'false');
+                b.tabIndex = on ? 0 : -1;
+            });
+            if (opts.scroll !== false) t.scrollIntoView({ inline: 'nearest', block: 'nearest', behavior: 'smooth' });
+            if (opts.focus) t.focus();
+        };
+
+        thumbs.forEach((t, i) => {
+            t.addEventListener('click', () => show(i));
+            t.addEventListener('keydown', (e) => {
+                if (e.key === 'ArrowRight') { e.preventDefault(); show(idx + 1, { focus: true }); }
+                else if (e.key === 'ArrowLeft') { e.preventDefault(); show(idx - 1, { focus: true }); }
+            });
+        });
+        if (prevBtn) prevBtn.addEventListener('click', () => show(idx - 1));
+        if (nextBtn) nextBtn.addEventListener('click', () => show(idx + 1));
+
+        show(0, { scroll: false });
+    });
 });
