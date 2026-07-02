@@ -1,0 +1,96 @@
+/* Spanish dictionary — runtime strings rendered by app.js (form wizard,
+   guided estimate panel, validation, color lab). Loaded on every page. */
+window.__I18N = window.__I18N || {};
+Object.assign(window.__I18N, {
+    /* Guided estimate scope panel */
+    "app.scope.label": "Rango Guiado de Planificación",
+    "app.scope.title": "Ayúdanos a construir una primera estimación útil",
+    "app.scope.pill": "Aproximado",
+    "app.scope.copy": "Estos detalles crean solo un rango de planificación. Tu cotización final se confirma después de fotos, revisión del alcance o una visita al sitio.",
+    "app.scope.rooms": "Habitaciones o áreas",
+    "app.scope.wall.label": "Estado de las paredes",
+    "app.scope.wall.clean": "Mayormente limpias / cambio de color",
+    "app.scope.wall.average": "Marcas y retoques normales",
+    "app.scope.wall.repairs": "Reparaciones visibles de drywall o textura",
+    "app.scope.trim": "Incluir molduras/zócalos",
+    "app.scope.ceilings": "Incluir techos",
+    "app.scope.extSize.label": "Tamaño de la casa",
+    "app.scope.extSize.small": "Pequeña / una sola sección",
+    "app.scope.extSize.medium": "Casa promedio",
+    "app.scope.extSize.large": "Casa grande",
+    "app.scope.extSize.estate": "Exterior grande o complejo",
+    "app.scope.stories.label": "Pisos",
+    "app.scope.stories.one": "1 piso",
+    "app.scope.stories.two": "2 pisos",
+    "app.scope.stories.three": "3 pisos / acceso en altura",
+    "app.scope.extCond.label": "Estado del exterior",
+    "app.scope.extCond.clean": "Mayormente limpio",
+    "app.scope.extCond.weathered": "Pintura desgastada o requiere preparación",
+    "app.scope.extCond.repair": "Pintura descascarada, reparación o preparación intensa",
+    "app.scope.cabCount.label": "Puertas y cajones",
+    "app.scope.cabCount.small": "Menos de 15",
+    "app.scope.cabCond.label": "Estado de los gabinetes",
+    "app.scope.cabCond.clean": "Limpios, listos para preparar",
+    "app.scope.cabCond.worn": "Acabado desgastado / preparación estándar",
+    "app.scope.cabCond.heavy": "Veta marcada, daños o preparación extra",
+    "app.scope.addons.label": "Complementos opcionales de restauración y acabado",
+    "app.scope.addons.drywall": "Drywall, molduras y reparaciones",
+    "app.scope.addons.pressure": "Lavado a presión / preparación exterior",
+    "app.scope.addons.deck": "Tinte de deck o cerca",
+
+    /* Estimate preview */
+    "app.est.rangeLabel": "Rango de planificación",
+    "app.est.choose": "Elige un servicio para ver el rango",
+    "app.est.notFinal": "No es una cotización final. Roly confirma el alcance antes del precio.",
+    "app.est.approx": "Solo aproximado. El precio final se confirma después de fotos, revisión o visita.",
+
+    /* Form extras */
+    "app.form.photosLabel": "Fotos del Proyecto",
+    "app.form.photosNote": "Las fotos se piden por mensaje de texto después de enviar, para que Roly revise las superficies correctas antes de confirmar la estimación.",
+    "app.form.attached": "Adjunto:",
+    "app.form.uploadOptional": "Subir fotos del proyecto (opcional)",
+    "app.form.send": "Enviar Mi Solicitud de Cotización",
+
+    /* Validation messages */
+    "app.val.service": "Elige el servicio principal para poder guiar la estimación.",
+    "app.val.goal": "Elige el objetivo que mejor describa este proyecto.",
+    "app.val.zip": "Ingresa un código postal de 5 dígitos.",
+    "app.val.address": "Ingresa la dirección del proyecto.",
+    "app.val.name": "Ingresa el nombre por el que debe preguntar nuestro gerente de proyecto.",
+    "app.val.phone": "Ingresa un número de teléfono con código de área.",
+    "app.val.email": "Ingresa un correo electrónico válido.",
+
+    /* Success card */
+    "app.success.range": "Tu rango guiado de planificación",
+    "app.success.note": "Este es un rango de planificación sin compromiso. Roly confirma la cotización final después de revisar fotos, acceso, reparaciones, materiales y agenda.",
+
+    /* Color lab — palette dashboard */
+    "app.lab.navy.title": "Azul Marino y Crema Clásico",
+    "app.lab.navy.rating": "9.4 / 10 Elección Premium",
+    "app.lab.sage.title": "Salvia Orgánico y Carbón",
+    "app.lab.sage.rating": "8.9 / 10 Integración Serena",
+    "app.lab.white.title": "Blanco Moderno y Bronce",
+    "app.lab.white.rating": "9.6 / 10 Fachada de Élite",
+    "app.lab.interactive.title": "Laboratorio Interactivo Personalizado",
+    "app.lab.interactive.rating": "9.8 / 10 Crea Tu Estilo",
+
+    /* Color lab — zones & plan */
+    "app.lab.zone.siding": "Revestimiento",
+    "app.lab.zone.trim": "Molduras",
+    "app.lab.zone.door": "Puerta Principal",
+    "app.lab.zone.roof": "Techo",
+    "app.lab.zone.shutters": "Persianas",
+    "app.lab.zone.garage": "Garaje",
+    "app.lab.custom": "Personalizado",
+    "app.lab.lrv.bold": "fachada audaz",
+    "app.lab.lrv.balanced": "look equilibrado y clásico",
+    "app.lab.lrv.soft": "look suave — considera una moldura más clara",
+    "app.lab.lrv.prefix": "Contraste LRV revestimiento vs. molduras:",
+    "app.lab.lrv.points": "puntos",
+    "app.lab.myPalette": "Mi paleta exterior",
+    "app.lab.linkCopied": "¡Enlace Copiado!",
+    "app.lab.saveAs": "Guardar como",
+    "app.lab.saveSecond": "Guarda una segunda paleta para comparar",
+    "app.lab.saved": "Guardado ✓",
+    "app.lab.exitCompare": "Salir de la comparación"
+});

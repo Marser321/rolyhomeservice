@@ -1,0 +1,32 @@
+/* Spanish dictionary — terms */
+window.__I18N = window.__I18N || {};
+Object.assign(window.__I18N, {
+  "terms.meta.title": "Términos de Servicio | Roly Home Services Tucker Atlanta",
+  "terms.meta.description": "Términos de Servicio de Roly Home Services. Los términos que rigen las cotizaciones, la programación, la mano de obra y el uso de nuestro sitio web en Tucker y Atlanta, Georgia.",
+  "terms.meta.ogTitle": "Términos de Servicio | Roly Home Services Tucker Atlanta",
+  "terms.meta.ogDescription": "Los términos que rigen las cotizaciones, la programación, la mano de obra y el uso de nuestro sitio web en Tucker y Atlanta, Georgia.",
+  "terms.meta.twTitle": "Términos de Servicio | Roly Home Services",
+  "terms.meta.twDescription": "Los términos que rigen las cotizaciones, la programación, la mano de obra y el uso de nuestro sitio web.",
+  "terms.hero.label": "Legal",
+  "terms.hero.title": "Términos de Servicio",
+  "terms.hero.desc": "Última actualización: 10 de junio de 2026. Estos términos rigen el uso de nuestro sitio web y los servicios que brinda Roly Home Services.",
+  "terms.section1.title": "1. Aceptación de los Términos",
+  "terms.section1.p1": "Al usar este sitio web o solicitar servicios de Roly Home Services, aceptas estos Términos de Servicio. Si no estás de acuerdo, por favor no uses nuestro sitio web ni nuestros servicios.",
+  "terms.section2.title": "2. Servicios",
+  "terms.section2.p1": "Roly Home Services ofrece pintura profesional interior y exterior, acabados de gabinetes, reparaciones de drywall y molduras, preparación de propiedades para la venta y mejoras del hogar relacionadas en Tucker, Atlanta y alrededores. Nos enfocamos en trabajo de calidad y recomendaciones honestas; no te aconsejaremos trabajos innecesarios.",
+  "terms.section3.title": "3. Cotizaciones y Programación",
+  "terms.section3.p1": "Las cotizaciones se brindan sin costo y se basan en el alcance del proyecto conversado durante la visita al sitio. Las cotizaciones pueden ajustarse si cambian el alcance, los materiales o las condiciones. La programación se confirma directamente contigo por teléfono, texto o correo.",
+  "terms.section4.title": "4. Pago",
+  "terms.section4.p1": "Las condiciones de pago, incluidos cualquier depósito y saldo, se acuerdan en tu cotización escrita o acuerdo de proyecto antes de comenzar el trabajo. El pago final vence al completarse el trabajo, salvo que se acuerde otra cosa por escrito.",
+  "terms.section5.title": "5. Garantía de Mano de Obra",
+  "terms.section5.p1": "Respaldamos nuestro trabajo. Los proyectos de pintura elegibles incluyen una garantía escrita de mano de obra según lo establecido en tu acuerdo de proyecto. La garantía cubre la mano de obra y no cubre daños por desgaste normal, asentamiento, filtraciones de humedad o factores fuera de nuestro control.",
+  "terms.section6.title": "6. Consentimiento de Comunicaciones",
+  "terms.section6.p1": "Al proporcionar tu información de contacto, aceptas recibir llamadas, mensajes de texto y correos relacionados con tu proyecto. Puedes darte de baja de los mensajes SMS en cualquier momento respondiendo STOP. Consulta nuestra <a href=\"privacy.html\" style=\"color: var(--color-orange);\">Política de Privacidad</a> para más detalles.",
+  "terms.section7.title": "7. Limitación de Responsabilidad",
+  "terms.section7.p1": "En la máxima medida permitida por la ley, Roly Home Services no es responsable de daños indirectos, incidentales o consecuentes derivados del uso de este sitio web. Nuestra responsabilidad total por cualquier reclamo relacionado con nuestros servicios se limita al monto pagado por el servicio específico en cuestión.",
+  "terms.section8.title": "8. Ley Aplicable",
+  "terms.section8.p1": "Estos términos se rigen por las leyes del Estado de Georgia, sin considerar sus principios sobre conflictos de leyes.",
+  "terms.section9.title": "9. Contáctanos",
+  "terms.section9.p1": "Roly Home Services<br>\n                Tucker, Atlanta y alrededores, Georgia<br>\n                Teléfono o texto: <a href=\"tel:7707690008\" style=\"color: var(--color-orange);\">770-769-0008</a><br>\n                Correo: <a href=\"mailto:rolyhomeservices@gmail.com\" style=\"color: var(--color-orange);\">rolyhomeservices@gmail.com</a>",
+  "terms.back.home": "Volver al Inicio"
+});

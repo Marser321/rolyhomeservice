@@ -6,13 +6,18 @@
 :root {
     /* Color Palette */
     --color-navy-dark: #0A1424;     /* Deep dark navy for footer and hero background overlays */
-    --color-navy: #0F1E36;          /* Dominant navy for primary backgrounds and headers (60%) */
+    --color-navy: #0F1E36;          /* Navy as INK: headings, nav links, emphasis text (60%) */
+    --surface-navy: #0F1E36;        /* Navy as SURFACE: hero/footer/panel backgrounds. Stays
+                                       dark in dark mode while --color-navy flips to light ink. */
+    --surface-navy-dark: #0A1424;
     --color-orange: #FF6B35;        /* Primary accent orange for CTAs and highlights (10%) */
     --color-orange-hover: #E0531F;  /* Hover state for primary accent */
     --color-neutral-bg: #FBFAF7;    /* Warm neutral for main website body background (30%) */
     --color-card-bg: #FFFFFF;       /* Clean white for panels, cards, and modal components */
     --color-light-gray: #F4F6F9;    /* Secondary light background for alternating sections */
     --color-border: #E2E8F0;        /* Subtle divider borders */
+    --tint-navy-soft: rgba(15,30,54,0.04);   /* subtle navy wash for notice panels */
+    --tint-navy-border: rgba(15,30,54,0.08); /* matching hairline border */
     
     /* Text Colors */
     --text-primary: #1C2025;        /* Deep charcoal for body copy (ensures optimal readability) */
@@ -43,6 +48,36 @@
 
     /* Layout constants */
     --header-height: 70px; /* Shrunk sticky header height; consumed by pinned sections */
+}
+
+/* Dark theme — activated by the anti-FOUC head snippet (data-theme) before
+   first paint. Re-declares the palette; component-level fixes for hardcoded
+   colors live in the DARK MODE OVERRIDES block at the end of this file. */
+html[data-theme="dark"] {
+    --color-navy-dark: #060D1A;
+    --color-navy: #DFE6F2;          /* navy-as-ink flips to light for readability */
+    --surface-navy: #101C30;        /* navy surfaces stay dark, distinct from page bg */
+    --surface-navy-dark: #060D1A;
+    --color-orange: #FF7A47;        /* lifted for AA contrast on dark bg */
+    --color-orange-hover: #FF6B35;
+    --color-neutral-bg: #0B1526;
+    --color-card-bg: #142238;
+    --color-light-gray: #0F1B2E;
+    --color-border: #26364F;
+    --tint-navy-soft: rgba(255,255,255,0.05);
+    --tint-navy-border: rgba(255,255,255,0.1);
+
+    --text-primary: #E8ECF3;
+    --text-secondary: #A3B0C2;
+    --text-light: #FFFFFF;
+    --text-orange: #FF7A47;
+
+    --shadow-sm: 0 1px 3px rgba(0,0,0,0.4), 0 1px 2px rgba(0,0,0,0.3);
+    --shadow-md: 0 4px 6px -1px rgba(0,0,0,0.45), 0 2px 4px -1px rgba(0,0,0,0.35);
+    --shadow-lg: 0 10px 15px -3px rgba(0,0,0,0.5), 0 4px 6px -2px rgba(0,0,0,0.4);
+    --shadow-premium: 0 25px 50px -12px rgba(0,0,0,0.6), 0 15px 30px -15px rgba(255,107,53,0.08);
+
+    color-scheme: dark;
 }
 
 /* ==========================================================================
@@ -525,6 +560,74 @@ button:focus-visible, a:focus-visible, input:focus-visible, select:focus-visible
     color: var(--color-orange);
 }
 
+/* ---- Header toggles: language (EN/ES) + light/dark theme ---- */
+.header-toggle {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    background: none;
+    border: 1.5px solid var(--color-border);
+    border-radius: var(--radius-full);
+    color: var(--color-navy);
+    font-family: var(--font-heading);
+    font-weight: 700;
+    font-size: 0.78rem;
+    line-height: 1;
+    padding: 6px 12px;
+    min-height: 34px;
+    cursor: pointer;
+    transition: var(--transition-fast);
+    touch-action: manipulation;
+    white-space: nowrap;
+}
+
+.header-toggle svg {
+    width: 16px;
+    height: 16px;
+    flex-shrink: 0;
+}
+
+.header-toggle:hover {
+    border-color: var(--color-orange);
+    color: var(--color-orange);
+}
+
+.lang-toggle[aria-pressed="true"] {
+    background-color: var(--color-orange);
+    border-color: var(--color-orange);
+    color: var(--text-light);
+}
+
+.lang-toggle[aria-pressed="true"]:hover {
+    background-color: var(--color-orange-hover);
+    color: var(--text-light);
+}
+
+.theme-toggle {
+    width: 34px;
+    padding: 6px;
+}
+
+.theme-toggle .icon-moon {
+    display: none;
+}
+
+html[data-theme="dark"] .theme-toggle .icon-moon {
+    display: block;
+}
+
+html[data-theme="dark"] .theme-toggle .icon-sun {
+    display: none;
+}
+
+@media (max-width: 380px) {
+    /* Very narrow screens: label-only language pill */
+    .lang-toggle svg {
+        display: none;
+    }
+}
+
 .hamburger {
     display: none;
     background: none;
@@ -567,6 +670,17 @@ button:focus-visible, a:focus-visible, input:focus-visible, select:focus-visible
     
     .header-actions .phone-link {
         display: none;
+    }
+
+    /* Keep the language/theme toggles visible next to the hamburger; the
+       hamburger stays rightmost via order, toggles pack against it. */
+    .header-actions {
+        gap: 10px;
+        margin-left: auto;
+    }
+
+    .hamburger {
+        order: 10;
     }
 
     /* Services dropdown: inline accordion inside the mobile menu */
@@ -634,12 +748,12 @@ button:focus-visible, a:focus-visible, input:focus-visible, select:focus-visible
 }
 
 .btn-secondary {
-    background-color: var(--color-navy);
+    background-color: var(--surface-navy);
     color: var(--text-light);
 }
 
 .btn-secondary:hover {
-    background-color: var(--color-navy-dark);
+    background-color: var(--surface-navy-dark);
     transform: translateY(-2px);
     box-shadow: var(--shadow-md);
 }
@@ -655,7 +769,7 @@ button:focus-visible, a:focus-visible, input:focus-visible, select:focus-visible
 }
 
 .btn-outline:hover {
-    background-color: var(--color-navy);
+    background-color: var(--surface-navy);
     color: var(--text-light);
     transform: translateY(-2px);
 }
@@ -679,7 +793,7 @@ button:focus-visible, a:focus-visible, input:focus-visible, select:focus-visible
    HERO SECTIONS
    ========================================================================== */
 .hero {
-    background-color: var(--color-navy);
+    background-color: var(--surface-navy);
     color: var(--text-light);
     position: relative;
     padding: 58px 0 48px;
@@ -849,7 +963,7 @@ button:focus-visible, a:focus-visible, input:focus-visible, select:focus-visible
 
 /* Standalone VSL Hero */
 .vsl-hero {
-    background-color: var(--color-navy);
+    background-color: var(--surface-navy);
     color: var(--text-light);
     padding: 70px 0 90px;
     text-align: center;
@@ -1061,7 +1175,7 @@ button:focus-visible, a:focus-visible, input:focus-visible, select:focus-visible
     position: absolute;
     top: 16px;
     left: 16px;
-    background-color: var(--color-navy);
+    background-color: var(--surface-navy);
     color: var(--text-light);
     padding: 6px 12px;
     border-radius: var(--radius-sm); /* Concentric inner */
@@ -1154,7 +1268,7 @@ button:focus-visible, a:focus-visible, input:focus-visible, select:focus-visible
 }
 
 .service-priority-panel {
-    background-color: var(--color-navy);
+    background-color: var(--surface-navy);
     color: var(--text-light);
     border-radius: var(--radius-lg);
     padding: 30px;
@@ -1248,7 +1362,7 @@ button:focus-visible, a:focus-visible, input:focus-visible, select:focus-visible
    AVATAR PATHWAYS (AUDIENCE SEGMENTATION)
    ========================================================================== */
 .avatar-pathway {
-    background-color: var(--color-navy);
+    background-color: var(--surface-navy);
     color: var(--text-light);
 }
 
@@ -1416,7 +1530,7 @@ button:focus-visible, a:focus-visible, input:focus-visible, select:focus-visible
 }
 
 .form-header-banner {
-    background-color: var(--color-navy);
+    background-color: var(--surface-navy);
     color: var(--text-light);
     padding: 32px;
     text-align: center;
@@ -1686,7 +1800,7 @@ button:focus-visible, a:focus-visible, input:focus-visible, select:focus-visible
     margin-top: 16px;
     padding: 16px;
     border-radius: var(--radius-md);
-    background: var(--color-navy);
+    background: var(--surface-navy);
     color: #FFFFFF;
     text-align: left;
 }
@@ -1885,7 +1999,7 @@ button:focus-visible, a:focus-visible, input:focus-visible, select:focus-visible
    FOOTER SECTION
    ========================================================================== */
 .site-footer {
-    background-color: var(--color-navy-dark);
+    background-color: var(--surface-navy-dark);
     color: rgba(255, 255, 255, 0.8);
     padding: 70px 0 30px;
     font-size: 0.92rem;
@@ -2038,7 +2152,7 @@ button:focus-visible, a:focus-visible, input:focus-visible, select:focus-visible
 
 .color-chip-btn.active {
     border-color: var(--color-orange);
-    background-color: var(--color-navy);
+    background-color: var(--surface-navy);
     color: #FFFFFF;
     box-shadow: 0 4px 12px rgba(15, 30, 54, 0.15);
 }
@@ -2241,7 +2355,7 @@ button:focus-visible, a:focus-visible, input:focus-visible, select:focus-visible
 
 .swatch-btn.active {
     border-color: var(--color-orange);
-    background-color: var(--color-navy);
+    background-color: var(--surface-navy);
     color: #FFFFFF;
 }
 
@@ -2574,7 +2688,7 @@ button:focus-visible, a:focus-visible, input:focus-visible, select:focus-visible
 /* Scrollytelling Section Styling */
 .scroll-story-section {
     position: relative;
-    background-color: var(--color-navy);
+    background-color: var(--surface-navy);
     color: #FFFFFF;
     overflow: visible; /* Need overflow visible for sticky to work */
 }
@@ -2662,7 +2776,7 @@ button:focus-visible, a:focus-visible, input:focus-visible, select:focus-visible
 
 .story-text-pane {
     flex: 0.8;
-    background: var(--color-navy);
+    background: var(--surface-navy);
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -2755,7 +2869,7 @@ button:focus-visible, a:focus-visible, input:focus-visible, select:focus-visible
     height: 14px;
     border-radius: 50%;
     border: 2px solid rgba(255, 255, 255, 0.5);
-    background: var(--color-navy);
+    background: var(--surface-navy);
     cursor: pointer;
     pointer-events: auto;
     padding: 0;
@@ -3235,7 +3349,7 @@ button:focus-visible, a:focus-visible, input:focus-visible, select:focus-visible
 
 /* Navy feature panel (e.g. the pre-sale callout on index) */
 .panel-navy {
-    background-color: var(--color-navy);
+    background-color: var(--surface-navy);
     color: #FFFFFF;
     padding: 40px;
     border-radius: var(--radius-lg);
@@ -3697,4 +3811,82 @@ button:focus-visible, a:focus-visible, input:focus-visible, select:focus-visible
     .ba-nav-next { right: 8px; }
     .ba-thumb { width: 112px; }
     .ba-thumb img { height: 64px; }
+}
+
+/* ==========================================================================
+   DARK MODE OVERRIDES
+   Fixes for hardcoded (non-variable) colors that would break on a dark
+   background. The palette itself flips via the html[data-theme="dark"]
+   variable block at the top of this file.
+   ========================================================================== */
+html[data-theme="dark"] .site-header {
+    background-color: rgba(16, 28, 48, 0.95);
+}
+
+@media (hover: hover) and (pointer: fine) {
+    html[data-theme="dark"] .site-header {
+        background-color: rgba(16, 28, 48, 0.9);
+    }
+}
+
+html[data-theme="dark"] .site-header.shrink {
+    background-color: rgba(16, 28, 48, 0.97);
+}
+
+@media (max-width: 1024px) {
+    html[data-theme="dark"] .nav-menu {
+        background-color: var(--color-card-bg);
+    }
+}
+
+/* White panels/cards -> dark card surface */
+html[data-theme="dark"] .trust-bar,
+html[data-theme="dark"] .step-circle,
+html[data-theme="dark"] .form-control:focus,
+html[data-theme="dark"] .estimate-check-row label,
+html[data-theme="dark"] .option-box,
+html[data-theme="dark"] .upload-file-label:hover,
+html[data-theme="dark"] .color-chip-btn,
+html[data-theme="dark"] .lab-data-card,
+html[data-theme="dark"] .swatch-btn,
+html[data-theme="dark"] .preset-btn,
+html[data-theme="dark"] .about-value-item,
+html[data-theme="dark"] .ba-thumb {
+    background-color: var(--color-card-bg);
+}
+
+html[data-theme="dark"] .house-mode-toggle {
+    background: rgba(20, 34, 56, 0.88);
+}
+
+html[data-theme="dark"] .house-mode-toggle:hover {
+    background: var(--color-card-bg);
+}
+
+/* Light navy tints on light bg -> light-on-dark tints */
+html[data-theme="dark"] .author-initial {
+    background-color: rgba(255, 255, 255, 0.08);
+}
+
+html[data-theme="dark"] .photo-followup-note {
+    background: rgba(255, 255, 255, 0.05);
+}
+
+/* Toggles on the navy VSL funnel header */
+.funnel-header .header-toggle {
+    color: #FFFFFF;
+    border-color: rgba(255, 255, 255, 0.35);
+}
+
+.funnel-header .header-toggle:hover {
+    color: var(--color-orange);
+    border-color: var(--color-orange);
+}
+
+/* Toggles on the minimal 404 page (no site header) */
+.nf-toggles {
+    position: fixed;
+    top: 16px;
+    right: 16px;
+    z-index: 10;
 }

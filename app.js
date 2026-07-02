@@ -1,5 +1,9 @@
 document.addEventListener('DOMContentLoaded', () => {
 
+    // i18n helper — resolves via i18n/i18n.js when loaded; falls back to the
+    // inline English string (e.g. on pages without dictionaries).
+    const t = (key, fallback) => (window.rolyI18n ? window.rolyI18n.t(key, fallback) : fallback);
+
     // ==========================================================================
     // 0. CONFIG — GoHighLevel inbound webhook (lead capture)
     //    Paste the GHL "Inbound Webhook" trigger URL here to go live. While
@@ -235,60 +239,60 @@ document.addEventListener('DOMContentLoaded', () => {
             panel.innerHTML = `
                 <div class="estimate-panel-header">
                     <div>
-                        <span class="section-label">Guided Planning Range</span>
-                        <h5>Help us build a useful first estimate</h5>
+                        <span class="section-label" data-i18n="app.scope.label">Guided Planning Range</span>
+                        <h5 data-i18n="app.scope.title">Help us build a useful first estimate</h5>
                     </div>
-                    <span class="estimate-pill">Approximate</span>
+                    <span class="estimate-pill" data-i18n="app.scope.pill">Approximate</span>
                 </div>
-                <p class="estimate-panel-copy">These details create a planning range only. Your final quote is confirmed after photos, scope review, or an on-site visit.</p>
+                <p class="estimate-panel-copy" data-i18n="app.scope.copy">These details create a planning range only. Your final quote is confirmed after photos, scope review, or an on-site visit.</p>
 
                 <div class="scope-fields" data-scope-fields="interior">
                     <div class="grid-2">
                         <div class="form-group">
-                            <label class="form-label" for="scopeInteriorRooms">Rooms or areas</label>
+                            <label class="form-label" for="scopeInteriorRooms" data-i18n="app.scope.rooms">Rooms or areas</label>
                             <input class="form-control" id="scopeInteriorRooms" name="scopeInteriorRooms" type="number" inputmode="numeric" min="1" max="12" value="2">
                         </div>
                         <div class="form-group">
-                            <label class="form-label" for="scopeWallCondition">Wall condition</label>
+                            <label class="form-label" for="scopeWallCondition" data-i18n="app.scope.wall.label">Wall condition</label>
                             <select class="form-control" id="scopeWallCondition" name="scopeWallCondition">
-                                <option value="clean">Mostly clean / color change</option>
-                                <option value="average" selected>Average scuffs and touch-ups</option>
-                                <option value="repairs">Visible drywall or texture repairs</option>
+                                <option value="clean" data-i18n="app.scope.wall.clean">Mostly clean / color change</option>
+                                <option value="average" selected data-i18n="app.scope.wall.average">Average scuffs and touch-ups</option>
+                                <option value="repairs" data-i18n="app.scope.wall.repairs">Visible drywall or texture repairs</option>
                             </select>
                         </div>
                     </div>
                     <div class="estimate-check-row" aria-label="Interior add-ons">
-                        <label><input type="checkbox" id="scopeInteriorTrim" name="scopeInteriorTrim"> Include trim/baseboards</label>
-                        <label><input type="checkbox" id="scopeInteriorCeilings" name="scopeInteriorCeilings"> Include ceilings</label>
+                        <label><input type="checkbox" id="scopeInteriorTrim" name="scopeInteriorTrim"> <span data-i18n="app.scope.trim">Include trim/baseboards</span></label>
+                        <label><input type="checkbox" id="scopeInteriorCeilings" name="scopeInteriorCeilings"> <span data-i18n="app.scope.ceilings">Include ceilings</span></label>
                     </div>
                 </div>
 
                 <div class="scope-fields" data-scope-fields="exterior">
                     <div class="grid-2">
                         <div class="form-group">
-                            <label class="form-label" for="scopeExteriorSize">Home size</label>
+                            <label class="form-label" for="scopeExteriorSize" data-i18n="app.scope.extSize.label">Home size</label>
                             <select class="form-control" id="scopeExteriorSize" name="scopeExteriorSize">
-                                <option value="small">Small / single section</option>
-                                <option value="medium" selected>Average home</option>
-                                <option value="large">Large home</option>
-                                <option value="estate">Large or complex exterior</option>
+                                <option value="small" data-i18n="app.scope.extSize.small">Small / single section</option>
+                                <option value="medium" selected data-i18n="app.scope.extSize.medium">Average home</option>
+                                <option value="large" data-i18n="app.scope.extSize.large">Large home</option>
+                                <option value="estate" data-i18n="app.scope.extSize.estate">Large or complex exterior</option>
                             </select>
                         </div>
                         <div class="form-group">
-                            <label class="form-label" for="scopeExteriorStories">Stories</label>
+                            <label class="form-label" for="scopeExteriorStories" data-i18n="app.scope.stories.label">Stories</label>
                             <select class="form-control" id="scopeExteriorStories" name="scopeExteriorStories">
-                                <option value="one">1 story</option>
-                                <option value="two" selected>2 stories</option>
-                                <option value="three">3 stories / high access</option>
+                                <option value="one" data-i18n="app.scope.stories.one">1 story</option>
+                                <option value="two" selected data-i18n="app.scope.stories.two">2 stories</option>
+                                <option value="three" data-i18n="app.scope.stories.three">3 stories / high access</option>
                             </select>
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="form-label" for="scopeExteriorCondition">Exterior condition</label>
+                        <label class="form-label" for="scopeExteriorCondition" data-i18n="app.scope.extCond.label">Exterior condition</label>
                         <select class="form-control" id="scopeExteriorCondition" name="scopeExteriorCondition">
-                            <option value="clean">Mostly clean</option>
-                            <option value="weathered" selected>Weathered paint or prep needed</option>
-                            <option value="repair">Peeling paint, repair, or heavy prep</option>
+                            <option value="clean" data-i18n="app.scope.extCond.clean">Mostly clean</option>
+                            <option value="weathered" selected data-i18n="app.scope.extCond.weathered">Weathered paint or prep needed</option>
+                            <option value="repair" data-i18n="app.scope.extCond.repair">Peeling paint, repair, or heavy prep</option>
                         </select>
                     </div>
                 </div>
@@ -296,38 +300,38 @@ document.addEventListener('DOMContentLoaded', () => {
                 <div class="scope-fields" data-scope-fields="cabinets">
                     <div class="grid-2">
                         <div class="form-group">
-                            <label class="form-label" for="scopeCabinetCount">Doors and drawers</label>
+                            <label class="form-label" for="scopeCabinetCount" data-i18n="app.scope.cabCount.label">Doors and drawers</label>
                             <select class="form-control" id="scopeCabinetCount" name="scopeCabinetCount">
-                                <option value="small">Under 15</option>
+                                <option value="small" data-i18n="app.scope.cabCount.small">Under 15</option>
                                 <option value="medium" selected>15-25</option>
                                 <option value="large">26-40</option>
                                 <option value="estate">40+</option>
                             </select>
                         </div>
                         <div class="form-group">
-                            <label class="form-label" for="scopeCabinetCondition">Cabinet condition</label>
+                            <label class="form-label" for="scopeCabinetCondition" data-i18n="app.scope.cabCond.label">Cabinet condition</label>
                             <select class="form-control" id="scopeCabinetCondition" name="scopeCabinetCondition">
-                                <option value="clean">Clean, ready to prep</option>
-                                <option value="worn" selected>Worn finish / standard prep</option>
-                                <option value="heavy">Heavy grain, damage, or extra prep</option>
+                                <option value="clean" data-i18n="app.scope.cabCond.clean">Clean, ready to prep</option>
+                                <option value="worn" selected data-i18n="app.scope.cabCond.worn">Worn finish / standard prep</option>
+                                <option value="heavy" data-i18n="app.scope.cabCond.heavy">Heavy grain, damage, or extra prep</option>
                             </select>
                         </div>
                     </div>
                 </div>
 
                 <div class="estimate-addons">
-                    <p class="form-label">Optional restoration &amp; finishing add-ons</p>
+                    <p class="form-label" data-i18n="app.scope.addons.label">Optional restoration &amp; finishing add-ons</p>
                     <div class="estimate-check-row">
-                        <label><input type="checkbox" id="addOnDrywall" name="addOnDrywall" value="drywall"> Drywall, trim &amp; repairs</label>
-                        <label><input type="checkbox" id="addOnPressureWashing" name="addOnPressureWashing" value="pressureWashing"> Pressure washing / exterior prep</label>
-                        <label><input type="checkbox" id="addOnDeckFence" name="addOnDeckFence" value="deckFence"> Deck or fence staining</label>
+                        <label><input type="checkbox" id="addOnDrywall" name="addOnDrywall" value="drywall"> <span data-i18n="app.scope.addons.drywall">Drywall, trim &amp; repairs</span></label>
+                        <label><input type="checkbox" id="addOnPressureWashing" name="addOnPressureWashing" value="pressureWashing"> <span data-i18n="app.scope.addons.pressure">Pressure washing / exterior prep</span></label>
+                        <label><input type="checkbox" id="addOnDeckFence" name="addOnDeckFence" value="deckFence"> <span data-i18n="app.scope.addons.deck">Deck or fence staining</span></label>
                     </div>
                 </div>
 
                 <div class="estimate-range-preview" id="estimateRangePreview" aria-live="polite">
-                    <span>Planning range</span>
-                    <strong>Choose a service to preview</strong>
-                    <small>Not a final quote. Roly confirms scope before pricing.</small>
+                    <span>${t('app.est.rangeLabel', 'Planning range')}</span>
+                    <strong>${t('app.est.choose', 'Choose a service to preview')}</strong>
+                    <small>${t('app.est.notFinal', 'Not a final quote. Roly confirms scope before pricing.')}</small>
                 </div>
             `;
             descriptionGroup.parentNode.insertBefore(panel, descriptionGroup);
@@ -413,17 +417,17 @@ document.addEventListener('DOMContentLoaded', () => {
             if (!preview) return;
             if (!leadData.projectType) {
                 preview.innerHTML = `
-                    <span>Planning range</span>
-                    <strong>Choose a service to preview</strong>
-                    <small>Not a final quote. Roly confirms scope before pricing.</small>
+                    <span>${t('app.est.rangeLabel', 'Planning range')}</span>
+                    <strong>${t('app.est.choose', 'Choose a service to preview')}</strong>
+                    <small>${t('app.est.notFinal', 'Not a final quote. Roly confirms scope before pricing.')}</small>
                 `;
                 return;
             }
             const estimate = calculateGuidedEstimate();
             preview.innerHTML = `
-                <span>Planning range</span>
+                <span>${t('app.est.rangeLabel', 'Planning range')}</span>
                 <strong>${formatCurrency(estimate.low)} - ${formatCurrency(estimate.high)}</strong>
-                <small>Approximate only. Final pricing is confirmed after photos, review, or visit.</small>
+                <small>${t('app.est.approx', 'Approximate only. Final pricing is confirmed after photos, review, or visit.')}</small>
             `;
         };
 
@@ -442,8 +446,8 @@ document.addEventListener('DOMContentLoaded', () => {
             const uploadGroup = photoInput.closest('.form-group');
             if (uploadGroup) {
                 uploadGroup.innerHTML = `
-                    <label class="form-label">Project Photos</label>
-                    <div class="photo-followup-note">
+                    <label class="form-label" data-i18n="app.form.photosLabel">Project Photos</label>
+                    <div class="photo-followup-note" data-i18n="app.form.photosNote">
                         Photos are requested by text after you submit, so Roly can review the right surfaces before confirming the estimate.
                     </div>
                 `;
@@ -460,12 +464,12 @@ document.addEventListener('DOMContentLoaded', () => {
         if (photoInput && fileLabelText) {
             photoInput.addEventListener('change', (e) => {
                 if (e.target.files.length > 0) {
-                    fileLabelText.textContent = `Attached: ${e.target.files[0].name}`;
+                    fileLabelText.textContent = t('app.form.attached', 'Attached:') + ' ' + e.target.files[0].name;
                     fileLabelText.style.color = 'var(--color-orange)';
                     leadData.photoAttached = true;
                     leadData.photoStatus = 'attached_pending_file_endpoint';
                 } else {
-                    fileLabelText.textContent = "Upload project photos (optional)";
+                    fileLabelText.textContent = t('app.form.uploadOptional', 'Upload project photos (optional)');
                     fileLabelText.style.color = 'var(--text-secondary)';
                     leadData.photoAttached = false;
                     leadData.photoStatus = GHL_FILE_UPLOAD_ENABLED ? 'not_attached' : 'requested_after_submit';
@@ -606,11 +610,11 @@ document.addEventListener('DOMContentLoaded', () => {
                 backBtn.style.visibility = step === 1 ? 'hidden' : 'visible';
 
                 if (step === totalSteps) {
-                    nextBtn.innerHTML = `Send My Estimate Request <svg style="width: 18px; height:18px;" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path></svg>`;
+                    nextBtn.innerHTML = `${t('app.form.send', 'Send My Estimate Request')} <svg style="width: 18px; height:18px;" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path></svg>`;
                     nextBtn.style.backgroundColor = 'var(--color-orange)';
                 } else {
-                    nextBtn.innerHTML = `Next Step <svg style="width:16px; height:16px;" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 5l7 7-7 7"></path></svg>`;
-                    nextBtn.style.backgroundColor = 'var(--color-navy)';
+                    nextBtn.innerHTML = `${t('common.form.next', 'Next Step')} <svg style="width:16px; height:16px;" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 5l7 7-7 7"></path></svg>`;
+                    nextBtn.style.backgroundColor = 'var(--surface-navy)';
                 }
 
                 updateProgressBar(step);
@@ -649,14 +653,14 @@ document.addEventListener('DOMContentLoaded', () => {
             clearSlideError(step);
             if (step === 1) {
                 if (!leadData.projectType) {
-                    setSlideError(step, 'Choose the main service so we can guide the estimate.');
+                    setSlideError(step, t('app.val.service', 'Choose the main service so we can guide the estimate.'));
                     slides[0]?.querySelector('.option-box')?.focus();
                     triggerShakeError();
                     return false;
                 }
             } else if (step === 2) {
                 if (!leadData.avatarContext) {
-                    setSlideError(step, 'Choose the goal that best matches this project.');
+                    setSlideError(step, t('app.val.goal', 'Choose the goal that best matches this project.'));
                     slides[1]?.querySelector('.option-box')?.focus();
                     triggerShakeError();
                     return false;
@@ -666,12 +670,12 @@ document.addEventListener('DOMContentLoaded', () => {
                 const address = document.getElementById('projectAddress');
                 
                 if (!/^\d{5}$/.test(zip.value.trim())) {
-                    triggerShakeError(zip, 'Enter a 5-digit ZIP code.');
+                    triggerShakeError(zip, t('app.val.zip', 'Enter a 5-digit ZIP code.'));
                     return false;
                 }
                 clearFieldError(zip);
                 if (!address.value.trim()) {
-                    triggerShakeError(address, 'Enter the project street address.');
+                    triggerShakeError(address, t('app.val.address', 'Enter the project street address.'));
                     return false;
                 }
                 clearFieldError(address);
@@ -683,17 +687,17 @@ document.addEventListener('DOMContentLoaded', () => {
                 const email = document.getElementById('clientEmail');
                 
                 if (!name.value.trim()) {
-                    triggerShakeError(name, 'Enter the name our project manager should ask for.');
+                    triggerShakeError(name, t('app.val.name', 'Enter the name our project manager should ask for.'));
                     return false;
                 }
                 clearFieldError(name);
                 if (!phone.value.trim() || phone.value.trim().length < 10) {
-                    triggerShakeError(phone, 'Enter a phone number with area code.');
+                    triggerShakeError(phone, t('app.val.phone', 'Enter a phone number with area code.'));
                     return false;
                 }
                 clearFieldError(phone);
                 if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.value.trim())) {
-                    triggerShakeError(email, 'Enter a valid email address.');
+                    triggerShakeError(email, t('app.val.email', 'Enter a valid email address.'));
                     return false;
                 }
                 clearFieldError(email);
@@ -784,9 +788,9 @@ document.addEventListener('DOMContentLoaded', () => {
                 const rangeCard = document.createElement('div');
                 rangeCard.className = 'success-estimate-range';
                 rangeCard.innerHTML = `
-                    <span>Your guided planning range</span>
+                    <span>${t('app.success.range', 'Your guided planning range')}</span>
                     <strong>${formatCurrency(leadData.estimateRangeLow)} - ${formatCurrency(leadData.estimateRangeHigh)}</strong>
-                    <p>This is a non-binding planning range. Roly confirms the final quote after reviewing photos, access, repairs, materials, and schedule.</p>
+                    <p>${t('app.success.note', 'This is a non-binding planning range. Roly confirms the final quote after reviewing photos, access, repairs, materials, and schedule.')}</p>
                 `;
                 const successParagraph = successCard.querySelector('p');
                 if (successParagraph) successParagraph.insertAdjacentElement('afterend', rangeCard);
@@ -835,6 +839,14 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         goToStep(1);
+
+        // Re-render the strings that live in JS templates when the visitor
+        // flips the language toggle (static data-i18n nodes are handled by
+        // the i18n runtime itself).
+        document.addEventListener('roly:langchange', () => {
+            updateEstimatePreview();
+            goToStep(currentStep);
+        });
     }
 
     // Gallery filters: keep the full project library on one page while making
@@ -951,8 +963,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
             // Update Glassmorphic Image Overlay Dashboard Texts
             if (dbTitle && dbRating && dashboardMetadata[targetId]) {
-                dbTitle.textContent = dashboardMetadata[targetId].title;
-                dbRating.textContent = dashboardMetadata[targetId].rating;
+                dbTitle.textContent = t('app.lab.' + targetId + '.title', dashboardMetadata[targetId].title);
+                dbRating.textContent = t('app.lab.' + targetId + '.rating', dashboardMetadata[targetId].rating);
             }
 
             // Resize the container to fit the newly active card.
@@ -1076,9 +1088,9 @@ document.addEventListener('DOMContentLoaded', () => {
             const btn = activeSwatch(zone);
             return {
                 zone,
-                label: ZONE_LABELS[zone],
+                label: t('app.lab.zone.' + zone, ZONE_LABELS[zone]),
                 color: btn ? btn.getAttribute('data-color') : '#888888',
-                name: btn ? btn.getAttribute('data-name') : 'Custom',
+                name: btn ? btn.getAttribute('data-name') : t('app.lab.custom', 'Custom'),
                 lrv: btn && btn.hasAttribute('data-lrv') ? parseInt(btn.getAttribute('data-lrv'), 10) : null
             };
         });
@@ -1114,15 +1126,16 @@ document.addEventListener('DOMContentLoaded', () => {
             if (verdict && siding.lrv !== null && trim.lrv !== null) {
                 const diff = Math.abs(siding.lrv - trim.lrv);
                 let note;
-                if (diff >= 40) note = 'bold curb appeal';
-                else if (diff >= 20) note = 'balanced, classic look';
-                else note = 'soft look — consider a lighter trim';
-                verdict.innerHTML = 'Siding vs. trim LRV contrast: <strong>' + diff + ' points</strong> — ' + note;
+                if (diff >= 40) note = t('app.lab.lrv.bold', 'bold curb appeal');
+                else if (diff >= 20) note = t('app.lab.lrv.balanced', 'balanced, classic look');
+                else note = t('app.lab.lrv.soft', 'soft look — consider a lighter trim');
+                verdict.innerHTML = t('app.lab.lrv.prefix', 'Siding vs. trim LRV contrast:') + ' <strong>' + diff + ' ' + t('app.lab.lrv.points', 'points') + '</strong> — ' + note;
             }
         };
 
         renderColorPlan();
         document.addEventListener('roly:housecolor', renderColorPlan);
+        document.addEventListener('roly:langchange', renderColorPlan);
 
         // --- "Get an Estimate with This Palette": attach the palette to the
         // lead, prefill the visible description, pre-select Exterior Painting.
@@ -1132,7 +1145,7 @@ document.addEventListener('DOMContentLoaded', () => {
             estimateBtn.addEventListener('click', () => {
                 selectedPalette = paletteSummary() + estimateExtras();
                 const desc = document.getElementById('projectDesc');
-                if (desc) desc.value = 'My exterior palette — ' + selectedPalette;
+                if (desc) desc.value = t('app.lab.myPalette', 'My exterior palette') + ' — ' + selectedPalette;
                 if (formContainer) {
                     const exteriorBox = formContainer.querySelector('.option-box[data-value="exterior"]');
                     if (exteriorBox) exteriorBox.click();
@@ -1164,7 +1177,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     .join('-');
                 const url = location.origin + location.pathname + '?palette=' + tokens + shareExtras() + pageAnchor;
                 const done = () => {
-                    shareBtn.textContent = 'Link Copied!';
+                    shareBtn.textContent = t('app.lab.linkCopied', 'Link Copied!');
                     setTimeout(() => { shareBtn.textContent = defaultLabel; }, 2000);
                 };
                 if (navigator.clipboard && navigator.clipboard.writeText) {
@@ -1327,9 +1340,9 @@ document.addEventListener('DOMContentLoaded', () => {
                 if (!saved) return null;
                 return HOUSE_ZONES.map(zone => ({
                     zone,
-                    label: ZONE_LABELS[zone],
+                    label: t('app.lab.zone.' + zone, ZONE_LABELS[zone]),
                     color: saved.zones[zone] ? saved.zones[zone].hex : '#888888',
-                    name: saved.zones[zone] ? saved.zones[zone].name : 'Custom'
+                    name: saved.zones[zone] ? saved.zones[zone].name : t('app.lab.custom', 'Custom')
                 }));
             };
 
@@ -1360,13 +1373,13 @@ document.addEventListener('DOMContentLoaded', () => {
                 ['a', 'b'].forEach(slot => {
                     const btn = saveBtns[slot];
                     if (!btn || btn.classList.contains('is-flashing')) return;
-                    btn.innerHTML = slotDots(slot) + 'Save as ' + slot.toUpperCase();
+                    btn.innerHTML = slotDots(slot) + t('app.lab.saveAs', 'Save as') + ' ' + slot.toUpperCase();
                 });
                 const both = !!(savedPalettes.a && savedPalettes.b);
                 if (compareToggle) {
                     compareToggle.disabled = !both;
                     if (both) compareToggle.removeAttribute('title');
-                    else compareToggle.setAttribute('title', 'Save a second palette to compare');
+                    else compareToggle.setAttribute('title', t('app.lab.saveSecond', 'Save a second palette to compare'));
                 }
                 if (compareOverlay) {
                     compareOverlay.querySelectorAll('[data-compare-view]').forEach(btn => {
@@ -1387,7 +1400,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 const btn = saveBtns[slot];
                 if (btn) {
                     btn.classList.add('is-flashing');
-                    btn.textContent = 'Saved ✓';
+                    btn.textContent = t('app.lab.saved', 'Saved ✓');
                     setTimeout(() => {
                         btn.classList.remove('is-flashing');
                         renderCompareUI();
@@ -1434,7 +1447,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 el.innerHTML =
                     '<button type="button" class="compare-seg" data-compare-view="a"></button>' +
                     '<button type="button" class="compare-seg" data-compare-view="b"></button>' +
-                    '<button type="button" class="compare-close" aria-label="Exit comparison">&#215;</button>';
+                    '<button type="button" class="compare-close" aria-label="' + t('app.lab.exitCompare', 'Exit comparison') + '">&#215;</button>';
                 el.querySelectorAll('[data-compare-view]').forEach(btn => {
                     btn.addEventListener('click', () => applySlot(btn.getAttribute('data-compare-view')));
                 });

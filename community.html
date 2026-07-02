@@ -3,19 +3,32 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Community Partners Program | Roly Home Services Atlanta</title>
-    <meta name="description" content="Roly Home Services supports our local schools and communities. Learn about our local partnerships in Tucker, Atlanta, and surrounding areas.">
+    <script>
+    (function () {
+      try {
+        var t = localStorage.getItem('roly-theme');
+        if (t !== 'dark' && t !== 'light') t = matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+        document.documentElement.setAttribute('data-theme', t);
+        var l = localStorage.getItem('roly-lang');
+        if (l === 'es') document.documentElement.lang = 'es';
+      } catch (e) { document.documentElement.setAttribute('data-theme', 'light'); }
+    })();
+    </script>
+    <meta name="theme-color" content="#FBFAF7" media="(prefers-color-scheme: light)">
+    <meta name="theme-color" content="#0B1526" media="(prefers-color-scheme: dark)">
+    <title data-i18n="community.meta.title">Community Partners Program | Roly Home Services Atlanta</title>
+    <meta name="description" content="Roly Home Services supports our local schools and communities. Learn about our local partnerships in Tucker, Atlanta, and surrounding areas." data-i18n-attr="content:community.meta.desc">
     <link rel="canonical" href="https://rolyhomeservices.com/community.html">
     <meta property="og:type" content="website">
     <meta property="og:site_name" content="Roly Home Services">
     <meta property="og:locale" content="en_US">
     <meta property="og:url" content="https://rolyhomeservices.com/community.html">
-    <meta property="og:title" content="Community Partners Program | Roly Home Services Atlanta">
-    <meta property="og:description" content="Roly Home Services supports our local schools and communities. Learn about our local partnerships in Tucker, Atlanta, and surrounding areas.">
+    <meta property="og:title" content="Community Partners Program | Roly Home Services Atlanta" data-i18n-attr="content:community.meta.ogTitle">
+    <meta property="og:description" content="Roly Home Services supports our local schools and communities. Learn about our local partnerships in Tucker, Atlanta, and surrounding areas." data-i18n-attr="content:community.meta.ogDesc">
     <meta property="og:image" content="https://rolyhomeservices.com/og_cover.jpg">
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Community Partners Program | Roly Home Services Atlanta">
-    <meta name="twitter:description" content="Roly Home Services supports our local schools and communities. Learn about our local partnerships in Tucker, Atlanta, and surrounding areas.">
+    <meta name="twitter:title" content="Community Partners Program | Roly Home Services Atlanta" data-i18n-attr="content:community.meta.twTitle">
+    <meta name="twitter:description" content="Roly Home Services supports our local schools and communities. Learn about our local partnerships in Tucker, Atlanta, and surrounding areas." data-i18n-attr="content:community.meta.twDesc">
     <meta name="twitter:image" content="https://rolyhomeservices.com/og_cover.jpg">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -27,9 +40,13 @@
     <script defer src="https://cdn.jsdelivr.net/npm/lenis@1.3.23/dist/lenis.min.js"></script>
     <script defer src="app.js"></script>
     <script defer src="motion.js"></script>
+    <script defer src="i18n/es/common.js"></script>
+    <script defer src="i18n/es/app-strings.js"></script>
+    <script defer src="i18n/es/community.js"></script>
+    <script defer src="i18n/i18n.js"></script>
     <style>
         .community-hero {
-            background-color: var(--color-navy);
+            background-color: var(--surface-navy);
             background-image: linear-gradient(rgba(15,30,54,0.85), rgba(15,30,54,0.88)), url('assets/contextual/community-hero-mural.webp');
             background-size: cover;
             background-position: center;
@@ -70,7 +87,7 @@
     <link rel="apple-touch-icon" href="assets/brand/apple-touch-icon.png">
 </head>
 <body>
-    <a class="skip-link" href="#main-content">Skip to main content</a>
+    <a class="skip-link" href="#main-content" data-i18n="common.skip">Skip to main content</a>
 
     <!-- ==========================================================================
        SITE HEADER
@@ -81,39 +98,47 @@
                 <span class="logo-mark" aria-hidden="true"><img src="assets/brand/logo-roly-mark.webp" alt="Roly Home Services" class="brand-logo-img"></span>
                 <div>
                     <h1 class="logo-text">Roly<span> Home Services</span></h1>
-                    <p class="logo-slogan">Your Property Best Friend</p>
+                    <p class="logo-slogan" data-i18n="common.logo.slogan">Your Property Best Friend</p>
                 </div>
             </a>
 
-            <button class="hamburger" id="hamburgerMenu" aria-label="Toggle navigation">
+            <button class="hamburger" id="hamburgerMenu" aria-label="Toggle navigation" data-i18n-attr="aria-label:common.nav.hamburgerAria">
                 <span></span>
                 <span></span>
                 <span></span>
             </button>
 
             <ul class="nav-menu" id="navMenu">
-                <li><a href="index.html" class="nav-link">Home</a></li>
+                <li><a href="index.html" class="nav-link" data-i18n="common.nav.home">Home</a></li>
                 <li class="nav-item nav-has-dropdown">
-                    <a href="services.html" class="nav-link">Services</a>
-                    <button class="nav-dropdown-toggle" aria-expanded="false" aria-controls="servicesSubmenu" aria-label="Toggle Services menu">
+                    <a href="services.html" class="nav-link" data-i18n="common.nav.services">Services</a>
+                    <button class="nav-dropdown-toggle" aria-expanded="false" aria-controls="servicesSubmenu" aria-label="Toggle Services menu" data-i18n-attr="aria-label:common.nav.servicesMenuAria">
                         <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 9l-7 7-7-7"></path></svg>
                     </button>
                     <ul class="nav-submenu" id="servicesSubmenu">
-                        <li><a href="services.html" class="nav-link">All Services</a></li>
-                        <li><a href="painting.html" class="nav-link">Painting</a></li>
-                        <li><a href="presale.html" class="nav-link">Pre-Sale Home Preparation</a></li>
-                        <li><a href="renovations.html" class="nav-link">Renovations &amp; Repairs</a></li>
-                        <li><a href="partners.html" class="nav-link">Real Estate Partners</a></li>
+                        <li><a href="services.html" class="nav-link" data-i18n="common.nav.allServices">All Services</a></li>
+                        <li><a href="painting.html" class="nav-link" data-i18n="common.nav.painting">Painting</a></li>
+                        <li><a href="presale.html" class="nav-link" data-i18n="common.nav.presale">Pre-Sale Home Preparation</a></li>
+                        <li><a href="renovations.html" class="nav-link" data-i18n="common.nav.renovations">Renovations &amp; Repairs</a></li>
+                        <li><a href="partners.html" class="nav-link" data-i18n="common.nav.partners">Real Estate Partners</a></li>
                     </ul>
                 </li>
-                <li><a href="gallery.html" class="nav-link">Gallery</a></li>
-                <li><a href="reviews.html" class="nav-link">Reviews</a></li>
-                <li><a href="about.html" class="nav-link">About</a></li>
-                <li><a href="contact.html" class="nav-link">Contact</a></li>
-                <li><a href="#get-started" class="btn btn-primary btn-sm">Get Free Estimate</a></li>
+                <li><a href="gallery.html" class="nav-link" data-i18n="common.nav.gallery">Gallery</a></li>
+                <li><a href="reviews.html" class="nav-link" data-i18n="common.nav.reviews">Reviews</a></li>
+                <li><a href="about.html" class="nav-link" data-i18n="common.nav.about">About</a></li>
+                <li><a href="contact.html" class="nav-link" data-i18n="common.nav.contact">Contact</a></li>
+                <li><a href="#get-started" class="btn btn-primary btn-sm" data-i18n="common.nav.cta">Get Free Estimate</a></li>
             </ul>
 
             <div class="header-actions">
+                <button type="button" class="header-toggle lang-toggle" aria-pressed="false" aria-label="Switch to Spanish" data-i18n-attr="aria-label:common.toggle.lang">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true"><circle cx="12" cy="12" r="9" stroke-width="2"/><path stroke-width="2" d="M3 12h18M12 3c2.5 2.6 3.8 5.7 3.8 9s-1.3 6.4-3.8 9c-2.5-2.6-3.8-5.7-3.8-9s1.3-6.4 3.8-9z"/></svg>
+                    <span class="lang-toggle-label">ES</span>
+                </button>
+                <button type="button" class="header-toggle theme-toggle" aria-pressed="false" aria-label="Toggle dark mode" data-i18n-attr="aria-label:common.toggle.theme">
+                    <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true"><circle cx="12" cy="12" r="4" stroke-width="2"/><path stroke-width="2" stroke-linecap="round" d="M12 2v2m0 16v2M4.9 4.9l1.4 1.4m11.4 11.4 1.4 1.4M2 12h2m16 0h2M4.9 19.1l1.4-1.4m11.4-11.4 1.4-1.4"/></svg>
+                    <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true"><path stroke-width="2" stroke-linejoin="round" d="M21 12.8A9 9 0 1 1 11.2 3 7 7 0 0 0 21 12.8z"/></svg>
+                </button>
                 <a href="tel:7707690008" class="phone-link">
                     <svg style="width: 18px; height:18px;" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.94.725l.548 2.2a1 1 0 01-.321.988l-1.305.98a10.582 10.582 0 004.872 4.872l.98-1.305a1 1 0 01.988-.321l2.2.548a1 1 0 01.725.94V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path>
@@ -129,9 +154,9 @@
        ========================================================================== -->
     <section id="main-content" class="community-hero">
         <div class="container" style="max-width: 800px;">
-            <span class="community-badge">Roly Cares Program</span>
-            <h2 class="hero-title" style="font-size: 2.8rem; margin-bottom: 20px;">Supporting Our Local Schools & Neighborhoods</h2>
-            <p style="font-size: 1.1rem; color: rgba(255,255,255,0.8); line-height: 1.6;">
+            <span class="community-badge" data-i18n="community.hero.badge">Roly Cares Program</span>
+            <h2 class="hero-title" style="font-size: 2.8rem; margin-bottom: 20px;" data-i18n="community.hero.title">Supporting Our Local Schools & Neighborhoods</h2>
+            <p style="font-size: 1.1rem; color: rgba(255,255,255,0.8); line-height: 1.6;" data-i18n="community.hero.desc">
                 At Roly Home Services, we believe that a business should be an active, positive part of its local community. That's why we partner with schools, neighborhood organizations, and local groups in Tucker, Atlanta, and nearby communities to help fund local educational programs.
             </p>
         </div>
@@ -143,20 +168,20 @@
     <section class="section reveal-on-scroll">
         <div class="container grid-2" style="align-items: center;">
             <div>
-                <span class="section-label">How We Give Back</span>
-                <h3 style="font-size: 2rem; margin-bottom: 16px;">Building Better Properties, Supporting Better Education</h3>
-                <p class="mb-3" style="color: var(--text-secondary);">
+                <span class="section-label" data-i18n="community.give.label">How We Give Back</span>
+                <h3 style="font-size: 2rem; margin-bottom: 16px;" data-i18n="community.give.title">Building Better Properties, Supporting Better Education</h3>
+                <p class="mb-3" style="color: var(--text-secondary);" data-i18n-html="community.give.desc">
                     When we execute local neighborhood campaigns, we work hand-in-hand with parent-teacher associations, local schools, and community leaders. It is our way of showing that we are not just another painting contractor, but your true <strong>Property Best Friend</strong>.
                 </p>
                 <div style="background-color: var(--color-light-gray); padding: 20px; border-left: 4px solid var(--color-orange); border-radius: 0 var(--radius-md) var(--radius-md) 0;">
-                    <p style="font-style: italic; font-weight: 500; font-size: 0.95rem; color: var(--color-navy);">
+                    <p style="font-style: italic; font-weight: 500; font-size: 0.95rem; color: var(--color-navy);" data-i18n="community.give.quote">
                         "A home is where families grow, and schools are where our children learn. Supporting both is at the very core of Roly Home Services' values."
                     </p>
                 </div>
             </div>
             
             <div style="border-radius: var(--radius-lg); overflow: hidden; box-shadow: var(--shadow-lg);">
-                <img loading="lazy" decoding="async" src="community-mural-abstract.webp" alt="Local community support graphic" width="1600" height="1200" style="width:100%; height:320px; object-fit: cover;">
+                <img loading="lazy" decoding="async" src="community-mural-abstract.webp" alt="Local community support graphic" data-i18n-attr="alt:community.give.imgAlt" width="1600" height="1200" style="width:100%; height:320px; object-fit: cover;">
             </div>
         </div>
     </section>
@@ -167,34 +192,34 @@
     <section class="section-alt reveal-on-scroll" id="get-started">
         <div class="container">
             <div class="section-title-wrapper" style="margin-bottom: 36px;">
-                <span class="section-label">Local Campaign Estimate</span>
-                <h2 class="section-title">Request Your Free Assessment</h2>
-                <p class="section-desc">If you arrived here via a school flyer or neighborhood campaign, please use the form below. Your project will be tagged for tracking.</p>
+                <span class="section-label" data-i18n="community.form.label">Local Campaign Estimate</span>
+                <h2 class="section-title" data-i18n="community.form.title">Request Your Free Assessment</h2>
+                <p class="section-desc" data-i18n="community.form.desc">If you arrived here via a school flyer or neighborhood campaign, please use the form below. Your project will be tagged for tracking.</p>
             </div>
 
             <div class="form-outer-wrapper" id="ghlProgressiveForm">
                 <div class="form-header-banner">
-                    <h3>Free Property Assessment</h3>
-                    <p>Community Partnership Campaign Track</p>
+                    <h3 data-i18n="common.form.banner.title">Free Property Assessment</h3>
+                    <p data-i18n="community.form.track">Community Partnership Campaign Track</p>
                 </div>
 
                 <!-- Steps Progress Tracker bar -->
                 <div class="steps-tracker" id="formStepsTracker">
                     <div class="step-node active">
                         <div class="step-circle">1</div>
-                        <span>Category</span>
+                        <span data-i18n="common.form.step1">Category</span>
                     </div>
                     <div class="step-node">
                         <div class="step-circle">2</div>
-                        <span>Goals</span>
+                        <span data-i18n="common.form.step2">Goals</span>
                     </div>
                     <div class="step-node">
                         <div class="step-circle">3</div>
-                        <span>Location</span>
+                        <span data-i18n="common.form.step3">Location</span>
                     </div>
                     <div class="step-node">
                         <div class="step-circle">4</div>
-                        <span>Contact</span>
+                        <span data-i18n="common.form.step4">Contact</span>
                     </div>
                 </div>
 
@@ -203,120 +228,120 @@
                     
                     <!-- STEP 1: CATEGORY SELECTION -->
                     <div class="form-slide active" data-step="1">
-                        <h4 class="form-slide-title">What type of transformation are you looking for?</h4>
+                        <h4 class="form-slide-title" data-i18n="common.form.slide1.title">What type of transformation are you looking for?</h4>
                         <div class="options-grid">
                             <div class="option-box" tabindex="0" data-category="project-type" data-value="interior">
                                 <div class="option-icon">
                                     <svg style="width:28px; height:28px;" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"></path></svg>
                                 </div>
-                                <h4>Interior Painting</h4>
-                                <p>Walls, ceilings, trims, baseboards</p>
+                                <h4 data-i18n="common.form.opt.interior.title">Interior Painting</h4>
+                                <p data-i18n="common.form.opt.interior.desc">Walls, ceilings, trims, baseboards</p>
                             </div>
                             <div class="option-box" tabindex="0" data-category="project-type" data-value="exterior">
                                 <div class="option-icon">
                                     <svg style="width:28px; height:28px;" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"></path></svg>
                                 </div>
-                                <h4>Exterior Painting</h4>
-                                <p>Siding, trim, fascia, deck stain</p>
+                                <h4 data-i18n="common.form.opt.exterior.title">Exterior Painting</h4>
+                                <p data-i18n="common.form.opt.exterior.desc">Siding, trim, fascia, deck stain</p>
                             </div>
                             <div class="option-box" tabindex="0" data-category="project-type" data-value="cabinets">
                                 <div class="option-icon">
                                     <svg style="width:28px; height:28px;" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z"></path></svg>
                                 </div>
-                                <h4>Cabinet Painting</h4>
-                                <p>Factory-grade spray refinishing</p>
+                                <h4 data-i18n="common.form.opt.cabinets.title">Cabinet Painting</h4>
+                                <p data-i18n="common.form.opt.cabinets.desc">Factory-grade spray refinishing</p>
                             </div>
                         </div>
-                        <p class="form-slide-hint">Restoration, drywall, and deck work are added as finishing touches to your painting project on the next step.</p>
+                        <p class="form-slide-hint" data-i18n="common.form.slide1.hint">Restoration, drywall, and deck work are added as finishing touches to your painting project on the next step.</p>
                     </div>
 
                     <!-- STEP 2: AVATAR / GOALS -->
                     <div class="form-slide" data-step="2">
-                        <h4 class="form-slide-title">What are the main goals for your property?</h4>
+                        <h4 class="form-slide-title" data-i18n="common.form.slide2.title">What are the main goals for your property?</h4>
                         <div class="options-grid">
                             <div class="option-box" tabindex="0" data-category="avatar-context" data-value="sell">
                                 <div class="option-icon">
                                     <svg style="width:28px; height:28px;" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
                                 </div>
-                                <h4>Preparing to List / Sell</h4>
-                                <p>Increase appraisal value & speed sale</p>
+                                <h4 data-i18n="common.form.opt.sell.title">Preparing to List / Sell</h4>
+                                <p data-i18n="common.form.opt.sell.desc">Increase appraisal value & speed sale</p>
                             </div>
                             <div class="option-box" tabindex="0" data-category="avatar-context" data-value="buy">
                                 <div class="option-icon">
                                     <svg style="width:28px; height:28px;" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>
                                 </div>
-                                <h4>Newly Purchased Home</h4>
-                                <p>Personalize before moving in</p>
+                                <h4 data-i18n="common.form.opt.buy.title">Newly Purchased Home</h4>
+                                <p data-i18n="common.form.opt.buy.desc">Personalize before moving in</p>
                             </div>
                             <div class="option-box" tabindex="0" data-category="avatar-context" data-value="update">
                                 <div class="option-icon">
                                     <svg style="width:28px; height:28px;" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path></svg>
                                 </div>
-                                <h4>Improve Current Home</h4>
-                                <p>Protect siding or update aesthetics</p>
+                                <h4 data-i18n="common.form.opt.update.title">Improve Current Home</h4>
+                                <p data-i18n="common.form.opt.update.desc">Protect siding or update aesthetics</p>
                             </div>
                             <div class="option-box" tabindex="0" data-category="avatar-context" data-value="partner">
                                 <div class="option-icon">
                                     <svg style="width:28px; height:28px;" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857C17.068 15.794 17 15.4 17 15V4a2 2 0 00-2-2H5a2 2 0 00-2 2v11c0 .4.068.794.18 1.143A3 3 0 003 18v2h5v-2a3 3 0 015.356-1.857C13.932 16.206 14 16.6 14 17v3h3z"></path></svg>
                                 </div>
-                                <h4>Realtor / Investor Partner</h4>
-                                <p>Repeated projects, fast turnaround</p>
+                                <h4 data-i18n="common.form.opt.partner.title">Realtor / Investor Partner</h4>
+                                <p data-i18n="common.form.opt.partner.desc">Repeated projects, fast turnaround</p>
                             </div>
                         </div>
                     </div>
 
                     <!-- STEP 3: LOCATION & ZIP -->
                     <div class="form-slide" data-step="3">
-                        <h4 class="form-slide-title">Where is the project located?</h4>
-                        <p class="mb-3" style="font-size: 0.85rem; color: var(--text-secondary);">You're halfway there — about 30 seconds left. We just need your location to check availability in the Tucker, Atlanta & surrounding service area.</p>
+                        <h4 class="form-slide-title" data-i18n="common.form.slide3.title">Where is the project located?</h4>
+                        <p class="mb-3" style="font-size: 0.85rem; color: var(--text-secondary);" data-i18n="common.form.slide3.note">You're halfway there — about 30 seconds left. We just need your location to check availability in the Tucker, Atlanta & surrounding service area.</p>
                         
                         <div class="form-group">
-                            <label class="form-label" for="projectZip">ZIP Code</label>
-                            <input class="form-control" type="text" id="projectZip" placeholder="e.g. 30084" maxlength="5">
+                            <label class="form-label" for="projectZip" data-i18n="common.form.zip.label">ZIP Code</label>
+                            <input class="form-control" type="text" id="projectZip" placeholder="e.g. 30084" data-i18n-attr="placeholder:common.form.zip.ph" maxlength="5">
                         </div>
 
                         <div class="form-group">
-                            <label class="form-label" for="projectAddress">Street Address</label>
-                            <input class="form-control" type="text" id="projectAddress" placeholder="e.g. 123 Main Street">
+                            <label class="form-label" for="projectAddress" data-i18n="common.form.address.label">Street Address</label>
+                            <input class="form-control" type="text" id="projectAddress" placeholder="e.g. 123 Main Street" data-i18n-attr="placeholder:common.form.address.ph">
                         </div>
                     </div>
 
                     <!-- STEP 4: CONTACT & DETAILS -->
                     <div class="form-slide" data-step="4">
-                        <h4 class="form-slide-title">Who should our project manager contact?</h4>
+                        <h4 class="form-slide-title" data-i18n="common.form.slide4.title">Who should our project manager contact?</h4>
                         
                         <div class="grid-2">
                             <div class="form-group">
-                                <label class="form-label" for="clientName">Full Name</label>
-                                <input class="form-control" type="text" id="clientName" placeholder="e.g. John Doe">
+                                <label class="form-label" for="clientName" data-i18n="common.form.name.label">Full Name</label>
+                                <input class="form-control" type="text" id="clientName" placeholder="e.g. John Doe" data-i18n-attr="placeholder:common.form.name.ph">
                             </div>
                             <div class="form-group">
-                                <label class="form-label" for="clientPhone">Phone Number</label>
+                                <label class="form-label" for="clientPhone" data-i18n="common.form.phone.label">Phone Number</label>
                                 <input class="form-control" type="tel" id="clientPhone" placeholder="e.g. 770-555-0199">
                             </div>
                         </div>
 
                         <div class="form-group">
-                            <label class="form-label" for="clientEmail">Email Address</label>
-                            <input class="form-control" type="email" id="clientEmail" placeholder="e.g. johndoe@gmail.com">
+                            <label class="form-label" for="clientEmail" data-i18n="common.form.email.label">Email Address</label>
+                            <input class="form-control" type="email" id="clientEmail" placeholder="e.g. johndoe@gmail.com" data-i18n-attr="placeholder:common.form.email.ph">
                         </div>
 
                         <div class="grid-2">
                             <div class="form-group">
-                                <label class="form-label" for="preferredSchedule">Preferred Visit Window</label>
+                                <label class="form-label" for="preferredSchedule" data-i18n="common.form.schedule.label">Preferred Visit Window</label>
                                 <select class="form-control" id="preferredSchedule">
-                                    <option value="any">Any Day - Time Range Flexible</option>
-                                    <option value="weekday-morning">Weekdays - Morning (8am - 12pm)</option>
-                                    <option value="weekday-afternoon">Weekdays - Afternoon (12pm - 5pm)</option>
-                                    <option value="saturday">Saturdays - Morning</option>
+                                    <option value="any" data-i18n="common.form.schedule.any">Any Day - Time Range Flexible</option>
+                                    <option value="weekday-morning" data-i18n="common.form.schedule.wm">Weekdays - Morning (8am - 12pm)</option>
+                                    <option value="weekday-afternoon" data-i18n="common.form.schedule.wa">Weekdays - Afternoon (12pm - 5pm)</option>
+                                    <option value="saturday" data-i18n="common.form.schedule.sat">Saturdays - Morning</option>
                                 </select>
                             </div>
                             <div class="form-group">
-                                <label class="form-label">Upload Photos (Optional)</label>
+                                <label class="form-label" data-i18n="common.form.upload.label">Upload Photos (Optional)</label>
                                 <div class="upload-btn-wrapper">
                                     <label class="upload-file-label" for="projectPhotos">
                                         <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>
-                                        <span id="uploadFileText">Upload photos (max 5MB)</span>
+                                        <span id="uploadFileText" data-i18n="common.form.upload.text">Upload photos (max 5MB)</span>
                                     </label>
                                     <input type="file" id="projectPhotos" class="hidden-input" accept="image/*">
                                 </div>
@@ -324,27 +349,25 @@
                         </div>
 
                         <div class="form-group">
-                            <label class="form-label" for="projectDesc">Project Description (Brief)</label>
-                            <textarea class="form-control" id="projectDesc" rows="2" placeholder="e.g. Wall painting in 2 bedrooms, minor drywall repairs."></textarea>
+                            <label class="form-label" for="projectDesc" data-i18n="common.form.desc.label">Project Description (Brief)</label>
+                            <textarea class="form-control" id="projectDesc" rows="2" placeholder="e.g. Wall painting in 2 bedrooms, minor drywall repairs." data-i18n-attr="placeholder:common.form.desc.ph"></textarea>
                         </div>
                     </div>
                 </div>
 
                 <!-- Form Action Buttons -->
                 <!-- TCPA / A2P 10DLC Consent -->
-                <div class="form-consent-notice" style="margin-top: 12px; padding: 10px 14px; background: rgba(15,30,54,0.04); border-radius: 8px; border: 1px solid rgba(15,30,54,0.08);">
-                    <p style="font-size: 0.72rem; color: var(--text-secondary); line-height: 1.55; margin: 0;">
+                <div class="form-consent-notice" style="margin-top: 12px; padding: 10px 14px; background: var(--tint-navy-soft); border-radius: 8px; border: 1px solid var(--tint-navy-border);">
+                    <p style="font-size: 0.72rem; color: var(--text-secondary); line-height: 1.55; margin: 0;" data-i18n-html="common.form.consent">
                         By submitting this form, you agree to receive SMS messages, phone calls, and emails from Roly Home Services at the number and email provided. Message &amp; data rates may apply. Reply <strong>STOP</strong> to opt out at any time. Reply <strong>HELP</strong> for assistance. Consent is not a condition of purchase. View our <a href="privacy.html" style="color: var(--color-orange); text-decoration: underline;">Privacy Policy</a> &amp; <a href="terms.html" style="color: var(--color-orange); text-decoration: underline;">Terms of Service</a>.
                     </p>
                 </div>
 
                 <div id="formActionButtonsBar" class="form-actions">
                     <button type="button" class="btn btn-outline btn-prev">
-                        <svg style="width:16px; height:16px;" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M15 19l-7-7 7-7"></path></svg>
-                        Back
+                        <svg style="width:16px; height:16px;" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M15 19l-7-7 7-7"></path></svg><span data-i18n="common.form.back">Back</span>
                     </button>
-                    <button type="button" class="btn btn-secondary btn-next">
-                        Next Step
+                    <button type="button" class="btn btn-secondary btn-next"><span data-i18n="common.form.next">Next Step</span>
                         <svg style="width:16px; height:16px;" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 5l7 7-7 7"></path></svg>
                     </button>
                 </div>
@@ -356,10 +379,10 @@
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path>
                         </svg>
                     </div>
-                    <h3>Estimate Request Received!</h3>
-                    <p>Thank you. Roly Home Services received your project details. A project manager will review the scope and follow up with the right next step.</p>
-                    <p style="font-size: 0.9rem; color: var(--color-orange); font-weight: 600;">A Roly project manager will reach out within one business day to review your request and confirm the right next step.</p>
-                    <a href="tel:7707690008" class="btn btn-secondary btn-sm">Need Instant Help? Call Us Now</a>
+                    <h3 data-i18n="common.form.success.title">Estimate Request Received!</h3>
+                    <p data-i18n="common.form.success.p1">Thank you. Roly Home Services received your project details. A project manager will review the scope and follow up with the right next step.</p>
+                    <p style="font-size: 0.9rem; color: var(--color-orange); font-weight: 600;" data-i18n="common.form.success.p2">A Roly project manager will reach out within one business day to review your request and confirm the right next step.</p>
+                    <a href="tel:7707690008" class="btn btn-secondary btn-sm" data-i18n="common.form.success.cta">Need Instant Help? Call Us Now</a>
                 </div>
             </div>
         </div>
@@ -371,10 +394,10 @@
     <footer class="site-footer">
         <div class="container">
             <div class="footer-bottom" style="border: none; padding: 0;">
-                <p>&copy; 2026 Roly Home Services. All rights reserved. Your Property Best Friend.</p>
+                <p data-i18n="common.footer.copyright">&copy; 2026 Roly Home Services. All rights reserved. Your Property Best Friend.</p>
                 <div style="display: flex; gap: 16px; font-size: 0.8rem;">
-                    <a href="index.html">Main Website</a>
-                    <a href="privacy.html">Privacy Policy</a>
+                    <a href="index.html" data-i18n="community.footer.mainSite">Main Website</a>
+                    <a href="privacy.html" data-i18n="common.footer.privacy">Privacy Policy</a>
                 </div>
             </div>
         </div>
@@ -382,9 +405,9 @@
 
 
     <!-- Persistent mobile click-to-call (header phone link is hidden < 1024px) -->
-    <a href="tel:7707690008" class="mobile-call-pill" aria-label="Call or text Roly Home Services at 770-769-0008">
+    <a href="tel:7707690008" class="mobile-call-pill" aria-label="Call or text Roly Home Services at 770-769-0008" data-i18n-attr="aria-label:common.callPill.aria">
         <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.94.725l.548 2.2a1 1 0 01-.321.988l-1.305.98a10.582 10.582 0 004.872 4.872l.98-1.305a1 1 0 01.988-.321l2.2.548a1 1 0 01.725.94V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path></svg>
-        <span>Call or Text</span>
+        <span data-i18n="common.callPill.text">Call or Text</span>
     </a>
 
 </body>
