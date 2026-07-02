@@ -16,6 +16,7 @@ image_E4F7E4C3EDC049.jpg
 
 # Source PNGs — the site ships the optimized .webp versions instead
 *.png
+!assets/brand/*.png
 
 # Tooling / local
 .agents/

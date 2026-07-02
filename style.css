@@ -354,6 +354,13 @@ button:focus-visible, a:focus-visible, input:focus-visible, select:focus-visible
     flex-shrink: 0;
 }
 
+.brand-logo-img {
+    height: 42px;
+    width: auto;
+    object-fit: contain;
+    display: block;
+}
+
 .footer-mark {
     display: inline-block;
     margin-bottom: 14px;
